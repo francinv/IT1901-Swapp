@@ -1,0 +1,1 @@
+# Ressurser til prosjektet (brukergrensesnitt, persistens osv.)
