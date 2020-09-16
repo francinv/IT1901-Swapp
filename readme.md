@@ -4,7 +4,7 @@
 Prosjektet swapp skal gjøre det mulig for brukere å bytte ting. 
 [Se her for flere detaljer om hva appen handler om.](OM_PROSJEKTET.md)
 
-Applikasjonens kode befinner seg i:
+# Organisering av koden:
 
 - src/main/java
     - /swapp/core som utgjør domenelogikk
@@ -15,14 +15,15 @@ FXML-filen befinner seg i:
 
 - src/main/resources/swapp/ui
 
-Test-lokasjoner:
+## Test-lokasjoner:
 - src/test/java/swapp/core Testing av domenelogikk
 - src/main/java/swapp/ui Testing av javafx
 
 ## Domenelaget
 Appens interne logikk vil inneholde objekter som Bruker, Annonse, Melding og relasjonene mellom dem.
 
-## brukergrensesnittlaget
+## Brukergrensesnittlaget
 Brukergrensesnittlaget vil vise brukere annonser, melding og mulighet for å logge inn og registrere seg. 
+
 ## Persistenslaget
 Prosjektet brukerer json til å lagre data. 
