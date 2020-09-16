@@ -7,6 +7,7 @@ public class User {
 	
 	
 	public User(String name, String email, String password) {
+        validName(name);
 		this.name = name;
 		this.email = email;
 		this.password = password;
@@ -16,6 +17,7 @@ public class User {
 		return name;
 	}
 	public void setName(String name) {
+        validName(name);
 		this.name = name;
 	}
 	public String getEmail() {
@@ -29,6 +31,18 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+    }
+
+    private void validName(String name) {
+        if (name.length() > 128) {
+            throw new IllegalArgumentException("name too long");
+        }
+        char[] characters = name.toCharArray();
+        for (char c : characters) {
+            if (!Character.isLetter(c)) {
+                throw new IllegalArgumentException("name can only contain letters");
+            }
+        }
     }
 }
 	
