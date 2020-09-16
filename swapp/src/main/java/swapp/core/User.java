@@ -44,5 +44,10 @@ public class User {
             }
         }
     }
+    
+    @Override
+	public String toString() {
+    	return "[NAME: " + name + ", " + "EMAIL: " + email + "]";
+    }
 }
 	

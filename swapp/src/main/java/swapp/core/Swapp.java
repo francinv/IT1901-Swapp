@@ -20,4 +20,12 @@ public class Swapp {
 			accounts.remove(user);
 		}
 	}
+	
+	public List<User> getAccounts() {
+		return accounts;
+	}
+	
+	public int getUserAmount() {
+		return accounts.size();
+	}
 }

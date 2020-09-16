@@ -8,6 +8,7 @@ module swapp {
 
     exports swapp.core;
     exports swapp.ui;
+    exports swapp.json;
 
     opens swapp.ui to javafx.fxml;
 
