@@ -1,13 +1,13 @@
 package swapp.core;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class UserTest {
     User user;
 
-    @BeforeAll
+    @Test
     public void setUp() throws Exception{
+        System.out.println("These tests checs that creating users work");
         this.user = new User("name", "email", "password");
     }
 
@@ -27,4 +27,5 @@ public class UserTest {
        } catch (Exception e) {
        }
     }
+    
 }
