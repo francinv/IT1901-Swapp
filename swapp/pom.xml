@@ -47,7 +47,23 @@
 			<artifactId>testfx-junit5</artifactId>
 			<version>4.0.16-alpha</version>
 			<scope>test</scope>
-		</dependency>
+        </dependency>
+
+        <!-- Ikke testet -->
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+        
+
 	</dependencies>
 
 	<properties>
@@ -85,6 +101,31 @@
 					<mainClass>swapp.ui.App</mainClass>
 				</configuration>
             </plugin>
+
+
+            <!-- Vet ikke om funker enda, Jacoco for å rapportere test coverage-->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                        <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <goals>
+                        <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
 		</plugins>
 	</build>
 </project>
