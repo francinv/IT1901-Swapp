@@ -8,7 +8,7 @@ public class UserTest {
     @Test
     public void setUp() throws Exception{
         System.out.println("Test coverage report can be found in target/site/jacoco/index.html");
-        System.out.println("These tests checs that creating users work");
+        System.out.println("These tests check that creating users work");
         this.user = new User("name", "email", "password");
     }
 
