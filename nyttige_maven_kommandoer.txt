@@ -1,0 +1,7 @@
+// Nyttige maven kommandoer
+mvn clean install
+mvn test
+mvn javafx:run
+mvn jacoco:report
+mvn checkstyle:check
+mvn spotbugs:check
