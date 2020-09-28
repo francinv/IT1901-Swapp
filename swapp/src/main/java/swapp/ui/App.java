@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 	  @Override
 	  public void start(final Stage primaryStage) throws Exception {
-	    final Parent parent = FXMLLoader.load(getClass().getResource("App.fxml"));
+	    final Parent parent = FXMLLoader.load(getClass().getResource("Register.fxml"));
 	    primaryStage.setScene(new Scene(parent));
 	    primaryStage.show();
 	  }

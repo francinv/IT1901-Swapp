@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import swapp.core.*;
 import swapp.json.SwappModule;
 
-public class AppController {
+public class RegisterController {
 	@FXML
 	Button knapp;
 	@FXML
