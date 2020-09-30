@@ -1,0 +1,1 @@
+# Ressurser for testene (identisk til de under fxui/main/resources/swapp/ui)
