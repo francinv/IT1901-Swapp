@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.module.SimpleSerializers;
 
 import swapp.core.Swapp;
 import swapp.core.User;
-import swapp.core.AdList;
 
 public class SwappModule extends Module {
 
@@ -16,11 +15,9 @@ public class SwappModule extends Module {
 	
 	public SwappModule() {
 		serializers.addSerializer(Swapp.class, new SwappSerializer());
-        serializers.addSerializer(User.class, new UserSerializer());
-        serializers.addSerializer(AdList.class, new AdListSerializer());
+		serializers.addSerializer(User.class, new UserSerializer());
 		deserializers.addDeserializer(Swapp.class, new SwappDeserializer());
-        deserializers.addDeserializer(User.class, new UserDeserializer());
-        deserializers.addDeserializer(AdList.class, new AdListDeserializer());
+		deserializers.addDeserializer(User.class, new UserDeserializer());
 	}
 	
 	@Override
