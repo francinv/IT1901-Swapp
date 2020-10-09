@@ -2,7 +2,7 @@
 
 # Swapp
 Prosjektet swapp skal gjøre det mulig for brukere å bytte ting. 
-
+**[Se her for flere detaljer om hva appen handler om.](swapp/OM_PROSJEKTET.md)**
 
 # Organisering av koden:
 
