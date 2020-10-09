@@ -13,4 +13,12 @@ Appen Swap skal gjøre det mulig for brukere å bytte eller gi bort ting. Målgr
 - Visning av annonser, med muligheter for sortering
 - Brukere skal kunne se tidligere transaksjoner
 
+## Refleksjon om lagringsmetode
+
+Appen vår bruker implisitt lagring.
+Vi har valgt dette fordi det er mer hensiktsmessig i Swapp! å ha lagring som skjer uten at man selv må administrere filer.
+når man registrerer en bruker, lagres det når man trykker på Register, og videre skal vi implementere lagring av byttehandler,
+ som heller ikke er nødvendig at brukeren selv lagrer med navn etc.
+
+ 
 ![alt text](readmeBilde.jpg)
