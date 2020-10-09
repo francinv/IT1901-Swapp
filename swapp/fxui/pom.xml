@@ -81,7 +81,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>swapp.ui.Register</mainClass>
+                    <mainClass>swapp.ui.FxApp</mainClass>
                 </configuration>
             </plugin>
             <!-- Jacoco for å rapportere test coverage, target/site/jacoco/index.html open with preview-->
