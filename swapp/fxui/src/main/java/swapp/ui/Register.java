@@ -9,9 +9,11 @@ import javafx.stage.Stage;
 	public class Register extends Application {
 
 	  @Override
-	  public void start(final Stage primaryStage) throws Exception {
-	    final Parent parent = FXMLLoader.load(getClass().getResource("Register.fxml"));
+	  public void start(Stage primaryStage) throws Exception {
+	    Parent parent = FXMLLoader.load(getClass().getResource("ListOfAds.fxml"));
+	    //final Parent parent = FXMLLoader.load(getClass().getResource("Register.fxml"));
 	    primaryStage.setScene(new Scene(parent));
+	    primaryStage.setMaximized(true);
 	    primaryStage.show();
 	  }
 
