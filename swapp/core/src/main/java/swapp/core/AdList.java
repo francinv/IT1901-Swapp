@@ -3,32 +3,30 @@ package swapp.core;
 import java.util.ArrayList;
 
 public class AdList {
+    /**
+     * The AdList contains all active Ad-instances and communicates with the GUI.
+     */
     private ArrayList<Ad> ads;
     public AdList(){
-        System.out.println("jaja");
         this.ads = new ArrayList<Ad>();
         populateAds();
-        System.out.println(this.getAd(0));
     }
+    // Create an Ad
     public void createAndAdd(String title, String author, String textBody){
         this.ads.add(new Ad(title, author, textBody));
     }
+
+    /**
+     *
+     * @return size of adList/number of active Ads.
+     */
     public int getNumberOfAds(){
         return this.ads.size();
     }
     public Ad getAd(int i){
-        System.out.println("heh "+ads.get(i));
         return ads.get(i);
-        /*
-        if (this.ads.size()> i || i<0){
-            System.out.println("Out of range");
-            return null;
-        }
-        else{
-            return ads.get(i);
-        }*/
     }
-
+    // Temporary test method.
     public void populateAds(){
         ads.add(new Ad("Hoppeslott byttes mot en trampo", "henrik", "nybrukt"));
         ads.add(new Ad("Hoppeslott byttes mot en ", "henrk", "nyrukt"));
@@ -37,6 +35,11 @@ public class AdList {
         ads.add(new Ad("løk", "henrik", "ubrukt"));
         ads.add(new Ad("krabbe", "bø", "brukt"));
         ads.add(new Ad("nepe", "lars", "Godt brukt"));
+    }
+
+    public void archiveAd(Ad ad){
+        ads.remove(ad);
+        // TODO: Give the ad somwhere to display transaction history
     }
 
 }

@@ -15,19 +15,30 @@ import javafx.stage.Stage;
 import swapp.core.*;
 
 public class ListController {
+  /**
+   * This controls the main page of all active Ads. adList holds all active Ads that should be displayed. ListView
+   * displays the active ads in a list. Clicking on an Ad opens a new windows where you should eventually see the Ad
+   * and be able to create new ones.
+   * TODO: Create new Ad object
+   */
   @FXML
   private ListView listView;
   private AdList adList;
 
 
   /**
-   *
+   * When ListOfAds.FXML is loaded, initialize() constructs an adList and fills it with some AdOjbects.
+   * TODO: Add persistence so adList is filled with all Ad objects previously created.
    */
   public void initialize() {
     adList = new AdList();
     refreshList();
 
   }
+
+  /**
+   * refreshList updates the GUI to display all Ads in the Adlist.
+   */
   private void refreshList(){
     listView.getItems().clear();
     addAllAdsToListView();
@@ -38,6 +49,7 @@ public class ListController {
       listView.getItems().add(ad);
     }
   }
+  // temporary test method
   @FXML
   void populateListView(){
     adList.createAndAdd("nepe", "lars", "Godt brukt");
@@ -48,7 +60,9 @@ public class ListController {
 
   /**
    * This method is triggered when a user clicks on an element of the ListView. Should take either Ad or null.
-   * @param arg0
+   * @param arg0 (Ad or null)
+   * If an Ad has been clicked, a DetailView of the Ad should open. Currently a new scene with a static fxml is used
+   * as placeholder.
    */
   @FXML
   void handleListClick(MouseEvent arg0){
@@ -70,14 +84,14 @@ public class ListController {
       System.out.println("Clicked empty list element");
     }
   }
-  public void myAds(){
+  public void myAds(){ // triggered by button click
     System.out.println("sss");
-    // TODO: Should transition to a list of my Ads
+    // TODO: Should transition to a list of currently logged in user's Ads
   }
 
 
 
-  //legacy code
+  //legacy code, dont look at this.
   private String[] objectHboxToString(Object hbox){
     if(hbox instanceof HBox) {
       // ((HBox) hbox).getChildren().get(0) // Bruk casting for å få fatt i Label

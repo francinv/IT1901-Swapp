@@ -1,10 +1,16 @@
 package swapp.core;
 
 public class Ad {
+    /**
+     * Instances of Ad are stored in AdList and displayed on the main page. AdList handles creation and communication
+     * with the GUI.
+     *
+     */
     private String title;
-    private String author;
+    private String author; // For testing purposes author is currently a string, should be User author;
     private String textBody;
-    //Todo: Tilstand, transaksjonstype, Bilder
+    // private String status; // "completed" | "deleted" | "active"
+    //Todo: Tilstand, transaksjonstype
 
     /**
      *
@@ -19,7 +25,7 @@ public class Ad {
         this.textBody = textBody;
 
     }
-
+    // Getters and setters
     public String getTitle() {
         return title;
     }
@@ -36,16 +42,14 @@ public class Ad {
         this.textBody = textBody;
     }
 
+    /**
+     * This method overrides how the Ad object is displayed in the UI.
+     *
+     */
     @Override
     public String toString() {
         String str = this.title+" (annonsert av "+this.author+")";
-        System.out.println(str);
         return str;
     }
 
-    public String getAgrip() {
-        String str = this.title+" (annonsert av "+this.author+")";
-        System.out.println(str);
-        return str;
-    }
 }
