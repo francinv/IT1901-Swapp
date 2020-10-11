@@ -70,11 +70,9 @@ public class Swapp {
 	}
 
 	public boolean createUser(String name, String email, String password) {
-		UserValidation validation = new UserValidation(getAccounts());
-		if (validation.validateUser(name, email, password)) {
+		if (this.userValidation.validateUser(name, email, password)) {
 			User user = new User(name, email, password);
-			this.add(user);
-			return true;
+			return this.add(user);
 		}
 		return false;
 	}

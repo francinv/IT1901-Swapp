@@ -30,10 +30,12 @@ public class RegisterController extends AbstractController {
 	}
 
 	/**
-	 * Method that is run when the Register button is clicked.
+     * Method that is run when the Register button is clicked.
 	 * adds the User to Swapp's list of users, and calls saveUser() to save it. (!!!!!!)
-	 */
-	@FXML
+     * switches the scene to the main app
+     * @param event the event with which the method is called
+     */
+    @FXML
 	public void registerUser(ActionEvent event) {
 		Window parent = ((Button) event.getTarget()).getScene().getWindow();
 		String nameFieldText = nameField.getText();
