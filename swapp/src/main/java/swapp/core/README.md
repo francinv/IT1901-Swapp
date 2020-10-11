@@ -1,1 +1,1 @@
-# Kilkdekode mappe for domenelaget
+# Kildekode mappe for domenelaget
