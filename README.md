@@ -6,18 +6,18 @@ Prosjektet swapp skal gjøre det mulig for brukere å bytte ting.
 
 # Organisering av koden:
 
-- src/main/java
-    - /swapp/core som utgjør domenelogikk
-    - /swapp/ui som håndterer brukergrensesnittet
-    - /swapp/json for persistens. 
+- swapp/
+    - core/                             Kjernemodulen, domenelogikk og persistens
+        - src/main/java/swapp/core      som utgjør domenelogikk
+        - src/main/java/swapp/core      som utgjør persistenslaget
+    - fxui/                             som håndterer brukergrensesnittet
+        - src/main/java/swapp/ui/       javafx-filer
+        - src/main/resources/swapp/ui/  FXML-filer
 
-FXML-filen befinner seg i: 
-
-- src/main/resources/swapp/ui
 
 ## Test-lokasjoner:
-- src/test/java/swapp/core Testing av domenelogikk
-- src/main/java/swapp/ui Testing av javafx
+- src/test/java/swapp                   Testing av domenelogikk og persistens
+- src/test/java/swapp/ui/               Testing av javafx
 
 ## Domenelaget
 Appens interne logikk vil inneholde objekter som Bruker, Annonse, Melding og relasjonene mellom dem.
