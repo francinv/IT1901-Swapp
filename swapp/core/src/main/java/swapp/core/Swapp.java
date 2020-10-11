@@ -1,7 +1,11 @@
 package swapp.core;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Swapp {
 
@@ -65,10 +69,21 @@ public class Swapp {
 		return accounts.size();
 	}
 
+	/**
+	 * Returns an instance of UserValidation
+	 * @return UserValidation
+	 */
 	public UserValidation getUserValidation() {
 		return this.userValidation;
 	}
 
+	/**
+	 * Verifies that a user with the specified name, email and password can be created
+	 * @param name
+	 * @param email
+	 * @param password
+	 * @return true if the user is successfully validated and added to this swapp, false otherwise
+	 */
 	public boolean createUser(String name, String email, String password) {
 		if (this.userValidation.validateUser(name, email, password)) {
 			User user = new User(name, email, password);
@@ -77,6 +92,12 @@ public class Swapp {
 		return false;
 	}
 
+	/**
+	 * Get the current logged in user
+	 * @param email
+	 * @param password
+	 * @return the logged in user with the specified login details, if no such user is found null is returned
+	 */
 	public User getUserLogin(String email, String password) {
 		for (User user : accounts) {
 			if (user.getEmail().equalsIgnoreCase(email) && user.getPassword().equals(password)) {
@@ -86,4 +107,32 @@ public class Swapp {
 		return null;
 	}
 
+	/**
+	 * Get a user by either username or email
+	 * @param string
+	 * @return user with the matching username or email, null if no such user is found
+	 */
+	public User getUser(String string) {
+		Optional<User> optionalUser = this.accounts.stream().filter(getUserPredicate(string)).collect(Collectors.reducing((a, b) -> null));
+		if (optionalUser.isPresent()) {
+			return optionalUser.get();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * A predicate for deciding whether or not the given string is an email or username
+	 * @param string
+	 * @return Predicate<User> that contains a predicate based on either a users name or email
+	 */
+	private Predicate<User> getUserPredicate(String string)	{
+		if (userValidation.validUsername(string)) {
+			return user -> user.getName().equalsIgnoreCase(string);
+		}
+		if (userValidation.validEmail(string)) {
+			return user -> user.getEmail().equalsIgnoreCase(string);
+		}
+		return null;
+	}
 }
