@@ -20,4 +20,5 @@ Vi har valgt dette fordi det er mer hensiktsmessig i Swapp! å ha lagring som sk
 når man registrerer en bruker, lagres det når man trykker på Register, og videre skal vi implementere lagring av byttehandler.
  De er heller ikke er nødvendig at brukeren selv lagrer med navn etc, men mer fornuftig at appen lagrer.
 
+## Relasjoner
 ![alt text](readmeBilde.jpg)
