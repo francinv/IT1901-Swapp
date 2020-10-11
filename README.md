@@ -10,11 +10,10 @@ Prosjektet swapp skal gjøre det mulig for brukere å bytte ting.
     - core/              &nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;              Kjernemodulen, domenelogikk og persistens
         - src/main/java/swapp/core  &nbsp;&nbsp;&nbsp;&nbsp;    som utgjør domenelogikk
         - src/main/java/swapp/core   &nbsp;&nbsp;&nbsp;&nbsp;   som utgjør persistenslaget
-      
-        
     - fxui/                         &nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;   Modulen håndtere brukegrensesnittet
         - src/main/java/swapp/ui/    &nbsp;&nbsp;&nbsp;&nbsp;   javafx-filer
         - src/main/resources/swapp/ui/ &nbsp;&nbsp;&nbsp;&nbsp; FXML-filer
+
 
 
 ## Test-lokasjoner:
