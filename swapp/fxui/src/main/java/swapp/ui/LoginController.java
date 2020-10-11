@@ -11,8 +11,8 @@ import swapp.core.UserValidation;
 public class LoginController extends AbstractController {
 
     @FXML Button loginButton;
-    @FXML TextField emailField;
-    @FXML TextField passwordField;
+    @FXML TextField loginEmailField;
+    @FXML TextField loginPasswordField;
     @FXML Label emailLabel;
     @FXML Label passwordLabel;
     @FXML Label display;
@@ -35,8 +35,8 @@ public class LoginController extends AbstractController {
     @FXML
     public void loginUser(ActionEvent event) {
         Window parent = ((Button) event.getTarget()).getScene().getWindow();
-        String emailFieldText = emailField.getText();
-        String passwordFieldText = passwordField.getText();
+        String emailFieldText = loginEmailField.getText();
+        String passwordFieldText = loginPasswordField.getText();
 
         UserValidation userValidation = this.swapp.getUserValidation();
         if (emailFieldText.isEmpty()) {

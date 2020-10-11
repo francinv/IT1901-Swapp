@@ -13,9 +13,9 @@
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
             <Button fx:id="registerButton" layoutX="507.0" layoutY="351.0" mnemonicParsing="false" onAction="#registerUser" onMouseEntered="#onMouseHoverEnter" onMouseExited="#onMouseHoverExit" text="Register" />
-            <TextField fx:id="nameField" layoutX="225.0" layoutY="123.0" prefHeight="33.0" prefWidth="223.0" />
-            <TextField fx:id="emailField" layoutX="225.0" layoutY="166.0" prefHeight="33.0" prefWidth="223.0" />
-            <PasswordField fx:id="passwordField" layoutX="225.0" layoutY="212.0" prefHeight="33.0" prefWidth="223.0" />
+            <TextField fx:id="registerNameField" layoutX="225.0" layoutY="123.0" prefHeight="33.0" prefWidth="223.0" />
+            <TextField fx:id="registerEmailField" layoutX="225.0" layoutY="166.0" prefHeight="33.0" prefWidth="223.0" />
+            <PasswordField fx:id="registerPasswordField" layoutX="225.0" layoutY="212.0" prefHeight="33.0" prefWidth="223.0" />
             <Label fx:id="nameLabel" layoutX="175.0" layoutY="127.0" prefHeight="25.0" prefWidth="41.0" text="Name:" />
             <Label fx:id="emailLabel" layoutX="175.0" layoutY="170.0" prefHeight="25.0" prefWidth="41.0" text="Email:" />
             <Label fx:id="passwordLabel" layoutX="157.0" layoutY="216.0" prefHeight="25.0" prefWidth="59.0" text="Password:" />

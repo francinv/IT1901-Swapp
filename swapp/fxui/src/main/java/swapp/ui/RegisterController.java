@@ -10,9 +10,9 @@ import swapp.core.*;
 public class RegisterController extends AbstractController {
 
 	@FXML Button registerButton;
-	@FXML TextField nameField;
-	@FXML TextField emailField;
-	@FXML PasswordField passwordField;
+	@FXML TextField registerNameField;
+	@FXML TextField registerEmailField;
+	@FXML PasswordField registerPasswordField;
 	@FXML Label nameLabel;
 	@FXML Label emailLabel;
 	@FXML Label passwordLabel;
@@ -38,9 +38,9 @@ public class RegisterController extends AbstractController {
     @FXML
 	public void registerUser(ActionEvent event) {
 		Window parent = ((Button) event.getTarget()).getScene().getWindow();
-		String nameFieldText = nameField.getText();
-		String emailFieldText = emailField.getText();
-		String pwdFieldText = passwordField.getText();
+		String nameFieldText = registerNameField.getText();
+		String emailFieldText = registerEmailField.getText();
+		String pwdFieldText = registerPasswordField.getText();
 
 		UserValidation userValidation = this.swapp.getUserValidation();
 
