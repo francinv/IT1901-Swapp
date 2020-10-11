@@ -10,12 +10,13 @@ import swapp.core.Ad;
 import swapp.core.User;
 // Perhaps change this class to TransitionHandler? Cant use it as controller because the Constructor
 public class AdDetail {
-  Ad ad;
+  //Ad ad;
 
 
   AdDetail(Ad ad, Stage primaryStage){
-    this.ad = ad;
+    //this.ad = ad;
     try {
+
       /*
       FXMLLoader loader = FXMLLoader.load(getClass().getResource("AdDetail.fxml"));
       loader.setController(this);

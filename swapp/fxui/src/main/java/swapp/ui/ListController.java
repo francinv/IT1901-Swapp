@@ -14,6 +14,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import swapp.core.*;
 
+import java.io.IOException;
+
 public class ListController {
   /**
    * This controls the main page of all active Ads. adList holds all active Ads that should be displayed. ListView
@@ -70,8 +72,18 @@ public class ListController {
     if (ad instanceof Ad){
             /*TODO: Should transition to DetailView of the ad and display all info about the ad and allow to send
                message */
+
       Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)arg0.getSource()).getScene().getWindow();
-      AdDetail detail = new AdDetail((Ad) ad, stageTheEventSourceNodeBelongs);
+      Parent parent = null;
+      try {
+        parent = FXMLLoader.load(getClass().getResource("AdDetail.fxml"));
+        stageTheEventSourceNodeBelongs.setScene(new Scene(parent));
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
+
+      //AdDetail detail = new AdDetail((Ad) ad, stageTheEventSourceNodeBelongs);
             /*
             stageTheEventSourceNodeBelongs.setScene(new Scene(new Pane(new Label("git good"))));
             //Parent parent = FXMLLoader.load(getClass().getResource("Register.fxml"));
