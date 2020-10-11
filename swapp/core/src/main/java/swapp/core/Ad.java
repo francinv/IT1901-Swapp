@@ -17,6 +17,7 @@ public class Ad {
      * @param title
      * @param author
      * @param textBody
+     *
      */
     public Ad(String title, String author, String textBody){
         // todo: check that name exists
