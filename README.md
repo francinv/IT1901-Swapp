@@ -26,4 +26,4 @@ Appens interne logikk vil inneholde objekter som Bruker, Annonse, Melding og rel
 Brukergrensesnittlaget vil vise brukere annonser, melding og mulighet for å logge inn og registrere seg. 
 
 ## Persistenslaget
-Prosjektet brukerer json til å lagre data. 
+Prosjektet brukerer json til å lagre data. **[Se her for refleksjon over lagringsmetode](swapp/OM_PROSJEKTET.md)**
