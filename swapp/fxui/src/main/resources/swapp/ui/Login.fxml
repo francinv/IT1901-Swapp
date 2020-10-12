@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="swapp.ui.LoginController">
+    <center>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <Button fx:id="loginButton" layoutX="507.0" layoutY="351.0" mnemonicParsing="false" onAction="#loginUser" onMouseEntered="#onMouseHoverEnter" onMouseExited="#onMouseHoverExit" text="Log in" />
+                <TextField fx:id="loginEmailField" layoutX="225.0" layoutY="136.0" prefHeight="33.0" prefWidth="223.0" />
+                <PasswordField fx:id="loginPasswordField" layoutX="225.0" layoutY="183.0" prefHeight="33.0" prefWidth="223.0" />
+                <Label fx:id="emailLabel" layoutX="174.0" layoutY="140.0" prefHeight="25.0" prefWidth="41.0" text="Email:" />
+                <Label fx:id="passwordLabel" layoutX="155.0" layoutY="187.0" prefHeight="25.0" prefWidth="59.0" text="Password:" />
+                <Label layoutX="240.0" layoutY="57.0" prefHeight="50.0" prefWidth="111.0" text="Swapp! log in" />
+                <Label fx:id="display" layoutX="268.0" layoutY="302.0" prefHeight="33.0" prefWidth="111.0" />
+                <Hyperlink fx:id="loginLink" layoutX="225.0" layoutY="222.0" onAction="#setOnActionLink" prefHeight="23.0" prefWidth="223.0" text="Click here to register" />
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

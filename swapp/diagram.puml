@@ -1,0 +1,28 @@
+@startuml
+
+component core {
+	package swapp.core
+	package swapp.json
+}
+
+component jackson{
+}
+
+swapp.json ..> jackson
+
+component fxui{
+	package swapp.ui
+}
+
+swapp.ui ..> swapp.core
+swapp.ui ..> swapp.json
+
+component javafx {
+	component fxml{
+	}
+}
+
+fxui ..> javafx
+fxui ..> fxml
+
+@enduml
