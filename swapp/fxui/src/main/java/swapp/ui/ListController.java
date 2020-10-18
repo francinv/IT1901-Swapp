@@ -15,8 +15,12 @@ import javafx.stage.Stage;
 import swapp.core.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ListController {
+import swapp.core.UserValidation;
+
+public class ListController extends AbstractController {
   /**
    * This controls the main page of all active Ads. adList holds all active Ads that should be displayed. ListView
    * displays the active ads in a list. Clicking on an Ad opens a new windows where you should eventually see the Ad
@@ -33,11 +37,20 @@ public class ListController {
    * TODO: Add persistence so adList is filled with all Ad objects previously created.
    */
   public void initialize() {
+    loadSwapp();
     adList = new AdList();
-    refreshList();
+    populateAdList();  // gets all ads from User Lists (json) to adList
+    refreshList();  // Clears ListView and adds all ads from adList
 
   }
-
+  private void populateAdList(){ // gets all ads from all users from swapp and ads to Adlist
+    List<User> accounts = this.swapp.getAccounts();
+    for (User user: accounts){
+      for (Ad ad: user.getUserAds()){
+        adList.add(ad);
+      }
+    }
+  }
   /**
    * refreshList updates the GUI to display all Ads in the Adlist.
    */
@@ -51,12 +64,40 @@ public class ListController {
       listView.getItems().add(ad);
     }
   }
+  public void testy(){
+    List<User> accounts = this.swapp.getAccounts();
+    System.out.println(this.swapp.getCurrentUser()); // null
+    System.out.println(this.swapp.getUser("henrik81"));// [NAME: henrik81, EMAIL: test@test81.no]
+    System.out.println(this.swapp.getUserAmount()); // 3
+    this.swapp.getUser("henrik81").createAd("nepe", "Godt brukt");
+
+
+    for (User user: accounts){
+      System.out.println("kek " +user);
+      user.createAd("nepe", "Godt brukt");
+      user.createAd("kål", "Pen");
+      user.createAd("koll", "brukt");
+      System.out.println("kek2 " +user.getUserAds());
+      for (Ad ad: user.getUserAds()){
+        System.out.println("kek3 " +ad);
+        adList.add(ad);
+      }
+    }
+
+
+
+
+
+
+  }
+
+
+
+
   // temporary test method
   @FXML
   void populateListView(){
-    adList.createAndAdd("nepe", "lars", "Godt brukt");
-    adList.createAndAdd("koll", "ødipus", "brukt");
-    adList.createAndAdd("kål", "Pante-per", "Pen");
+    testy();
     refreshList();
   }
 
@@ -98,6 +139,7 @@ public class ListController {
   }
   public void myAds(){ // triggered by button click
     System.out.println("sss");
+
     // TODO: Should transition to a list of currently logged in user's Ads
   }
 

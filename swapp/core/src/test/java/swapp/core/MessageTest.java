@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MessageTest {
+  /*
   Message message;
   @BeforeEach
   public void setUp() throws Exception{
@@ -14,8 +15,8 @@ public class MessageTest {
   @Test
   public void testCreateMessage() {
     assert message.getListOfStringMessages().get(0).equals( "Lyst til å bytte?");
-    message.sendMessage(null, "Kult");/**/
+    message.sendMessage(null, "Kult");
     assert message.getListOfStringMessages().get(1).equals( "Kult");
   }
-
+/**/
 }

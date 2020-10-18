@@ -7,7 +7,7 @@ public class Ad {
      *
      */
     private String title;
-    private String author; // For testing purposes author is currently a string, should be User author;
+    private User author; // For testing purposes author is currently a string, should be User author;
     private String textBody;
     // private String status; // "completed" | "deleted" | "active"
     //Todo: Tilstand, transaksjonstype
@@ -19,7 +19,7 @@ public class Ad {
      * @param textBody
      *
      */
-    public Ad(String title, String author, String textBody){
+    public Ad(String title, User author, String textBody){
         // todo: check that name exists
         this.title = title;
         this.author = author;
@@ -31,7 +31,7 @@ public class Ad {
         return title;
     }
 
-    public String getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
@@ -49,7 +49,7 @@ public class Ad {
      */
     @Override
     public String toString() {
-        String str = this.title+" (annonsert av "+this.author+")";
+        String str = this.title+" (annonsert av "+this.author.getName()+")";
         return str;
     }
 

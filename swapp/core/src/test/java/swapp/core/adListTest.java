@@ -12,8 +12,9 @@ public class adListTest {
     System.out.println("Test coverage report can be found in target/site/jacoco/index.html");
 
     this.adList = new AdList();
+    System.out.println("HEHEHE ");
   }
-
+/*
   @Test
   public void testCreateAd() {
       System.out.println("HEHEHE ");
@@ -41,4 +42,6 @@ public class adListTest {
       assert adList.getNumberOfAds() == NumberofAds-1;
 
   }
+  */
+
 }

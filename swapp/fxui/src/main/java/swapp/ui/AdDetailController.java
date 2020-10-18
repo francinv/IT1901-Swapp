@@ -28,7 +28,7 @@ public class AdDetailController extends AbstractController {
     this.ad = ad;
   }
   public void customInitialize(){
-    nameLabel.setText(ad.getAuthor());
+    nameLabel.setText(ad.getAuthor().toString());
   }
 
   @FXML

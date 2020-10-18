@@ -1,17 +1,27 @@
 package swapp.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 	private String name;
 	private String email;
 	private String password;
-
+	private List<Ad> userAds;//
 
 	public User(String name, String email, String password) {
 		this.name = name.toLowerCase();
 		this.email = email;
 		this.password = password;
+		this.userAds = new ArrayList<>();//
 	}
 
+	public void createAd(String title, String textBody){
+		this.userAds.add(new Ad(title, this, textBody));//
+	}
+	public List<swapp.core.Ad> getUserAds(){
+		return this.userAds;
+	}
 	/**
 	 * getter for the User's name.
 	 * @return the name of the User
