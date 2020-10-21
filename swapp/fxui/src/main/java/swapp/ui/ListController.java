@@ -40,6 +40,8 @@ public class ListController extends AbstractController {
     loadSwapp();
     adList = new AdList();
     populateAdList();  // gets all ads from User Lists (json) to adList
+
+    testy(); // adds some test Ads, remove at some point
     refreshList();  // Clears ListView and adds all ads from adList
 
   }
@@ -66,11 +68,12 @@ public class ListController extends AbstractController {
   }
   public void testy(){
     List<User> accounts = this.swapp.getAccounts();
+    /*
     System.out.println(this.swapp.getCurrentUser()); // null
     System.out.println(this.swapp.getUser("henrik81"));// [NAME: henrik81, EMAIL: test@test81.no]
     System.out.println(this.swapp.getUserAmount()); // 3
     this.swapp.getUser("henrik81").createAd("nepe", "Godt brukt");
-
+    */
 
     for (User user: accounts){
       System.out.println("kek " +user);
@@ -79,26 +82,22 @@ public class ListController extends AbstractController {
       user.createAd("koll", "brukt");
       System.out.println("kek2 " +user.getUserAds());
       for (Ad ad: user.getUserAds()){
-        System.out.println("kek3 " +ad);
         adList.add(ad);
       }
     }
-
-
-
-
-
-
   }
-
 
 
 
   // temporary test method
   @FXML
   void populateListView(){
-    testy();
-    refreshList();
+    //testy();
+    System.out.println(adList);
+    System.out.println(adList.getAd(0).getStatus());
+    System.out.println(adList.getAd(0).getCategory());
+    //refreshList();
+    initialize();
   }
 
   /**
@@ -138,32 +137,48 @@ public class ListController extends AbstractController {
     }
   }
   public void myAds(){ // triggered by button click
+    adList.sortBy("time");
+    System.out.println("kek "+adList.getAd(0).getTime());
+    refreshList();
     System.out.println("sss");
 
     // TODO: Should transition to a list of currently logged in user's Ads
   }
 
 
+  /*
+  TODO: Følgende 4 funksjoner sorterer og filtrer osv, men er ikke koblet til noen knapper, vet ikke helt hva som er
+    best løsning der?
+   */
 
-  //legacy code, dont look at this.
-  private String[] objectHboxToString(Object hbox){
-    if(hbox instanceof HBox) {
-      // ((HBox) hbox).getChildren().get(0) // Bruk casting for å få fatt i Label
-      // System.out.println(((HBox) hbox).getChildren().get(0).getText());
-      int i=0;
-      String[] labelString = new String[3];
-      for (Node label : ((HBox) hbox).getChildren()) {
-        System.out.println(label);
-        if (label instanceof Label){
-          labelString[i] = ((Label) label).getText();
-          i++;
-        }
-      }
-      return labelString;
-    }
-    return null;
+  public void sortBy(String s){ // s= "author" | "title"
+    adList.sortBy(s);
+    refreshList();
   }
-  private void tes(){
-    //test stuff
+  public void filterByCategory(String s){ // s = "borrow" | "switch" | "gift"
+    adList.filterByCategory(s);
+    refreshList();
   }
+  public void reverse(){
+    reverse();
+    refreshList();
+  }
+  private void reset(){ // removes filters and sorting
+    initialize();
+  }
+  /*
+    adList.reverse();
+    adList.sortBy("author" | "title");
+    adlist.filterByCategory("borrow" | "switch" | "gift")
+   */
+
+
+
+
+
+
+
+
+
+
 }

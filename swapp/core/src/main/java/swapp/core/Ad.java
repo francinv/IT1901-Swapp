@@ -1,6 +1,11 @@
 package swapp.core;
 
+import java.util.Date;
+
 public class Ad {
+
+
+    private final long time;
     /**
      * Instances of Ad are stored in AdList and displayed on the main page. AdList handles creation and communication
      * with the GUI.
@@ -9,7 +14,17 @@ public class Ad {
     private String title;
     private User author; // For testing purposes author is currently a string, should be User author;
     private String textBody;
-    // private String status; // "completed" | "deleted" | "active"
+    private String category; //  "borrow"|"gift"|"switch"
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    private String status; // "completed" | "deleted" | "active"
     //Todo: Tilstand, transaksjonstype
 
     /**
@@ -24,7 +39,9 @@ public class Ad {
         this.title = title;
         this.author = author;
         this.textBody = textBody;
-
+        this.category = "borrow";  // temporary, should be passed as argument "borrow"|"gift"|"switch"
+        this.status = "active"; // "completed" | "deleted" | "active"
+        this.time =  new Date().getTime();
     }
     // Getters and setters
     public String getTitle() {
@@ -37,6 +54,9 @@ public class Ad {
 
     public String getTextBody() {
         return textBody;
+    }
+    public long getTime() {
+        return time;
     }
 
     public void setTextBody(String textBody) {

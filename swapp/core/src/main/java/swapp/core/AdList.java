@@ -1,6 +1,10 @@
 package swapp.core;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdList {
     /**
@@ -48,5 +52,31 @@ public class AdList {
         ads.remove(ad);
         // TODO: Give the ad somwhere to display transaction history
     }
+
+
+    public ArrayList<Ad> reverse(){ // tested, works
+        ArrayList<Ad> arrList = this.ads;
+        Collections.reverse(arrList);
+        return arrList;
+    }
+
+    public List<Ad> filterByCategory(String s){ // s = "borrow" | "switch" | "gift"
+        this.ads = (ArrayList<Ad>) this.ads.stream().filter(c -> c.getCategory().equals(s) ).collect(Collectors.toList());
+        return ads;
+    }
+
+    public ArrayList<Ad> sortBy(String mode){ // mode = "title" | "author"
+        ArrayList<Ad> arrList = this.ads;
+        if (mode.equals("title")){
+            arrList.sort((o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
+        }
+        else if (mode.equals("author")){
+            arrList.sort((o1, o2) -> o1.getAuthor().getName().compareTo(o2.getAuthor().getName()));
+        }
+        else if (mode.equals("new")) arrList.sort(Comparator.comparingLong(Ad::getTime));
+
+        return arrList;
+    }
+
 
 }
