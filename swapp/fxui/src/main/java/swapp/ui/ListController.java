@@ -77,9 +77,9 @@ public class ListController extends AbstractController {
 
     for (User user: accounts){
       System.out.println("kek " +user);
-      user.createAd("nepe", "Godt brukt");
-      user.createAd("kål", "Pen");
-      user.createAd("koll", "brukt");
+      user.createAd("nepe", "Godt brukt", "switch");
+      user.createAd("kål", "Pen", "gift");
+      user.createAd("koll", "brukt", "borrow");
       System.out.println("kek2 " +user.getUserAds());
       for (Ad ad: user.getUserAds()){
         adList.add(ad);

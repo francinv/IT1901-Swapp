@@ -16,8 +16,8 @@ public class User {
 		this.userAds = new ArrayList<>();//
 	}
 
-	public void createAd(String title, String textBody){
-		this.userAds.add(new Ad(title, this, textBody));//
+	public void createAd(String title, String textBody, String category){
+		this.userAds.add(new Ad(title, this, textBody, category));//
 	}
 	public List<swapp.core.Ad> getUserAds(){
 		return this.userAds;

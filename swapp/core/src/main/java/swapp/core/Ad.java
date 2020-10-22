@@ -34,12 +34,12 @@ public class Ad {
      * @param textBody
      *
      */
-    public Ad(String title, User author, String textBody){
+    public Ad(String title, User author, String textBody, String category){
         // todo: check that name exists
         this.title = title;
         this.author = author;
         this.textBody = textBody;
-        this.category = "borrow";  // temporary, should be passed as argument "borrow"|"gift"|"switch"
+        this.category = category;  // temporary, should be passed as argument "borrow"|"gift"|"switch"
         this.status = "active"; // "completed" | "deleted" | "active"
         this.time =  new Date().getTime();
     }
