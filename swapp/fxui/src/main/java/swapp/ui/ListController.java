@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
@@ -29,6 +30,12 @@ public class ListController extends AbstractController {
    */
   @FXML
   private ListView listView;
+
+  @FXML
+  private ComboBox<String> sortByComboBox;
+  @FXML
+  private ComboBox<String> filterByCombobox;
+
   private AdList adList;
 
 
@@ -150,10 +157,41 @@ public class ListController extends AbstractController {
   TODO: Følgende 4 funksjoner sorterer og filtrer osv, men er ikke koblet til noen knapper, vet ikke helt hva som er
     best løsning der?
    */
+  // triggered by combobox
+  public void sort(){
+    String sortByToken;
+    if (sortByComboBox.getValue() == null) {
+      sortByToken = "new";
+    }
+    else {
+      sortByToken = sortByComboBox.getValue();
+    }
+    System.out.println(sortByToken);
+    sortBy(sortByToken);
 
-  public void sortBy(String s){ // s= "author" | "title"
+  }
+  public void sortBy(String s){ // s= "author" | "title" | "new"
     adList.sortBy(s);
     refreshList();
+  }
+
+  public void filter(){
+    String filterByToken;
+    if (filterByCombobox.getValue() == null) {
+      filterByToken = "alle";
+    }
+    else {
+      filterByToken = filterByCombobox.getValue();
+    }
+
+    if (filterByToken.equals("alle")){
+      initialize();
+    }
+    else{
+      filterByCategory(filterByToken); //Wrong, combobox values doesnt correspond to filter values
+    }
+    System.out.println(filterByToken);
+
   }
   public void filterByCategory(String s){ // s = "borrow" | "switch" | "gift"
     adList.filterByCategory(s);
@@ -171,14 +209,6 @@ public class ListController extends AbstractController {
     adList.sortBy("author" | "title");
     adlist.filterByCategory("borrow" | "switch" | "gift")
    */
-
-
-
-
-
-
-
-
 
 
 }
