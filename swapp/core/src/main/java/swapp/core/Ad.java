@@ -1,48 +1,60 @@
 package swapp.core;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Ad {
 
+    public enum Status {
+        ACTIVE,
+        COMPLETED,
+        DELETED
+    }
 
-    private final long time;
+    public enum Category {
+        BORROW,
+        GIFT,
+        TRADE
+    }
+
     /**
      * Instances of Ad are stored in AdList and displayed on the main page. AdList handles creation and communication
      * with the GUI.
      *
      */
     private String title;
-    private User author; // For testing purposes author is currently a string, should be User author;
+    private User author;
     private String textBody;
-    private String category; //  "borrow"|"gift"|"switch"
-
-    public String getCategory() {
-        return category;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    private String status; // "completed" | "deleted" | "active"
-    //Todo: Tilstand, transaksjonstype
+    private Category category;
+    private final long time;
+    private Status status;
 
     /**
      *
      * @param title
      * @param author
      * @param textBody
+     * @param category
      *
      */
-    public Ad(String title, User author, String textBody, String category){
-        // todo: check that name exists
+    public Ad(String title, User author, String textBody, Category category){
         this.title = title;
         this.author = author;
         this.textBody = textBody;
-        this.category = category;  // temporary, should be passed as argument "borrow"|"gift"|"switch"
-        this.status = "active"; // "completed" | "deleted" | "active"
+        this.category = category;
+        this.status = Status.ACTIVE;
         this.time =  new Date().getTime();
     }
+
+    public Ad(String title, User author, String textBody, Category category, Status status, long time) {
+        this.title = title;
+        this.author = author;
+        this.textBody = textBody;
+        this.category = category;
+        this.status = status;
+        this.time = time;
+    }
+
     // Getters and setters
     public String getTitle() {
         return title;
@@ -55,6 +67,15 @@ public class Ad {
     public String getTextBody() {
         return textBody;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
     public long getTime() {
         return time;
     }
@@ -63,14 +84,30 @@ public class Ad {
         this.textBody = textBody;
     }
 
-    /**
-     * This method overrides how the Ad object is displayed in the UI.
-     *
-     */
-    @Override
-    public String toString() {
-        String str = this.title+" (annonsert av "+this.author.getName()+")";
-        return str;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return this.title+" (annonsert av "+ this.author.getName()+")";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ad ad = (Ad) o;
+        return time == ad.time &&
+                title.equals(ad.title) &&
+                author.equals(ad.author) &&
+                textBody.equals(ad.textBody) &&
+                category == ad.category &&
+                status == ad.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, author, textBody, category, time, status);
+    }
 }
