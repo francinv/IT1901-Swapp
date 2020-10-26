@@ -60,7 +60,7 @@ public class AdList {
         return arrList;
     }
 
-    public List<Ad> filterByCategory(String s){ // s = "borrow" | "switch" | "gift"
+    public List<Ad> filterByCategory(Enum s){ // s = "borrow" | "switch" | "gift"
         this.ads = (ArrayList<Ad>) this.ads.stream().filter(c -> c.getCategory().equals(s) ).collect(Collectors.toList());
         return ads;
     }

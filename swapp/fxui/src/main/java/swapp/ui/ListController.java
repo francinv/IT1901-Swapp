@@ -84,9 +84,11 @@ public class ListController extends AbstractController {
 
     for (User user: accounts){
       System.out.println("kek " +user);
-      user.createAd("nepe", "Godt brukt", "switch");
-      user.createAd("kål", "Pen", "gift");
-      user.createAd("koll", "brukt", "borrow");
+      user.createAd("nepe", "Godt brukt", Ad.Category.BORROW );
+      user.createAd("kål", "Pen", Ad.Category.BORROW);
+      user.createAd("ergonomisk stol", "brukt", Ad.Category.GIFT);
+      user.createAd("ubåt til låns", "brukt", Ad.Category.BORROW);
+      user.createAd("gir ski", "brukt", Ad.Category.GIFT);
       System.out.println("kek2 " +user.getUserAds());
       for (Ad ad: user.getUserAds()){
         adList.add(ad);
@@ -177,6 +179,7 @@ public class ListController extends AbstractController {
 
   public void filter(){
     String filterByToken;
+    Ad.Category category = null;
     if (filterByCombobox.getValue() == null) {
       filterByToken = "alle";
     }
@@ -188,17 +191,28 @@ public class ListController extends AbstractController {
       initialize();
     }
     else{
-      filterByCategory(filterByToken); //Wrong, combobox values doesnt correspond to filter values
+      if (filterByToken.equals("lånes")){
+      category = Ad.Category.BORROW;
+      }
+      else if (filterByToken.equals("gis bort")){
+        category = Ad.Category.GIFT;
+      }
+      else if (filterByToken.equals("byttes")){
+        category = Ad.Category.TRADE;
+      }
+      filterByCategory(category); //Wrong, combobox values doesnt correspond to filter values
+      System.out.println(filterByToken);
     }
-    System.out.println(filterByToken);
+
 
   }
-  public void filterByCategory(String s){ // s = "borrow" | "switch" | "gift"
+  public void filterByCategory(Enum s){ // s = "borrow" | "switch" | "gift"
+    initialize();
     adList.filterByCategory(s);
     refreshList();
   }
   public void reverse(){
-    reverse();
+    adList.reverse();
     refreshList();
   }
   private void reset(){ // removes filters and sorting
