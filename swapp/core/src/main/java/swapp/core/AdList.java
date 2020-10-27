@@ -74,6 +74,10 @@ public class AdList {
             arrList.sort((o1, o2) -> o1.getAuthor().getName().compareTo(o2.getAuthor().getName()));
         }
         else if (mode.equals("new")) arrList.sort(Comparator.comparingLong(Ad::getTime));
+        else if (mode.equals("old")) {
+            arrList.sort(Comparator.comparingLong(Ad::getTime));
+            this.reverse();
+        }
 
         return arrList;
     }

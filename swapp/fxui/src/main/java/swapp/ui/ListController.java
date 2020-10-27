@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import swapp.core.*;
 
+import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,14 @@ public class ListController extends AbstractController {
    * and be able to create new ones.
    * TODO: Create new Ad object
    */
+
+  private enum CurrentSorting{
+    NEW,
+    OLD,
+    TITLE,
+    AUTHOR
+  }
+
   @FXML
   private ListView listView;
 
@@ -37,6 +46,8 @@ public class ListController extends AbstractController {
   private ComboBox<String> filterByCombobox;
 
   private AdList adList;
+  private CurrentSorting currentSorting;
+
 
 
   /**
@@ -44,11 +55,15 @@ public class ListController extends AbstractController {
    * TODO: Add persistence so adList is filled with all Ad objects previously created.
    */
   public void initialize() {
+
     loadSwapp();
     adList = new AdList();
     populateAdList();  // gets all ads from User Lists (json) to adList
 
-    testy(); // adds some test Ads, remove at some point
+    //this.currentSorting= CurrentSorting.NEW;
+
+
+    //testy(); // adds some test Ads, remove at some point
     refreshList();  // Clears ListView and adds all ads from adList
 
   }
@@ -92,7 +107,9 @@ public class ListController extends AbstractController {
       System.out.println("kek2 " +user.getUserAds());
       for (Ad ad: user.getUserAds()){
         adList.add(ad);
+
       }
+      saveUser();
     }
   }
 
@@ -168,7 +185,6 @@ public class ListController extends AbstractController {
     else {
       sortByToken = sortByComboBox.getValue();
     }
-    System.out.println(sortByToken);
     sortBy(sortByToken);
 
   }
@@ -181,23 +197,23 @@ public class ListController extends AbstractController {
     String filterByToken;
     Ad.Category category = null;
     if (filterByCombobox.getValue() == null) {
-      filterByToken = "alle";
+      filterByToken = "All";
     }
     else {
       filterByToken = filterByCombobox.getValue();
     }
 
-    if (filterByToken.equals("alle")){
+    if (filterByToken.equals("All")){
       initialize();
     }
     else{
-      if (filterByToken.equals("lånes")){
+      if (filterByToken.equals("Borrow")){
       category = Ad.Category.BORROW;
       }
-      else if (filterByToken.equals("gis bort")){
+      else if (filterByToken.equals("Gift")){
         category = Ad.Category.GIFT;
       }
-      else if (filterByToken.equals("byttes")){
+      else if (filterByToken.equals("Trade")){
         category = Ad.Category.TRADE;
       }
       filterByCategory(category); //Wrong, combobox values doesnt correspond to filter values
@@ -218,11 +234,19 @@ public class ListController extends AbstractController {
   private void reset(){ // removes filters and sorting
     initialize();
   }
+
+  public void makeAd(ActionEvent event){
+    setScene(new FXMLLoader(AbstractController.class.getResource("createNewAd.fxml")), event);
+  }
   /*
     adList.reverse();
     adList.sortBy("author" | "title");
     adlist.filterByCategory("borrow" | "switch" | "gift")
    */
-
+  @FXML
+  public void logOut(ActionEvent event){
+    // set current user to None
+    setScene(new FXMLLoader(AbstractController.class.getResource("Login.fxml")), event);
+  }
 
 }

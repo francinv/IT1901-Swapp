@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.*?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="swapp.ui.CreateAdController">
+    <center>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <Button fx:id="createAdButton" layoutX="507.0" layoutY="351.0" mnemonicParsing="false" text="Create new Ad" onAction="#createAdAndBackToMain" />
+                <Button fx:id="cancel" layoutX="450.0" layoutY="351.0" mnemonicParsing="false" text="Cancel" onAction="#backToMain" />
+
+                <TextField fx:id="titleField" layoutX="225.0" layoutY="136.0" prefHeight="33.0" prefWidth="223.0" />
+                <TextArea fx:id="textBodyField" layoutX="225.0" layoutY="234.0" prefHeight="100" prefWidth="223.0" />
+
+                <Label fx:id="passwordLabel" layoutX="155.0" layoutY="234.0" prefHeight="25.0" prefWidth="70.0" text="Description:" />
+                <Label fx:id="emailLabel" layoutX="155.0" layoutY="140.0" prefHeight="25.0" prefWidth="70.0" text="Title:" />
+
+                <Label fx:id="categoryLabel" layoutX="155.0" layoutY="187.0" prefHeight="25.0" prefWidth="70.0" text="Category:" />
+                <Label layoutX="240.0" layoutY="57.0" prefHeight="50.0" prefWidth="111.0" text="Make a new Ad" />
+                <Label fx:id="display" layoutX="268.0" layoutY="350.0" prefHeight="33.0"  />
+
+                <ComboBox fx:id="categoryComboBox" layoutX="225.0" layoutY="187.0" promptText="Category" >
+
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="borrow"/>
+                            <String fx:value="trade"/>
+                            <String fx:value="gift"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
