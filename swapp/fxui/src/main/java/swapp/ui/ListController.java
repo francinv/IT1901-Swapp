@@ -10,17 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import swapp.core.*;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import swapp.core.UserValidation;
 
 public class ListController extends AbstractController {
   /**
@@ -57,7 +53,7 @@ public class ListController extends AbstractController {
   public void initialize() {
 
     loadSwapp();
-    adList = new AdList();
+    adList = swapp.getAdList();
     populateAdList();  // gets all ads from User Lists (json) to adList
 
     //this.currentSorting= CurrentSorting.NEW;
@@ -71,7 +67,13 @@ public class ListController extends AbstractController {
     List<User> accounts = this.swapp.getAccounts();
     for (User user: accounts){
       for (Ad ad: user.getUserAds()){
-        adList.add(ad);
+        if (ad.getStatus().equals(Ad.Status.ACTIVE)){
+          adList.add(ad);
+        }
+        else{
+          System.out.println(ad.getStatus());
+        }
+
       }
     }
   }
@@ -172,10 +174,7 @@ public class ListController extends AbstractController {
   }
 
 
-  /*
-  TODO: Følgende 4 funksjoner sorterer og filtrer osv, men er ikke koblet til noen knapper, vet ikke helt hva som er
-    best løsning der?
-   */
+
   // triggered by combobox
   public void sort(){
     String sortByToken;
@@ -202,7 +201,7 @@ public class ListController extends AbstractController {
     else {
       filterByToken = filterByCombobox.getValue();
     }
-
+    //TODO: Use switch-statement
     if (filterByToken.equals("All")){
       initialize();
     }
@@ -242,6 +241,11 @@ public class ListController extends AbstractController {
     adList.reverse();
     adList.sortBy("author" | "title");
     adlist.filterByCategory("borrow" | "switch" | "gift")
+   */
+
+  /**
+   * Triggered when
+   * @param event
    */
   @FXML
   public void logOut(ActionEvent event){

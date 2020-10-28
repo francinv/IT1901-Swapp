@@ -12,10 +12,13 @@ public class Swapp {
 	private List<User> accounts;
 	private User currentUser;
 	private UserValidation userValidation;
+	private AdList adList;
+
 
 	public Swapp() {
 		this.accounts = new ArrayList<>();
 		this.userValidation = new UserValidation(this.accounts);
+		this.adList = new AdList();
 	}
 
 	/**
@@ -120,6 +123,15 @@ public class Swapp {
 			return null;
 		}
 	}
+
+	/**
+	 * Getter for adList
+	 * @return returns adList
+	 */
+	public AdList getAdList() {
+		return adList;
+	}
+
 
 	/**
 	 * A predicate for deciding whether or not the given string is an email or username
