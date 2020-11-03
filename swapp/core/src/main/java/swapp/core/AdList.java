@@ -68,13 +68,14 @@ public class AdList {
     public ArrayList<Ad> sortBy(String mode){ // mode = "title" | "author"
         ArrayList<Ad> arrList = this.ads;
         if (mode.equals("title")){
-            arrList.sort((o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
+            arrList.sort((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase()));
         }
         else if (mode.equals("author")){
-            arrList.sort((o1, o2) -> o1.getAuthor().getName().compareTo(o2.getAuthor().getName()));
+            arrList.sort((o1, o2) -> o1.getAuthor().getName().toLowerCase().
+                    compareTo(o2.getAuthor().getName().toLowerCase()));
         }
-        else if (mode.equals("new")) arrList.sort(Comparator.comparingLong(Ad::getTime));
-        else if (mode.equals("old")) {
+        else if (mode.equals("old")) arrList.sort(Comparator.comparingLong(Ad::getTime));
+        else if (mode.equals("new")) {
             arrList.sort(Comparator.comparingLong(Ad::getTime));
             this.reverse();
         }
