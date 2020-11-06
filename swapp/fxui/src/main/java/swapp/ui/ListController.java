@@ -199,11 +199,8 @@ public class ListController extends AbstractController {
   /**
    * DELETE method body here
    */
-  public void myAds(){ // triggered by button click
-    adList.sortBy("time");
-    System.out.println("kek "+adList.getAd(0).getTime());
-    refreshListView();
-    System.out.println("sss");
+  public void myProfile(ActionEvent event){ // triggered by button click
+    setScene(new FXMLLoader(AbstractController.class.getResource("ProfilePage.fxml")), event);
   }
 
 }
