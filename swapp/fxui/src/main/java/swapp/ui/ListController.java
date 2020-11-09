@@ -47,40 +47,27 @@ public class ListController extends AbstractController {
    */
   public void initialize() {
     loadSwapp();
-
+    swapp.populateAdList();
     adList = swapp.getAdList();
-    populateAdList();  // gets all ads from Accounts Lists (json) to adList
+      // gets all ads from Accounts Lists (json) to adList
     sort();  // sort by newest as default
 
-    sort();
     refreshListView();  // Clears ListView and adds all ads from adList
   }
 
   // helper functions:
 
-  private void populateAdList(){ // gets all ads from all users from swapp and append to Adlist
-    List<User> accounts = this.swapp.getAccounts();
-    for (User user: accounts){
-      for (Ad ad: user.getUserAds()){
-        if (ad.getStatus().equals(Ad.Status.ACTIVE)){
-          adList.add(ad);
-        }
-        else{
-          System.out.println(ad.getStatus());
-        }
-
-      }
-    }
-  }
   /**
    * refreshListView updates the GUI to display all Ads in the Adlist.
    */
   private void refreshListView(){
+
     listView.getItems().clear();  // Clears listView
     for (int i=0;i<adList.getNumberOfAds();i++){
       Ad ad = adList.getAd(i);
       listView.getItems().add(ad);
     }
+
   }
 
 
@@ -194,7 +181,7 @@ public class ListController extends AbstractController {
    */
   @FXML
   void populateListView(){
-    initialize();
+    swapp.populateAdList();
   }
   /**
    * DELETE method body here

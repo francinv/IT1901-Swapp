@@ -132,6 +132,21 @@ public class Swapp {
 		return adList;
 	}
 
+	public void populateAdList(){ // gets all ads from all users from swapp and append to Adlist
+		List<User> accounts = this.getAccounts();
+		for (User user: accounts){
+			for (Ad ad: user.getUserAds()){
+				if (ad.getStatus().equals(Ad.Status.ACTIVE)){
+					adList.add(ad);
+				}
+				else{
+					System.out.println(ad.getStatus());
+				}
+
+			}
+		}
+
+	}
 
 	/**
 	 * A predicate for deciding whether or not the given string is an email or username
