@@ -52,6 +52,8 @@ public class ProfilePageController extends AbstractController{
     }
     @FXML
     private void populateAdList(){ // gets all ads from the logged in user from swapp and ads to Adlist
+        // TODO ny versjon av populateadlist, som er i swapp, som legger til alle ads tilhørende denne brukeren.
+        // TODO kan være en filtrert adlist?. må undersøkes. best å ta det når serveren er klar, siden loadswapp ikke blir relevant
         for (Ad ad : this.loggedInUser.getUserAds()) {
             adList.add(ad);
         }
