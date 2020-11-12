@@ -57,7 +57,7 @@ public class SwappConfig extends ResourceConfig {
             try (Reader reader = new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)) {
                 return swappStorage.readSwappModel(reader);
             } catch (IOException e) {
-                System.out.println("Couldn't read default-todomodel.json, so rigging TodoModel manually ("
+                System.out.println("Couldn't read default-swappmodel.json, so rigging SwappModel manually ("
                         + e + ")");
             }
         }
