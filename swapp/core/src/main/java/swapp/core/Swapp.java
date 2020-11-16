@@ -7,12 +7,13 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class Swapp {
+public class Swapp implements IObservable<Swapp> {
 
 	private List<User> accounts;
 	private User currentUser;
 	private UserValidation userValidation;
 	private AdList adList;
+	private List<IObserver<Swapp>> observers = new ArrayList<>();
 
 
 	public Swapp() {
@@ -20,6 +21,8 @@ public class Swapp {
 		this.userValidation = new UserValidation(this.accounts);
 		this.adList = new AdList();
 	}
+
+	//TODO Implementer notifyObserver() i de riktige metodene
 
 	/**
 	 * Adds a User to the list of users.
@@ -132,6 +135,21 @@ public class Swapp {
 		return adList;
 	}
 
+	public void populateAdList(){ // gets all ads from all users from swapp and append to Adlist
+		List<User> accounts = this.getAccounts();
+		for (User user: accounts){
+			for (Ad ad: user.getUserAds()){
+				if (ad.getStatus().equals(Ad.Status.ACTIVE)){
+					adList.add(ad);
+				}
+				else{
+					System.out.println(ad.getStatus());
+				}
+
+			}
+		}
+
+	}
 
 	/**
 	 * A predicate for deciding whether or not the given string is an email or username
@@ -146,5 +164,20 @@ public class Swapp {
 			return user -> user.getEmail().equalsIgnoreCase(string);
 		}
 		return null;
+	}
+
+	@Override
+	public void addObserver(IObserver<Swapp> observer) {
+		observers.add(observer);
+	}
+
+	@Override
+	public void removeObserver(IObserver<Swapp> observer) {
+		observers.remove(observer);
+	}
+
+	@Override
+	public void notifyObservers(Swapp swapp) {
+		observers.forEach(o -> o.notify(swapp));
 	}
 }
