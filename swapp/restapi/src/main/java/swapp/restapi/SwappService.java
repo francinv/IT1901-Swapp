@@ -8,8 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import swapp.core.AbstractSwapp;
-import swapp.core.SwappModel;
+import swapp.core.Swapp;
 
 @Path(SwappService.SWAPP_MODEL_SERVICE_PATH)
 public class SwappModelService {
@@ -19,7 +18,7 @@ public class SwappModelService {
     private static final Logger LOG = LoggerFactory.getLogger(SwappModelService.class);
 
     @Inject
-    private SwappModel swappModel;
+    private Swapp swapp;
 
     /**
      * The root resource, i.e. /swapp
@@ -28,8 +27,8 @@ public class SwappModelService {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public SwappModel getSwappModel() {
-        return swappModel;
+    public Swapp getSwapp() {
+        return swapp;
     }
 
     /**
@@ -42,8 +41,8 @@ public class SwappModelService {
      */
     @Path("/{name}")
     public SwappResource getSwapp(@PathParam("name") String name) {
-        AbstractSwapp swapp = getSwappModel().getSwapp(name);
+        Swapp swapp = getSwapp().getswapp(name);
         LOG.debug("Sub-resource for Swapp " + name + ": " + swapp);
-        return new SwappResource(swappModel, name, swapp);
+        return new SwappResource(swapp, name, swapp);
     }
 }

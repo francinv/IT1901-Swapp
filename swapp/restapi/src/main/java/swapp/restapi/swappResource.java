@@ -11,9 +11,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import swapp.core.AbstractSwapp;
 import swapp.core.Swapp;
-import swapp.core.SwappModel;
 
 /**
  * Used for all requests referring to Ad by name.
@@ -22,9 +20,8 @@ public class SwappResource {
 
     private static final Logger LOG = LoggerFactory.getLogger(SwappResource.class);
 
-    private final SwappModel swappModel;
+    private final Swapp swapp;
     private final String name;
-    private final AbstractSwapp swapp;
 
     /**
      * Initializes this SwappResource with appropriate context information.
@@ -34,10 +31,9 @@ public class SwappResource {
      * @param name the ad name, needed for most requests
      * @param swapp the Swapp, or null, needed for PUT
      */
-    public SwappResource(SwappModel swappModel, String name, AbstractSwapp swapp) {
-        this.swappModel = swappModel;
-        this.name = name;
+    public SwappResource(Swapp swapp, String name) {
         this.swapp = swapp;
+        this.name = name;
     }
 
     private void checkSwapp() {
@@ -53,14 +49,14 @@ public class SwappResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public AbstractSwapp getSwapp() {
+    public Swapp getSwapp() {
         checkSwapp();
         LOG.debug("getSwapp({})", name);
         return this.swapp;
     }
 
     /**
-     * Replaces or adds a Ad.
+     * Replaces or adds an Ad.
      *
      * @param swappArg the swapp to add
      * @return true if it was added, false if it replaced
@@ -94,7 +90,7 @@ public class SwappResource {
     @Produces(MediaType.APPLICATION_JSON)
     public boolean renameSwapp(@QueryParam("newName") String newName) {
         checkSwapp();
-        if (this.swappModel.getSwapp(newName) != null) {
+        if (this.swapp.getSwapp(newName) != null) {
             throw new IllegalArgumentException("A ad named \"" + newName + "\" already exists");
         }
         this.swapp.setName(newName);
@@ -102,13 +98,13 @@ public class SwappResource {
     }
 
     /**
-     * Removes the TodoList.
+     * Removes the Ad.
      */
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public boolean removeSwapp() {
         checkSwapp();
-        this.swappModel.removeswapp(this.swapp);
+        this.swapp.removeswapp(this.swapp);
         return true;
     }
 }

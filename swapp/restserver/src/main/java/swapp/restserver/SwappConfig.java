@@ -22,8 +22,8 @@ public class SwappConfig extends ResourceConfig {
      *
      * @param Swapp swapp instance to serve
      */
-    public SwappConfig(SwappModel swappModel) {
-        setSwappModel(swappModel);
+    public SwappConfig(Swapp swapp) {
+        setSwapp(swapp);
         register(SwappModelService.class);
         register(SwappModuleObjectProvider.class);
         register(JacksonFeature.class);
@@ -39,31 +39,31 @@ public class SwappConfig extends ResourceConfig {
      * Initialize this SwappConfig with a default SwappModel.
      */
     public SwappConfig() {
-        this(createDefaultSwappModel);
+        this(createDefaultSwapp);
     }
 
-    public SwappModel getSwappModel() {
-        return SwappModel;
+    public Swapp getSwapp() {
+        return Swapp;
     }
 
-    public void setSwappModel(SwappModel swappModel) {
-        this.swappModel = swappModel;
+    public void setSwapp(Swapp swapp) {
+        this.swapp = swapp;
     }
 
-    private static SwappModel createDefaultSwappModel() {
+    private static Swapp createDefaultSwapp() {
         SwappStorage swappStorage = new SwappStorage();
         URL url = SwappConfig.class.getResource("default-swappmodel.json");
         if (url != null) {
             try (Reader reader = new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)) {
-                return swappStorage.readSwappModel(reader);
+                return swappStorage.readSwapp(reader);
             } catch (IOException e) {
                 System.out.println("Couldn't read default-swappmodel.json, so rigging SwappModel manually ("
                         + e + ")");
             }
         }
-        SwappModel swappModel = new SwappModel();
-        swappModel.addAdList(new AdList("ad1"));
-        swappModel.addAdList(new AdList("ad2"));
-        return swappModel;
+        Swapp swapp = new Swapp();
+        swapp.addAdList(new AdList("ad1"));
+        swapp.addAdList(new AdList("ad2"));
+        return swapp;
     }
 }
