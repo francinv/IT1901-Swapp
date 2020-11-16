@@ -65,14 +65,14 @@ public class SwappResource {
     @Produces(MediaType.APPLICATION_JSON)
     public boolean putSwapp(AbstractSwapp swappArg) {
         LOG.debug("putSwapp({})", swappArg);
-        return this.swappModel.putSwapp(swappArg) == null;
+        return this.swapp.putSwapp(swappArg) == null;
     }
 
     /**
      * Adds a Ad with the given name, if it doesn't exist already.
      *
      * @return true if it was added, false if it replaced
-     */
+     
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public boolean putSwapp() {
@@ -80,25 +80,8 @@ public class SwappResource {
     }
 
     /**
-     * Renames the Ad.
-     *
-     * @param newName the new name
-     */
-    @POST
-    @Path("/rename")
-    @Produces(MediaType.APPLICATION_JSON)
-    public boolean renameSwapp(@QueryParam("newName") String newName) {
-        checkSwapp();
-        if (this.swapp.getSwapp(newName) != null) {
-            throw new IllegalArgumentException("A ad named \"" + newName + "\" already exists");
-        }
-        this.swapp.setName(newName);
-        return true;
-    }
-
-    /**
      * Removes the Ad.
-     */
+     
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public boolean removeSwapp() {
@@ -106,5 +89,6 @@ public class SwappResource {
         this.swapp.removeswapp(this.swapp);
         return true;
     }
+    */
 }
 

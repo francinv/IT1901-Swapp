@@ -11,11 +11,11 @@ import org.slf4j.LoggerFactory;
 import swapp.core.Swapp;
 
 @Path(SwappService.SWAPP_MODEL_SERVICE_PATH)
-public class SwappModelService {
+public class SwappService {
 
     public static final String SWAPP_MODEL_SERVICE_PATH = "swapp";
 
-    private static final Logger LOG = LoggerFactory.getLogger(SwappModelService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SwappService.class);
 
     @Inject
     private Swapp swapp;
