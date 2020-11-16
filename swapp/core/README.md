@@ -10,5 +10,5 @@ Sidens logikk er definert her. User-objektet, Ad-objektet, Transaction og Swapp,
 
 ## Persistenslaget
 
-Vi bruker JSON for lagring av objekter. Laget finnes **[her](src/main/java/swapp/json/README.md)**.
+Vi bruker JSON for lagring av objekter. i Swapp appen er det nyttig å lagre brukere og annonser, og relasjonene mellom dem. hvilke annonser som tilhører hvilke brukere etc. det er filer for Serialization og Deserialization for både brukere og ads. Laget finnes **[her](src/main/java/swapp/json/README.md)**.
 
