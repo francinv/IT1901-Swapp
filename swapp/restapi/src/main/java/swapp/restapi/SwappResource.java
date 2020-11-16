@@ -19,8 +19,7 @@ import swapp.core.Swapp;
 public class SwappResource {
 
     private static final Logger LOG = LoggerFactory.getLogger(SwappResource.class);
-
-    private final Swapp swapp;
+    private final Swapp swapp; 
     private final String name;
 
     /**
