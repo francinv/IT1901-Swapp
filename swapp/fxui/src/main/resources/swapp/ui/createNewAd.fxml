@@ -26,7 +26,7 @@
 
                 <Label fx:id="categoryLabel" layoutX="155.0" layoutY="187.0" prefHeight="25.0" prefWidth="70.0" text="Category:" />
                 <Label layoutX="240.0" layoutY="57.0" prefHeight="50.0" prefWidth="111.0" text="Make a new Ad" />
-                <Label fx:id="display" layoutX="268.0" layoutY="350.0" prefHeight="33.0"  />
+                <Label fx:id="display" layoutX="268.0" layoutY="350.0" prefHeight="33.0" text="Fill in all fields" />
 
                 <ComboBox fx:id="categoryComboBox" layoutX="225.0" layoutY="187.0" promptText="Category" >
 
