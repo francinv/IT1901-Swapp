@@ -76,10 +76,10 @@ public abstract class AbstractController {
     String hyperlinkID = ((Hyperlink) event.getSource()).getId();
     switch (hyperlinkID) {
       case "registerLink":
-        setScene(CONTROLLERS.REGISTER, event, swappAccess);
+        setScene(CONTROLLERS.LOGIN, event, swappAccess);
         break;
       case "loginLink":
-        setScene(CONTROLLERS.LOGIN, event, swappAccess);
+        setScene(CONTROLLERS.REGISTER, event, swappAccess);
         break;
       default:
         break;
