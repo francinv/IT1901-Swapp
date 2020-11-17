@@ -25,7 +25,6 @@ public class CreateAdController extends AbstractController {
 
   public void initialize() {
     System.out.println("createAdd init");
-    // denne har ikke tilgang til Ad enda
   }
 
   /**
@@ -40,13 +39,14 @@ public class CreateAdController extends AbstractController {
       display.setText("You must fill inn all fields");
     }
     else{
-      loadSwapp();
-      List<User> accounts = this.swapp.getAccounts();
-      assert accounts.size()>0;
-      // TODO: Should pick current user, not first user
-      accounts.get(0).createAd(titleField.getText(), textBodyField.getText(), Ad.Category.BORROW); // picks first user
-      saveUser();
-      setScene(new FXMLLoader(AbstractController.class.getResource("ListOfAds.fxml")), event);
+//      List<User> accounts = swappAccess.getAccounts();
+//      assert accounts.size()>0;
+//      // TODO: Should pick current user, not first user
+//      accounts.get(0).createAd(titleField.getText(), textBodyField.getText(), Ad.Category.BORROW); // picks first user
+      System.out.println(swappAccess.getCurrentUser().getUserAds());
+      swappAccess.createAd(titleField.getText(), textBodyField.getText(), Ad.Category.valueOf(categoryComboBox.getValue().toUpperCase()));
+      System.out.println(swappAccess.getCurrentUser().getUserAds());
+      setScene(CONTROLLERS.LIST, event, swappAccess);
     }
 
   }
@@ -57,7 +57,7 @@ public class CreateAdController extends AbstractController {
    */
   @FXML
   public void backToMain(ActionEvent event){
-      setScene(new FXMLLoader(AbstractController.class.getResource("ListOfAds.fxml")), event);
+      setScene(CONTROLLERS.LIST, event, swappAccess);
 
   }
 

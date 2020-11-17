@@ -38,6 +38,6 @@ public class AdDetailController extends AbstractController {
   @FXML
   void backToAllAds(ActionEvent event){
     // When clicking "All ads" button, this methods is called and switches back to previous view.
-    setScene(new FXMLLoader(AbstractController.class.getResource("ListOfAds.fxml")), event);
+    setScene(CONTROLLERS.LIST, event, swappAccess);
   }
 }

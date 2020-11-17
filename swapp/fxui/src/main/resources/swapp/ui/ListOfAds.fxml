@@ -12,7 +12,7 @@
 <?import javafx.collections.FXCollections?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="swapp.ui.ListController">
+            xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Button fx:id="logOut" layoutX="507.0" layoutY="250.0" mnemonicParsing="false" text="Log out" onAction="#logOut" />
         <Button fx:id="makeAd" layoutX="507.0" layoutY="300.0" mnemonicParsing="false" text="Create new Ad" onAction="#makeAd" />
