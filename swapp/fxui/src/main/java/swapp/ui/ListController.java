@@ -158,7 +158,7 @@ public class ListController extends AbstractController {
   }
   public void reverse(){
     adList.reverse();
-    refreshListView();
+    //refreshListView();
   }
 
 
