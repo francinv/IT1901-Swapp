@@ -7,7 +7,7 @@
 
 <!-- Unfinished work to do -->
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="swapp.ui.AdDetailController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
 
 
@@ -15,6 +15,7 @@
          <font>
             <Font size="24.0" />
          </font></Label>
+        <Label fx:id="display" layoutX="268.0" layoutY="302.0" prefHeight="33.0" prefWidth="111.0" />
         <Label fx:id="textBodyLabel" layoutX="141.0" layoutY="168.0" prefHeight="25.0" text="Description: " />
         <Label fx:id="categoryText" layoutX="141.0" layoutY="319.0" prefHeight="25.0" prefWidth="145.0" text="kategori:til utlån, etc" />
         <Label fx:id="textBody" wrapText="true" alignment="TOP_LEFT" layoutX="141.0" layoutY="193.0" mnemonicParsing="false" prefHeight="119.0" prefWidth="199.0" />

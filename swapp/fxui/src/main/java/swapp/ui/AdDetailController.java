@@ -31,9 +31,14 @@ public class AdDetailController extends AbstractController {
   public Button backToAllAds;
   @FXML
   public Button request;
+  @FXML
+  public Label display;
+
 
 
   Ad ad;
+
+
   public void initialize() {
     System.out.println("HEI på deg! AdDETAIL");
     //ad = null;
@@ -63,14 +68,14 @@ public class AdDetailController extends AbstractController {
   @FXML
   void request(){
     assert this.ad != null;
-    Transaction transaction = new Transaction(this.ad, swappAccess.getCurrentUser(), this.ad.getAuthor());
+    swappAccess.createTransaction(this.ad, swappAccess.getCurrentUser());
     /*
     åpner en transaction, med status ongoing. mangler et steg hvor mottaker får en beskjed og kan trykke accept?
     funksjon i user som er accept/deny, og funksjon i transaction som er notifyReceiver()?
      Should also check that a request with same Ad and same currentUser exists.
      Temporarily this just sets Ad.status to completed, so should not show up on main page.
     */
-    swappAccess.changeAdStatus(ad, Ad.Status.COMPLETED);
+    //swappAccess.changeAdStatus(ad, Ad.Status.COMPLETED);
     display.setText("You have sucessfully requested this ad!");
   }
 

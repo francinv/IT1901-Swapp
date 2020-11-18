@@ -33,4 +33,6 @@ public interface SwappAccess {
     AdList getAdList();
 
     void populateAdList();
+
+    void createTransaction(Ad ad, User requester);
 }

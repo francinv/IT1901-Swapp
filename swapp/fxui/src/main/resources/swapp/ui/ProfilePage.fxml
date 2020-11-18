@@ -17,7 +17,8 @@
       <Label fx:id="adListLabel" alignment="CENTER" layoutX="189.0" layoutY="150.0" prefHeight="50.0" prefWidth="135.0" text="Recent ads" />
       <ListView fx:id="adListView" layoutX="157.0" layoutY="204.0" onMouseClicked="#handleListClick" prefHeight="182.0" prefWidth="200.0" />
       <Label fx:id="emailText" layoutX="208.0" layoutY="64.0" prefHeight="50.0" prefWidth="135.0" />
-      <ListView fx:id="transactionListView" layoutX="365.0" layoutY="204.0" prefHeight="182.0" prefWidth="200.0" />
+      <ListView fx:id="transactionListView" layoutX="365.0" layoutY="204.0" prefHeight="182.0" prefWidth="200.0"
+                onMouseClicked="#handleTransactionListClick" />
       <Label fx:id="transactionListLabel" alignment="CENTER" layoutX="397.0" layoutY="150.0" prefHeight="50.0" prefWidth="135.0" text="Recent transactions" />
    </children>
 </AnchorPane>

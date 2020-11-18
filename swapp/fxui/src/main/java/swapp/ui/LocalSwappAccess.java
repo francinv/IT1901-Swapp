@@ -45,6 +45,11 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   public void createAd(String title, String textBody, Ad.Category category) {
     swapp.createAd(title, textBody, category);
   }
+  @Override
+  public void createTransaction(Ad ad, User requester) {
+    swapp.createTransaction(ad, requester);
+  }
+
 
   @Override
   public void changeAdStatus(Ad ad, Ad.Status status) {
@@ -84,6 +89,12 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   @Override
   public void populateAdList() {
     swapp.populateAdList();
+  }
+  public List<Transaction> getTransactionList(){
+    return swapp.getTransactionList();
+  }
+  public void populateTransactionList(){
+    swapp.populatetransactionList();
   }
 
   private void saveSwapp() {

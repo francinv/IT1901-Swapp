@@ -8,8 +8,8 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
-    private List<Ad> userAds;//
-    private List<Transaction> userTransactions;
+	private List<Ad> userAds;//
+	private List<Transaction> userTransactions;
 
 	public User(String name, String email, String password) {
 		this.name = name.toLowerCase();
@@ -22,9 +22,14 @@ public class User {
 	public void createAd(String title, String textBody, Ad.Category category){
 		this.userAds.add(new Ad(title, this, textBody, category));//
 	}
+	public void createTransaction(Ad ad, User requester){
+		this.userTransactions.add(new Transaction(ad, requester));
+		System.out.println(userTransactions);
+	}
 	public List<swapp.core.Ad> getUserAds(){
 		return this.userAds;
     }
+
     public List<swapp.core.Transaction> getUserTransactions() {
         return this.userTransactions;
     }
