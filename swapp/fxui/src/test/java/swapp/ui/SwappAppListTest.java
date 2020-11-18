@@ -29,8 +29,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class FxAppListTest extends ApplicationTest {
-  private ListController controller;
+public class SwappAppListTest extends AbstractTestFxController {
 
   @FXML
   private ListView listView;
@@ -50,9 +49,8 @@ public class FxAppListTest extends ApplicationTest {
 
   @Override
   public void start(final Stage stage) throws Exception {
-    final FXMLLoader loader = new FXMLLoader(getClass().getResource("ListOfAds.fxml"));
+    final FXMLLoader loader = loadFXML(AbstractController.CONTROLLERS.LIST);
     final Parent parent = loader.load();
-    this.controller = loader.getController();
     final Scene scene = new Scene(parent);
     stage.setScene(scene);
     stage.show();
@@ -66,10 +64,6 @@ public class FxAppListTest extends ApplicationTest {
     makeAd= lookup("#makeAd").query();
     refresh= lookup("#refresh").query();
     myProfile= lookup("#myProfile").query();
-
-
-
-
   }
 
   @Test
@@ -82,14 +76,9 @@ public class FxAppListTest extends ApplicationTest {
 
   @Test
   public void testSelectedSwappAccess() {
-    assertNotNull(this.controller.getSwapp());
-    System.out.println(this.controller.swapp.getAdList().getNumberOfAds());
+    assertNotNull(this.controller.swappAccess);
   }
 
-  @Test
-  public void testSelectedTodoList_initial() {
-    assertNotNull(this.controller.getSwapp());
-  }
   @Test
   public void testLogOutButton(){
     clickOn(logOut);
@@ -104,6 +93,7 @@ public class FxAppListTest extends ApplicationTest {
   public void testClickMakeAd(){
     clickOn(makeAd);
   }
+
   @Test
   public void testClickRefresh(){
     clickOn(refresh);

@@ -33,8 +33,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
-public class FxAppCreateNewAdTest extends AbstractTestFxController {
-  private CreateAdController controller;
+public class SwappAppCreateNewAdTest extends AbstractTestFxController {
+
   private ComboBox<String> categoryComboBox;
   TextField titleField;
   TextArea textBodyField;
@@ -44,13 +44,13 @@ public class FxAppCreateNewAdTest extends AbstractTestFxController {
 
   @Override
   public void start(final Stage stage) throws Exception {
-    final FXMLLoader loader = new FXMLLoader(getClass().getResource("createNewAd.fxml"));
+    final FXMLLoader loader = loadFXML(AbstractController.CONTROLLERS.NEWAD);
     final Parent parent = loader.load();
-    this.controller = loader.getController();
     final Scene scene = new Scene(parent);
     stage.setScene(scene);
     stage.show();
   }
+
   @BeforeEach
   public void findFields() {
     createAdButton= lookup("#createAdButton").query();
@@ -59,7 +59,6 @@ public class FxAppCreateNewAdTest extends AbstractTestFxController {
     textBodyField= lookup("#textBodyField").query();
     categoryComboBox= lookup("#categoryComboBox").query();
     display = lookup("#display").query();
-
   }
 
   @AfterEach
@@ -73,9 +72,8 @@ public class FxAppCreateNewAdTest extends AbstractTestFxController {
     assert display.getText().equals("Fill in all fields");
     clickOn(createAdButton);
     assert display.getText().equals("You must fill inn all fields");
-
-
   }
+
   @Test
   public void testClickCreateAdSuccessful(){
     assert display.getText().equals("Fill in all fields");

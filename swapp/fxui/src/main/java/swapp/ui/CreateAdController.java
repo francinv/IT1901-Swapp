@@ -42,13 +42,8 @@ public class CreateAdController extends AbstractController {
       display.setText("Max 35 characters in title");
     }
     else{
-//      List<User> accounts = swappAccess.getAccounts();
-//      assert accounts.size()>0;
-//      // TODO: Should pick current user, not first user
-//      accounts.get(0).createAd(titleField.getText(), textBodyField.getText(), Ad.Category.BORROW); // picks first user
-      System.out.println(swappAccess.getCurrentUser().getUserAds());
       swappAccess.createAd(titleField.getText(), textBodyField.getText(), Ad.Category.valueOf(categoryComboBox.getValue().toUpperCase()));
-      System.out.println(swappAccess.getCurrentUser().getUserAds());
+      display.setText("Success!");
       setScene(CONTROLLERS.LIST, event, swappAccess);
     }
 
