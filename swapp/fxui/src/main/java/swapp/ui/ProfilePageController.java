@@ -22,9 +22,11 @@ public class ProfilePageController extends AbstractController {
   @FXML
   Label emailText;
   @FXML
-  ListView<Ad> listView;
+  ListView<Ad> adListView;
   @FXML
   Button backButton;
+  @FXML
+  ListView<Transaction> transactionListView;
 
   private final List<Ad> ads = new ArrayList<>();
 
@@ -44,13 +46,10 @@ public class ProfilePageController extends AbstractController {
   @FXML
   public void handleListClick(ActionEvent event) {
     setScene(CONTROLLERS.ADDETAIL, event, swappAccess);
-    // må laste inn et spesifikt ad objekt-dette er ikke implementert enda
   }
 
   @FXML
   private void populateAdList() { // gets all ads from the logged in user from swapp and ads to Adlist
-    // TODO ny versjon av populateadlist, som er i swapp, som legger til alle ads tilhørende denne brukeren.
-    // TODO kan være en filtrert adlist?. må undersøkes. best å ta det når serveren er klar, siden loadswapp ikke blir relevant
       ads.clear();
       ads.addAll(swappAccess.getCurrentUser().getUserAds());
   }
@@ -61,7 +60,7 @@ public class ProfilePageController extends AbstractController {
    */
   @FXML
   private void refreshList() {
-    listView.getItems().clear();
-    listView.getItems().addAll(ads);
+    adListView.getItems().clear();
+    adListView.getItems().addAll(ads);
   }
 }
