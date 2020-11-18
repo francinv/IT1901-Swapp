@@ -21,10 +21,24 @@ Prosjektet swapp skal gjøre det mulig for brukere å bytte ting.
 - swapp/fxui/src/test/java/swapp/ui/             Testing av javafx
 
 ## Domenelaget
-Appens interne logikk vil inneholde objekter som Bruker, Annonse, Melding og relasjonene mellom dem.
+Appens interne logikk inneholder objekter som Swapp(appen), User, Ad, Transaction og relasjonene mellom dem.
 
 ## Brukergrensesnittlaget
-Brukergrensesnittlaget vil vise brukere annonser, melding og mulighet for å logge inn og registrere seg. 
+Brukergrensesnittlaget begynner på en innloggingsside, med mulighet for en registreringsside. videre vises brukeres annonser, profilside, annonsebeskrivelser, opretting av annonser mm.
 
 ## Persistenslaget
-Prosjektet brukerer json til å lagre data. **[Se her for refleksjon over lagringsmetode](swapp/OM_PROSJEKTET.md)**
+Prosjektet bruker json til å lagre data. **[Se her for refleksjon over lagringsmetode](swapp/OM_PROSJEKTET.md)**
+
+## Nyttige Maven kommandoer
+- mvn clean install
+går igjennom modulene og utfører clean og install så du kompilerer prosjektet fra scratch
+- mvn test
+kjører testene i prosjektet
+- mvn javafx:run
+kjører javafx appen
+- mvn jacoco:report
+gir rapport om testdekningsgrad i prosjektet
+- mvn checkstyle:check
+sjekker prosjektet utifra checkstyle pluginen og gir tilbakemelding
+- mvn spotbugs:check
+sjekker prosjektet for bugs i koden med spotbugs plugin

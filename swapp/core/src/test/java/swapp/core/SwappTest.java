@@ -37,5 +37,45 @@ public class SwappTest {
     public void testGetUserLogin() {
         this.swapp.add(user);
         assertEquals(user, this.swapp.getUserLogin(user.getEmail(), user.getPassword()));
+
+    }
+
+    @Test
+    public void getUser(){
+        this.swapp.add(user);
+        assert swapp.getUser("name").equals(user);
+        assert swapp.getUser("ggg@gmail.com").equals(user);
+        assert swapp.getUser("doesntExist") == (null);
+
+        System.out.println(swapp.getUserLogin("ggg@gmail.com", "Password123"));
+        assert swapp.getUserLogin("ggg@gmail.com", "Password123") == user;
+    }
+
+    @Test
+    public void testAdListAndAccountList() {
+
+        assert this.swapp.getAccounts().size() == 0;
+        this.swapp.add(user);
+        assert this.swapp.getAccounts().size() == 1;
+        assert swapp.getAccounts().size() == swapp.getUserAmount();
+
+        System.out.println(this.swapp.getAdList().getNumberOfAds());
+        assert this.swapp.getAdList().getNumberOfAds() == 0;
+        this.swapp.setCurrentUser(user);
+        swapp.getCurrentUser().createAd("nepe", "Godt brukt", Ad.Category.BORROW);
+        assert this.swapp.getAdList().getNumberOfAds() == 0;
+        swapp.populateAdList();
+        assert this.swapp.getAdList().getNumberOfAds() == 1;
+
+        swapp.getCurrentUser().createAd("kål", "Pen", Ad.Category.GIFT);
+        swapp.populateAdList();
+        System.out.println(this.swapp.getAdList().getNumberOfAds());
+        //assert this.swapp.getAdList().getNumberOfAds() == 2;  //Uncomment later when adlist works
+        swapp.getCurrentUser().getUserAds().get(1).setStatus(Ad.Status.COMPLETED);
+        swapp.populateAdList();
+        //assert this.swapp.getAdList().getNumberOfAds() == 1;  // uncomment when adList works
+
+
+
     }
 }

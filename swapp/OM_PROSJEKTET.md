@@ -1,17 +1,13 @@
-# Swap
-Appen Swap skal gjøre det mulig for brukere å bytte eller gi bort ting. Målgruppen er studenter. 
+# Swapp
+Appen Swapp skal gjøre det mulig for brukere å bytte eller gi bort ting. Målgruppen er studenter. 
 
 ## Brukerhistorier
 
-- Det skal være mulig å registere en bruker, og logge inn til en allerede eksisterende bruker.
-- Annonser skal kunne opprettes av brukere. En annonse skal inneholde:
-    1. Tittel
-    2. Beskrivelse
-    3. Om gjenstanden gis bort, lånes, byttes, eller ønskes
-    4. bilde
-- Brukere skal kunne sende meldinger til hverandre for å avtale transaksjoner og møter
-- Visning av annonser, med muligheter for sortering
-- Brukere skal kunne se tidligere transaksjoner
+- Som bruker ønsker jeg å kunne registrere en bruker, og logge inn i en eksisterende bruker
+- Som bruker ønsker jeg å kunne oprette annonser med tittel, beskrivelse, og om gjenstanden gis bort, lånes ut eller byttes 
+- Som bruker ønsker jeg å kunne legge inn forespørsler om annonser jeg finner på siden, og få et svar.
+- som bruker ønsker jeg å kunne se annonser i appen, og å kunne sortere dem etter kategori eller tid.
+-som bruker skal jeg kunne se mine tidligere transaksjoner.
 
 ## Refleksjon om lagringsmetode
 

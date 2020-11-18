@@ -38,6 +38,9 @@ public class CreateAdController extends AbstractController {
       System.out.println("Empty fields");
       display.setText("You must fill inn all fields");
     }
+    else if (titleField.getText().length()>35){
+      display.setText("Max 35 characters in title");
+    }
     else{
 //      List<User> accounts = swappAccess.getAccounts();
 //      assert accounts.size()>0;
