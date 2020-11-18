@@ -9,10 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.testfx.api.FxAssert;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -20,6 +17,9 @@ import org.testfx.matcher.base.WindowMatchers;
 import swapp.core.Swapp;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -41,7 +41,7 @@ public class SwappAppLoginTest extends ApplicationTest {
     final FXMLLoader loader = new FXMLLoader();
     final LoginController controller = new LoginController();
     this.controller = controller;
-    swappAccess.setPath(System.getProperty("user.dir") + File.separator + "swapp.json");
+    swappAccess.setPath(System.getProperty("user.dir") + File.separator + "swapp-test.json");
     controller.setSwappAccess(swappAccess);
     loader.setController(controller);
     loader.setLocation(getClass().getResource("Login.fxml"));
@@ -105,6 +105,16 @@ public class SwappAppLoginTest extends ApplicationTest {
   public void clearLoginFields() {
     loginEmailField.clear();
     loginPasswordField.clear();
+  }
+
+  @AfterAll
+  public static void deleteSwapp() {
+    Path swapp = FileSystems.getDefault().getPath(System.getProperty("user.dir") + File.separator + "swapp-test.json");
+    try {
+      Files.deleteIfExists(swapp);
+    } catch (IOException ioex) {
+      ioex.printStackTrace();
+    }
   }
 
   private void writeInLoginFields(String email, String pwd) {
