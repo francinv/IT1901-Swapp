@@ -1,36 +1,18 @@
 package swapp.ui;
 
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testfx.api.FxAssert;
-import org.testfx.api.FxRobot;
-import org.testfx.framework.junit5.ApplicationTest;
-import swapp.core.User;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class FxAppListTest extends ApplicationTest {
-  private ListController controller;
+public class SwappAppListTest extends AbstractTestFxController {
 
   @FXML
   private ListView listView;
@@ -50,9 +32,8 @@ public class FxAppListTest extends ApplicationTest {
 
   @Override
   public void start(final Stage stage) throws Exception {
-    final FXMLLoader loader = new FXMLLoader(getClass().getResource("ListOfAds.fxml"));
+    final FXMLLoader loader = loadFXML(AbstractController.CONTROLLERS.LIST);
     final Parent parent = loader.load();
-    this.controller = loader.getController();
     final Scene scene = new Scene(parent);
     stage.setScene(scene);
     stage.show();
@@ -66,10 +47,6 @@ public class FxAppListTest extends ApplicationTest {
     makeAd= lookup("#makeAd").query();
     refresh= lookup("#refresh").query();
     myProfile= lookup("#myProfile").query();
-
-
-
-
   }
 
   @Test
@@ -82,14 +59,9 @@ public class FxAppListTest extends ApplicationTest {
 
   @Test
   public void testSelectedSwappAccess() {
-    assertNotNull(this.controller.getSwapp());
-    System.out.println(this.controller.swapp.getAdList().getNumberOfAds());
+    assertNotNull(this.controller.swappAccess);
   }
 
-  @Test
-  public void testSelectedTodoList_initial() {
-    assertNotNull(this.controller.getSwapp());
-  }
   @Test
   public void testLogOutButton(){
     clickOn(logOut);
@@ -104,6 +76,7 @@ public class FxAppListTest extends ApplicationTest {
   public void testClickMakeAd(){
     clickOn(makeAd);
   }
+
   @Test
   public void testClickRefresh(){
     clickOn(refresh);

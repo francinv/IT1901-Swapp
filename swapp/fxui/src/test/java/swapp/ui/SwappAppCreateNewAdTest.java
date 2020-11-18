@@ -2,39 +2,17 @@ package swapp.ui;
 
 import javafx.scene.Scene;
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
-
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.testfx.api.FxAssert;
-import org.testfx.api.FxRobot;
-import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.base.WindowMatchers;
-import swapp.core.Swapp;
-import swapp.core.User;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+public class SwappAppCreateNewAdTest extends AbstractTestFxController {
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-
-public class FxAppCreateNewAdTest extends AbstractTestFxController {
-  private CreateAdController controller;
   private ComboBox<String> categoryComboBox;
   TextField titleField;
   TextArea textBodyField;
@@ -44,13 +22,13 @@ public class FxAppCreateNewAdTest extends AbstractTestFxController {
 
   @Override
   public void start(final Stage stage) throws Exception {
-    final FXMLLoader loader = new FXMLLoader(getClass().getResource("createNewAd.fxml"));
+    final FXMLLoader loader = loadFXML(AbstractController.CONTROLLERS.NEWAD);
     final Parent parent = loader.load();
-    this.controller = loader.getController();
     final Scene scene = new Scene(parent);
     stage.setScene(scene);
     stage.show();
   }
+
   @BeforeEach
   public void findFields() {
     createAdButton= lookup("#createAdButton").query();
@@ -59,7 +37,6 @@ public class FxAppCreateNewAdTest extends AbstractTestFxController {
     textBodyField= lookup("#textBodyField").query();
     categoryComboBox= lookup("#categoryComboBox").query();
     display = lookup("#display").query();
-
   }
 
   @AfterEach
@@ -73,9 +50,8 @@ public class FxAppCreateNewAdTest extends AbstractTestFxController {
     assert display.getText().equals("Fill in all fields");
     clickOn(createAdButton);
     assert display.getText().equals("You must fill inn all fields");
-
-
   }
+
   @Test
   public void testClickCreateAdSuccessful(){
     assert display.getText().equals("Fill in all fields");

@@ -75,7 +75,8 @@ public class AdDetailController extends AbstractController {
      Should also check that a request with same Ad and same currentUser exists.
      Temporarily this just sets Ad.status to completed, so should not show up on main page.
     */
-    //swappAccess.changeAdStatus(ad, Ad.Status.COMPLETED);
+
+    swappAccess.changeAdStatus(ad, Ad.Status.COMPLETED);
     display.setText("You have sucessfully requested this ad!");
   }
 
