@@ -1,7 +1,10 @@
 package swapp.ui;
 
+import javafx.application.Platform;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,8 +17,11 @@ import javafx.stage.Stage;
 import swapp.core.*;
 
 import javafx.event.ActionEvent;
+
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 
 public class ListController extends AbstractController {
@@ -25,8 +31,6 @@ public class ListController extends AbstractController {
    * and be able to create new ones.
    * TODO: Create new Ad object
    */
-
-
 
   @FXML
   private ListView listView;
@@ -38,32 +42,28 @@ public class ListController extends AbstractController {
 
   private AdList adList;
 
-
-
-
-  /**
-   * When ListOfAds.FXML is loaded, initialize() constructs an adList and fills it with some AdOjbects.
-   * TODO: Add persistence so adList is filled with all Ad objects previously created.
-   */
+  @FXML
   public void initialize() {
-    loadSwapp();
-    swapp.populateAdList();
-    adList = swapp.getAdList();
-      // gets all ads from Accounts Lists (json) to adList
-    sort();  // sort by newest as default
-
-    refreshListView();  // Clears ListView and adds all ads from adList
+    populateList();
   }
 
   // helper functions:
 
+  private void populateList() {
+    swappAccess.populateAdList();
+    adList = swappAccess.getAdList();
+
+    sort();
+    refreshListView();
+  }
+
   /**
    * refreshListView updates the GUI to display all Ads in the Adlist.
    */
-  private void refreshListView(){
+  private void refreshListView() {
 
     listView.getItems().clear();  // Clears listView
-    for (int i=0;i<adList.getNumberOfAds();i++){
+    for (int i = 0; i < adList.getNumberOfAds(); i++) {
       Ad ad = adList.getAd(i);
       listView.getItems().add(ad);
     }
@@ -71,77 +71,83 @@ public class ListController extends AbstractController {
   }
 
 
-
-
   /**
    * This method is triggered when a user clicks on an element of the ListView. Should take either Ad or null.
+   *
    * @param arg0 (Ad or null)
-   * If an Ad has been clicked, a DetailView of the Ad should open. Currently a new scene with a static fxml is used
-   * as placeholder.
+   *             If an Ad has been clicked, a DetailView of the Ad should open. Currently a new scene with a static fxml is used
+   *             as placeholder.
    */
   @FXML
-  void handleListClick(MouseEvent arg0){
+  void handleListClick(MouseEvent arg0) {
     Object ad = listView.getSelectionModel().getSelectedItem(); // Return the ListView element user clicked on
-    if (ad instanceof Ad){
+
+    if (ad instanceof Ad) {
             /*TODO: Should transition to DetailView of the ad and display all info about the ad and allow to send
                message */
 
-      Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)arg0.getSource()).getScene().getWindow();
-      Parent parent = null;
-      try {
-        parent = FXMLLoader.load(getClass().getResource("AdDetail.fxml"));
-        stageTheEventSourceNodeBelongs.setScene(new Scene(parent));
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-    else{
+      setSceneAd(CONTROLLERS.ADDETAIL, arg0, swappAccess, (Ad) ad);
+    } else {
       System.out.println("Clicked empty list element");
     }
   }
 
+  public void setSceneAd(CONTROLLERS type, Event event, SwappAccess access, Ad ad) {
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    try {
+      AbstractController controller = type.getControllerInstance();
+      controller.setSwappAccess(swappAccess);
+      FXMLLoader loader = new FXMLLoader();
+      loader.setController(controller);
+      loader.setLocation(AbstractController.class.getResource(type.getFXMLString()));
 
 
+      Parent parent = loader.load();
+      Scene newScene = new Scene(parent);
+      stage.setScene(newScene);
+      if (controller instanceof AdDetailController){
+        ((AdDetailController) controller).setAd(ad);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
 
   // triggered by combobox
-  public void sort(){
+  public void sort() {
     String sortByToken;
     if (sortByComboBox.getValue() == null) {
       sortByToken = "new";
-    }
-    else {
+    } else {
       sortByToken = sortByComboBox.getValue();
     }
     sortBy(sortByToken);
 
   }
-  public void sortBy(String s){ // s= "author" | "title" | "new"
+
+  public void sortBy(String s) { // s= "author" | "title" | "new"
     adList.sortBy(s);
     refreshListView();
   }
 
-  public void filter(){
+  public void filter() {
     String filterByToken;
     Ad.Category category = null;
     if (filterByCombobox.getValue() == null) {
       filterByToken = "All";
-    }
-    else {
+    } else {
       filterByToken = filterByCombobox.getValue();
     }
     //TODO: Use switch-statement
-    if (filterByToken.equals("All")){
-      initialize();
-    }
-    else{
-      if (filterByToken.equals("Borrow")){
+    if (filterByToken.equals("All")) {
+      populateList();
+    } else {
+      if (filterByToken.equals("Borrow")) {
         category = Ad.Category.BORROW;
-      }
-      else if (filterByToken.equals("Gift")){
+      } else if (filterByToken.equals("Gift")) {
         category = Ad.Category.GIFT;
-      }
-      else if (filterByToken.equals("Trade")){
+      } else if (filterByToken.equals("Trade")) {
         category = Ad.Category.TRADE;
       }
       filterByCategory(category);
@@ -151,43 +157,47 @@ public class ListController extends AbstractController {
 
 
   }
-  public void filterByCategory(Enum s){ // s = "borrow" | "switch" | "gift"
-    initialize();
+
+  public void filterByCategory(Enum s) { // s = "borrow" | "switch" | "gift"
+    populateList();
     adList.filterByCategory(s);
     refreshListView();
   }
-  public void reverse(){
+
+  public void reverse() {
     adList.reverse();
-    //refreshListView();
+    refreshListView();
   }
 
 
-  public void makeAd(ActionEvent event){
-    setScene(new FXMLLoader(AbstractController.class.getResource("createNewAd.fxml")), event);
+  public void makeAd(ActionEvent event) {
+    setScene(CONTROLLERS.NEWAD, event, swappAccess);
   }
 
   /**
    * Triggered when Log Out is clicked
+   *
    * @param event
    */
   @FXML
-  public void logOut(ActionEvent event){
+  public void logOut(ActionEvent event) {
     // TODO: set current user to None
-    setScene(new FXMLLoader(AbstractController.class.getResource("Login.fxml")), event);
+    swappAccess.setCurrentUser(null);
+    setScene(CONTROLLERS.LOGIN, event, swappAccess);
   }
 
   /**
    * Triggered by refresh button
    */
   @FXML
-  void populateListView(){
-    swapp.populateAdList();
+  void populateListView() {
+    populateList();
   }
+
   /**
    * DELETE method body here
    */
-  public void myProfile(ActionEvent event){ // triggered by button click
-    setScene(new FXMLLoader(AbstractController.class.getResource("ProfilePage.fxml")), event);
+  public void myProfile(ActionEvent event) { // triggered by button click
+    setScene(CONTROLLERS.PROFILE, event, swappAccess);
   }
-
 }

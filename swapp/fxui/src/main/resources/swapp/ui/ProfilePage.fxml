@@ -5,13 +5,13 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="swapp.ui.ProfilePageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
        <Label fx:id="profileNameText" layoutX="229.0" layoutY="14.0" prefHeight="50.0" prefWidth="111.0" text="Profilnavn"/>
       <Button fx:id="backButton" layoutX="53.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
       <Label fx:id="emailLabel" layoutX="73.0" layoutY="64.0" prefHeight="50.0" prefWidth="135.0" text="Email:" />
       <Label fx:id="adListLabel" layoutX="53.0" layoutY="121.0" prefHeight="50.0" prefWidth="135.0" text="Recent transactions:" />
-      <ListView fx:id="adList" layoutX="208.0" layoutY="121.0" prefHeight="261.0" prefWidth="200.0" onMouseClicked="#handleListClick" />
+      <ListView fx:id="listView" layoutX="208.0" layoutY="121.0" prefHeight="261.0" prefWidth="200.0" onMouseClicked="#handleListClick" />
       <Label fx:id="emailText" layoutX="208.0" layoutY="64.0" prefHeight="50.0" prefWidth="135.0" />
    </children>
 </AnchorPane>

@@ -14,9 +14,9 @@ public interface SwappAccess {
 
     boolean validUser(String name, String email, String password); //??? nødvendig?
 
-    void addUser(String name, String email, String password);
+    void createUser(String name, String email, String password);
 
-    void addAd(String title, String author, String textBody, Ad.Category category);
+    void createAd(String title, String textBody, Ad.Category category);
 
     void changeAdStatus(Ad ad, Ad.Status status);
 
@@ -26,7 +26,11 @@ public interface SwappAccess {
 
     void setCurrentUser(User user);
 
+    User getCurrentUser();
+
     List<User> getAccounts();
 
     AdList getAdList();
+
+    void populateAdList();
 }
