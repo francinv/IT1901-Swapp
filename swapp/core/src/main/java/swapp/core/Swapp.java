@@ -175,6 +175,18 @@ public class Swapp implements IObservable<Swapp> {
     return transactionList;
   }
 
+  public Boolean setTransactionStatus(Transaction transaction){
+    User user = this.getUser(transaction.getReceiver().getName());
+    for (Transaction swappTransaction: user.getUserTransactions()){
+      if (swappTransaction.equals(transaction)){
+        swappTransaction.accepted();
+        return true;
+      }
+    }
+    System.out.println("this shouldnt happen");
+    return false;
+  }
+
   public void populateAdList(){ // gets all ads from all users from swapp and append to Adlist
 
     this.adList = new AdList();

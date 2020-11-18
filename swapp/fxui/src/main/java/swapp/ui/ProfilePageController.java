@@ -2,6 +2,7 @@ package swapp.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import swapp.core.AdList;
 import swapp.core.*;
 
@@ -52,10 +54,20 @@ public class ProfilePageController extends AbstractController {
     setScene(CONTROLLERS.ADDETAIL, event, swappAccess);
   }
   @FXML
-  public void handleTransactionListClick(ActionEvent event) {
+  public void handleTransactionListClick(MouseEvent event) {
+    System.out.println("Utenfor");
     Object transaction = transactionListView.getSelectionModel().getSelectedItem();
+
+    System.out.println("Utenfor");
     if (transaction instanceof Transaction){
       System.out.println("TODOStuff");
+      Ad ad = ((Transaction) transaction).getAd();
+      System.out.println("HEIHEI");
+      swappAccess.changeAdStatus(ad, Ad.Status.COMPLETED);
+      swappAccess.setTransactionStatus(((Transaction) transaction));
+      refreshTransactionList();
+      // transaction.
+
     }
     else{
       System.out.println("clicked empty element");
@@ -96,7 +108,10 @@ public class ProfilePageController extends AbstractController {
   }
   private void refreshTransactionList(){
     transactionListView.getItems().clear();
-    transactionListView.getItems().addAll(transactions);
+
+    transactionListView.getItems().addAll(transactions.stream()
+            .filter(transaction -> transaction.getStatus()
+                    .equals(Transaction.Status.ONGOING)).collect(Collectors.toList()));
   }
 
 }

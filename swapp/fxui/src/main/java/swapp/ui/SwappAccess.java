@@ -1,9 +1,7 @@
 package swapp.ui;
 
-import swapp.core.Ad;
-import swapp.core.AdList;
-import swapp.core.User;
-import swapp.core.UserValidation;
+import swapp.core.*;
+
 import java.util.List;
 
 public interface SwappAccess {
@@ -36,4 +34,6 @@ public interface SwappAccess {
     void createTransaction(Ad ad, User requester);
     
     Boolean changeAdStatus(Ad ad, Ad.Status status);
+
+    Boolean setTransactionStatus(Transaction transaction);
 }

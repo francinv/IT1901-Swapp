@@ -55,6 +55,10 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   public Boolean changeAdStatus(Ad ad, Ad.Status status) {
     return swapp.setAdStatus(ad, status);
   }
+  @Override
+  public Boolean setTransactionStatus(Transaction transaction){
+    return swapp.setTransactionStatus(transaction);
+  }
 
   @Override
   public UserValidation getUserValidation() {
