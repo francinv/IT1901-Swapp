@@ -14,7 +14,6 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 import swapp.core.Swapp;
 import swapp.json.SwappModule;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -30,7 +29,10 @@ public abstract class AbstractTestFxController extends ApplicationTest {
 
   private static final String swappString = "[{\"name\":\"Testname\",\"email\":\"test@test.com\"," +
           "\"password\":\"Testpass123\",\"ads\":[{\"title\":\"Test ad\",\"textbody\":\"This is a test\"," +
-          "\"category\":\"BORROW\",\"status\":\"ACTIVE\",\"date\":917543700}]}]";
+          "\"category\":\"BORROW\",\"status\":\"ACTIVE\",\"date\":917543700},{\"title\":\"Another ad\",\"textbody\":\"Test\"," +
+          "\"category\":\"GIFT\",\"status\":\"ACTIVE\",\"date\":920543700},{\"title\":\"TEST\",\"textbody\":\"Lorem Ipsum\"," +
+          "\"category\":\"TRADE\",\"status\":\"ACTIVE\",\"date\":910543700},{\"title\":\"FOOBAR\",\"textbody\":\"Foobar\"," +
+          "\"category\":\"BORROW\",\"status\":\"ACTIVE\",\"date\":932543700}]}]";
   private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new SwappModule());
 
   protected AbstractController controller;
