@@ -47,8 +47,8 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   }
 
   @Override
-  public void changeAdStatus(Ad ad, Ad.Status status) {
-    //swapp.getAdList().getAd(ad).setStatus(status);
+  public Boolean changeAdStatus(Ad ad, Ad.Status status) {
+    return swapp.setAdStatus(ad, status);
   }
 
   @Override
@@ -103,4 +103,6 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   public void notify(Swapp obj) {
     saveSwapp();
   }
+
+
 }

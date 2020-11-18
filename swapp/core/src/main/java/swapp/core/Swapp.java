@@ -141,6 +141,24 @@ public class Swapp implements IObservable<Swapp> {
   }
 
   /**
+   * This method is used to remove ads from displaying in the GUI.
+   * @param ad
+   * @param status
+   * @return true if the method finds the correct Ad
+   */
+  public Boolean setAdStatus(Ad ad, Ad.Status status){
+    User user = this.getUser(ad.getAuthor().getName());
+    for (Ad swappAd: user.getUserAds()){
+      if (swappAd.equals(ad)){
+        swappAd.setStatus(status);
+        return true;
+      }
+    }
+    System.out.println("this shouldnt happen");
+    return false;
+  }
+
+  /**
    * Getter for adList
    * @return returns adList
    */
@@ -148,7 +166,11 @@ public class Swapp implements IObservable<Swapp> {
     return adList;
   }
 
-  public void populateAdList(){ // gets all ads from all users from swapp and append to Adlist
+  /**
+   * This method gets all ads from all users from swapp and appends them to Adlist. Only active Ads are added.
+   *
+   */
+  public void populateAdList(){
 
     this.adList = new AdList();
     List<User> accounts = this.getAccounts();

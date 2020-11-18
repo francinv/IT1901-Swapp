@@ -67,7 +67,6 @@ public class AdDetailController extends AbstractController {
      Temporarily this just sets Ad.status to completed, so should not show up on main page.
     */
 
-    //this.ad.setStatus(Ad.Status.COMPLETED);
     swappAccess.changeAdStatus(ad, Ad.Status.COMPLETED);
     display.setText("You have sucessfully requested this ad!");
   }

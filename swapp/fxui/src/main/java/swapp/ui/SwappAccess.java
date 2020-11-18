@@ -18,7 +18,6 @@ public interface SwappAccess {
 
     void createAd(String title, String textBody, Ad.Category category);
 
-    void changeAdStatus(Ad ad, Ad.Status status);
 
     UserValidation getUserValidation();
 
@@ -33,4 +32,6 @@ public interface SwappAccess {
     AdList getAdList();
 
     void populateAdList();
+
+    Boolean changeAdStatus(Ad ad, Ad.Status status);
 }
