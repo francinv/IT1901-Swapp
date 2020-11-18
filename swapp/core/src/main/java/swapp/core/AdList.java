@@ -6,13 +6,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AdList implements Cloneable{
+public class AdList {
   /**
    * The AdList contains all active Ad-instances and communicates with the GUI.
    */
   private ArrayList<Ad> ads;
   public AdList(){
     this.ads = new ArrayList<Ad>();
+
   }
   // Create an Ad
     /*
@@ -32,10 +33,6 @@ public class AdList implements Cloneable{
   }
   public Ad getAd(int i){
     return ads.get(i);
-  }
-
-  public List<Ad> getList() {
-    return new ArrayList<>(ads);
   }
 
   public void archiveAd(Ad ad){
@@ -73,21 +70,5 @@ public class AdList implements Cloneable{
     return arrList;
   }
 
-  // Dette er svært ineffektivt men en enkel løsning for når alle annonser skal vises, tidligere ville adlist-
-  // objektet knyttet til Swapp bli hentet ut direkte for å så bli endret på, selv om den ikke skal endres bortsett
-  // fra når noen legger til en ny annonse. Da var det å lage en kopi av objektet en enkel måte å gjøre det på for da
-  // får man de objektene som en trenger og vil da ha muligheten til å endre på listen slik som en selv vil uten
-  // å være redd for å endre på den underliggende listen
-  @Override
-  protected AdList clone() {
-    AdList clone = null;
-    try {
-      clone = (AdList) super.clone();
-      clone.ads = new ArrayList<>(ads); // deep copy slik at vi ikke endrer på det opprinnelige objektet
-    } catch (CloneNotSupportedException e) {
-      e.printStackTrace();
-    }
-    return clone;
-  }
 
 }
