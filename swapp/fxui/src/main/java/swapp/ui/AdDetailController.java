@@ -18,19 +18,27 @@ public class AdDetailController extends AbstractController {
    * TODO: Get access to Ad-object here
    */
   @FXML
-  public Label nameLabel;
+  public Label userLabel;
   @FXML
-  public Label display;
+  public Label categoryText;
   @FXML
   public Label titleLabel;
   @FXML
   public Label textBodyLabel;
   @FXML
-  public Label categoryLabel;
+  public Label textBody;
+  @FXML
+  public Button backToAllAds;
+  @FXML
+  public Button request;
+  @FXML
+  public Label display;
 
 
 
   Ad ad;
+
+
   public void initialize() {
     System.out.println("HEI på deg! AdDETAIL");
     //ad = null;
@@ -40,7 +48,7 @@ public class AdDetailController extends AbstractController {
     this.ad = ad;
   }
   public void customInitialize(){
-    nameLabel.setText(ad.getAuthor().toString());
+    userLabel.setText(ad.getAuthor().toString());
   }
 
   @FXML
@@ -60,9 +68,10 @@ public class AdDetailController extends AbstractController {
   @FXML
   void request(){
     assert this.ad != null;
+    swappAccess.createTransaction(this.ad, swappAccess.getCurrentUser());
     /*
-    TODO: Create a transaction object with following passed to constructor: swappAccess.getCurrentUser(),
-     ad.getAuthor(),ad
+    åpner en transaction, med status ongoing. mangler et steg hvor mottaker får en beskjed og kan trykke accept?
+    funksjon i user som er accept/deny, og funksjon i transaction som er notifyReceiver()?
      Should also check that a request with same Ad and same currentUser exists.
      Temporarily this just sets Ad.status to completed, so should not show up on main page.
     */
@@ -78,10 +87,10 @@ public class AdDetailController extends AbstractController {
 
 
   private void setLabels(){
-    titleLabel.setText("title: "+ad.getTitle());
-    textBodyLabel.setText("description: "+ad.getTextBody());
-    nameLabel.setText("advertised by: "+ad.getAuthor().getName()+" with email "+ad.getAuthor().getEmail());
-    categoryLabel.setText("Category: "+ad.getCategory().toString().toLowerCase()+"     ("+
+    titleLabel.setText(ad.getTitle());
+    textBody.setText(ad.getTextBody());
+    userLabel.setText("advertised by: "+ad.getAuthor().getName()+" with email "+ad.getAuthor().getEmail());
+    categoryText.setText("Category: "+ad.getCategory().toString().toLowerCase()+"     ("+
             convertTime(ad.getTime())+")");
   }
 

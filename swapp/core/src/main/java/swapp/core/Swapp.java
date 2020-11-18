@@ -1,8 +1,6 @@
 package swapp.core;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -14,6 +12,7 @@ public class Swapp implements IObservable<Swapp> {
   private User currentUser;
   private UserValidation userValidation;
   private AdList adList;
+  private List<Transaction> transactionList;
   private List<IObserver<Swapp>> observers = new ArrayList<>();
 
 
@@ -21,6 +20,7 @@ public class Swapp implements IObservable<Swapp> {
     this.accounts = new ArrayList<>();
     this.userValidation = new UserValidation(this.accounts);
     this.adList = new AdList();
+    this.transactionList= new ArrayList<>();
   }
 
   //TODO Implementer notifyObserver() i de riktige metodene
@@ -111,6 +111,11 @@ public class Swapp implements IObservable<Swapp> {
     notifyObservers(this);
   }
 
+  public void createTransaction(Ad ad, User requester){
+    User user = ad.getAuthor();
+    this.getUser(user.getName()).createTransaction(ad, requester);
+  }
+
   /**
    * Get the current logged in user
    * @param email
@@ -166,11 +171,11 @@ public class Swapp implements IObservable<Swapp> {
     return adList;
   }
 
-  /**
-   * This method gets all ads from all users from swapp and appends them to Adlist. Only active Ads are added.
-   *
-   */
-  public void populateAdList(){
+  public List<Transaction> getTransactionList(){
+    return transactionList;
+  }
+
+  public void populateAdList(){ // gets all ads from all users from swapp and append to Adlist
 
     this.adList = new AdList();
     List<User> accounts = this.getAccounts();
@@ -181,6 +186,23 @@ public class Swapp implements IObservable<Swapp> {
         }
         else{
           System.out.println(ad.getStatus());
+        }
+      }
+    }
+
+  }
+
+  public void populatetransactionList(){ // gets all ads from all users from swapp and append to Adlist
+
+    this.transactionList = new ArrayList<>();
+    List<User> accounts = this.getAccounts();
+    for (User user: accounts){
+      for (Transaction transaction: user.getUserTransactions()){
+        if (transaction.getStatus().equals(Transaction.Status.ONGOING)){
+          transactionList.add(transaction);
+        }
+        else{
+          System.out.println(transaction.getStatus());
         }
       }
     }

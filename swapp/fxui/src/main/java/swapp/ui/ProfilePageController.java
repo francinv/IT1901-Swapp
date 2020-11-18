@@ -22,16 +22,22 @@ public class ProfilePageController extends AbstractController {
   @FXML
   Label emailText;
   @FXML
-  ListView<Ad> listView;
+  ListView<Ad> adListView;
   @FXML
   Button backButton;
+  @FXML
+  ListView<Transaction> transactionListView;
 
   private final List<Ad> ads = new ArrayList<>();
+  private List<Transaction> transactions = new ArrayList<>();
 
   @FXML
   public void initialize() {
+    transactions = new ArrayList<>();
+    transactions.addAll(swappAccess.getCurrentUser().getUserTransactions());
     populateAdList();
     refreshList();
+    refreshTransactionList();
     profileNameText.setText(swappAccess.getCurrentUser().getName());
     emailText.setText(swappAccess.getCurrentUser().getEmail());
   }
@@ -44,13 +50,36 @@ public class ProfilePageController extends AbstractController {
   @FXML
   public void handleListClick(ActionEvent event) {
     setScene(CONTROLLERS.ADDETAIL, event, swappAccess);
-    // må laste inn et spesifikt ad objekt-dette er ikke implementert enda
   }
+  @FXML
+  public void handleTransactionListClick(ActionEvent event) {
+    Object transaction = transactionListView.getSelectionModel().getSelectedItem();
+    if (transaction instanceof Transaction){
+      System.out.println("TODOStuff");
+    }
+    else{
+      System.out.println("clicked empty element");
+    }
+  }
+
+  /*
+  @FXML
+  void handleListClick(MouseEvent arg0) {
+    Object ad = listView.getSelectionModel().getSelectedItem(); // Return the ListView element user clicked on
+
+    if (ad instanceof Ad) {
+
+
+  setSceneAd(CONTROLLERS.ADDETAIL, arg0, swappAccess, (Ad) ad);
+
+} else {
+        System.out.println("Clicked empty list element");
+        }
+        }
+   */
 
   @FXML
   private void populateAdList() { // gets all ads from the logged in user from swapp and ads to Adlist
-    // TODO ny versjon av populateadlist, som er i swapp, som legger til alle ads tilhørende denne brukeren.
-    // TODO kan være en filtrert adlist?. må undersøkes. best å ta det når serveren er klar, siden loadswapp ikke blir relevant
       ads.clear();
       ads.addAll(swappAccess.getCurrentUser().getUserAds());
   }
@@ -61,7 +90,13 @@ public class ProfilePageController extends AbstractController {
    */
   @FXML
   private void refreshList() {
-    listView.getItems().clear();
-    listView.getItems().addAll(ads);
+    adListView.getItems().clear();
+    adListView.getItems().addAll(ads);
+
   }
+  private void refreshTransactionList(){
+    transactionListView.getItems().clear();
+    transactionListView.getItems().addAll(transactions);
+  }
+
 }

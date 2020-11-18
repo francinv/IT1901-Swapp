@@ -9,20 +9,30 @@ public class User {
 	private String email;
 	private String password;
 	private List<Ad> userAds;//
+	private List<Transaction> userTransactions;
 
 	public User(String name, String email, String password) {
 		this.name = name.toLowerCase();
 		this.email = email;
 		this.password = password;
-		this.userAds = new ArrayList<>();//
+        this.userAds = new ArrayList<>();//
+        this.userTransactions = new ArrayList<>();
 	}
 
 	public void createAd(String title, String textBody, Ad.Category category){
 		this.userAds.add(new Ad(title, this, textBody, category));//
 	}
+	public void createTransaction(Ad ad, User requester){
+		this.userTransactions.add(new Transaction(ad, requester));
+		System.out.println(userTransactions);
+	}
 	public List<swapp.core.Ad> getUserAds(){
 		return this.userAds;
-	}
+    }
+
+    public List<swapp.core.Transaction> getUserTransactions() {
+        return this.userTransactions;
+    }
 	/**
 	 * getter for the User's name.
 	 * @return the name of the User
@@ -89,5 +99,5 @@ public class User {
 	@Override
 	public int hashCode() {
 		return Objects.hash(name, email, password);
-	}
+    }
 }
