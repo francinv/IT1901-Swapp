@@ -15,16 +15,10 @@ public class AdTest {
   //Test coverage report can be found in target/site/jacoco/index.html
   @BeforeEach
   public void setUp() throws Exception{
-
     user1 = new User("tester", "gabb@gmail.com", "Password123");
     user2 = new User("name", "birk@gmail.com", "Password123");
     ad1 = new Ad("nepe", user1, "Godt brukt", Ad.Category.BORROW);
     ad2 = new Ad("kål", user2, "Pen", Ad.Category.GIFT);
-    /*
-    new Ad("ergonomisk stol", user2, "brukt", Ad.Category.GIFT));
-    new Ad("ubåt til låns", user2, "brukt", Ad.Category.BORROW));
-    new Ad("gir ski", user1, "brukt", Ad.Category.TRADE));
-    new Ad("aaaaaaa", user1, "brukt", Ad.Category.GIFT));*/
   }
 
   @Test
