@@ -1,6 +1,7 @@
 package swapp.ui;
 
 import javafx.application.Platform;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -49,7 +50,9 @@ public class ListController extends AbstractController {
   // helper functions:
 
   private void populateList() {
+    swappAccess.populateAdList();
     adList = swappAccess.getAdList();
+
     sort();
     refreshListView();
   }
@@ -78,12 +81,35 @@ public class ListController extends AbstractController {
   @FXML
   void handleListClick(MouseEvent arg0) {
     Object ad = listView.getSelectionModel().getSelectedItem(); // Return the ListView element user clicked on
+
     if (ad instanceof Ad) {
             /*TODO: Should transition to DetailView of the ad and display all info about the ad and allow to send
                message */
-      setScene(CONTROLLERS.ADDETAIL, arg0, swappAccess);
+
+      setSceneAd(CONTROLLERS.ADDETAIL, arg0, swappAccess, (Ad) ad);
     } else {
       System.out.println("Clicked empty list element");
+    }
+  }
+
+  public void setSceneAd(CONTROLLERS type, Event event, SwappAccess access, Ad ad) {
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    try {
+      AbstractController controller = type.getControllerInstance();
+      controller.setSwappAccess(swappAccess);
+      FXMLLoader loader = new FXMLLoader();
+      loader.setController(controller);
+      loader.setLocation(AbstractController.class.getResource(type.getFXMLString()));
+
+
+      Parent parent = loader.load();
+      Scene newScene = new Scene(parent);
+      stage.setScene(newScene);
+      if (controller instanceof AdDetailController){
+        ((AdDetailController) controller).setAd(ad);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 

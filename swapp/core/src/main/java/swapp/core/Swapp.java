@@ -145,10 +145,12 @@ public class Swapp implements IObservable<Swapp> {
    * @return returns adList
    */
   public AdList getAdList() {
-    return adList.clone();
+    return adList;
   }
 
   public void populateAdList(){ // gets all ads from all users from swapp and append to Adlist
+
+    this.adList = new AdList();
     List<User> accounts = this.getAccounts();
     for (User user: accounts){
       for (Ad ad: user.getUserAds()){
