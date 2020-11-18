@@ -73,6 +73,7 @@ public class ListController extends AbstractController {
 
   /**
    * This method is triggered when a user clicks on an element of the ListView. Should take either Ad or null.
+   * If the element is an Ad, we should transition to AdDetailView and be able to request the Ad.
    *
    * @param arg0 (Ad or null)
    *             If an Ad has been clicked, a DetailView of the Ad should open. Currently a new scene with a static fxml is used
@@ -83,9 +84,6 @@ public class ListController extends AbstractController {
     Object ad = listView.getSelectionModel().getSelectedItem(); // Return the ListView element user clicked on
 
     if (ad instanceof Ad) {
-            /*TODO: Should transition to DetailView of the ad and display all info about the ad and allow to send
-               message */
-
       setSceneAd(CONTROLLERS.ADDETAIL, arg0, swappAccess, (Ad) ad);
     } else {
       System.out.println("Clicked empty list element");

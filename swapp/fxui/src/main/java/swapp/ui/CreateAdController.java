@@ -46,7 +46,6 @@ public class CreateAdController extends AbstractController {
       display.setText("Success!");
       setScene(CONTROLLERS.LIST, event, swappAccess);
     }
-
   }
 
   /**
@@ -56,7 +55,6 @@ public class CreateAdController extends AbstractController {
   @FXML
   public void backToMain(ActionEvent event){
       setScene(CONTROLLERS.LIST, event, swappAccess);
-
   }
 
 
