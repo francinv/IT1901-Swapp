@@ -12,6 +12,11 @@ import javafx.event.ActionEvent;
 
 import java.util.Date;
 
+/**
+ * AdDetailController shows details about one specific Ad and is triggered by clicking on an Ad in the listview.
+ * The method setAd should then be called which will update Labels to match the specific Ad.
+ *
+ */
 public class AdDetailController extends AbstractController {
   /**
    * For now only loads a static FXML file and button to get back to all ads

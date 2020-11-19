@@ -6,6 +6,11 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Swapp handles a List of users, who is currently logged in, user creation and validation, which ads
+ * to display (adList) etc.
+ * Interaction with GUI-module happens through Swapp.
+ */
 public class Swapp implements IObservable<Swapp> {
 
   private List<User> accounts;
@@ -105,7 +110,15 @@ public class Swapp implements IObservable<Swapp> {
     return false;
   }
 
+  /**
+   * Creates a new Ad with Author as the currently logged in user.
+   * @param title
+   * @param textbody
+   * @param category
+   */
   public void createAd(String title, String textbody, Ad.Category category) {
+    System.out.print("hei  ");
+    System.out.println(getCurrentUser());
     getCurrentUser().createAd(title, textbody, category);
     populateAdList();
     notifyObservers(this);
@@ -114,6 +127,7 @@ public class Swapp implements IObservable<Swapp> {
   public void createTransaction(Ad ad, User requester){
     User user = ad.getAuthor();
     this.getUser(user.getName()).createTransaction(ad, requester);
+    //notifyObservers(this);
   }
 
   /**
@@ -146,7 +160,7 @@ public class Swapp implements IObservable<Swapp> {
   }
 
   /**
-   * This method is used to remove ads from displaying in the GUI.
+   * This method is used to remove ads from displaying in the GUI by changig the status.
    * @param ad
    * @param status
    * @return true if the method finds the correct Ad
@@ -187,6 +201,10 @@ public class Swapp implements IObservable<Swapp> {
     return false;
   }
 
+  /**
+   * Empties the adList and then gets all ads from each user to AdList. adList now contains all ads that
+   * should be displayed. This must be called when changes happen that warrant an updated listView of ads.
+   */
   public void populateAdList(){ // gets all ads from all users from swapp and append to Adlist
 
     this.adList = new AdList();
@@ -203,8 +221,8 @@ public class Swapp implements IObservable<Swapp> {
     }
 
   }
-
-  public void populatetransactionList(){ // gets all ads from all users from swapp and append to Adlist
+  // DELETEXX
+  public void populatetransactionList(){
 
     this.transactionList = new ArrayList<>();
     List<User> accounts = this.getAccounts();

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The User object is the underlying logic for clients to interact with the App. Ads created by the
+ * user and Transactions created by someone else requesting the user's Ad is stored here.
+ */
 public class User {
 	private String name;
 	private String email;
@@ -11,6 +15,11 @@ public class User {
 	private List<Ad> userAds;//
 	private List<Transaction> userTransactions;
 
+	/**
+	 * @param name
+	 * @param email
+	 * @param password
+	 */
 	public User(String name, String email, String password) {
 		this.name = name.toLowerCase();
 		this.email = email;

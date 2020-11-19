@@ -27,6 +27,8 @@ public class TransactionTest {
     assert tran1.getRequester().equals(user2);
     assert tran1.getStatus().equals(Transaction.Status.ONGOING);
   }
+
+
   @Test
   public void testToString(){
     assert tran1.toString().equals("nepe(requested by [NAME: name, EMAIL: birk@gmail.com])");

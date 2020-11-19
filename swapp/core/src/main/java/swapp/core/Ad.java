@@ -3,6 +3,11 @@ package swapp.core;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * The Ad can be created by users and then requested by other users to create a transaction object.
+ * The User that creates the Ad has a one-to-many relation with the Ad. Only Status.ACTIVE Ads will be shown
+ * in the GUI.
+ */
 public class Ad {
 
     public enum Status {
@@ -46,6 +51,15 @@ public class Ad {
         this.time =  new Date().getTime();
     }
 
+    /**
+     * For use after deserializing from Json to get original time.
+     * @param title
+     * @param author
+     * @param textBody
+     * @param category
+     * @param status
+     * @param time
+     */
     public Ad(String title, User author, String textBody, Category category, Status status, long time) {
         this.title = title;
         this.author = author;
@@ -88,6 +102,10 @@ public class Ad {
         this.status = status;
     }
 
+    /**
+     * We use the toString method to display Ad-objects in the listView.
+     * @return
+     */
     @Override
     public String toString() {
         return this.title+" (annonsert av "+ this.author.getName()+")";
