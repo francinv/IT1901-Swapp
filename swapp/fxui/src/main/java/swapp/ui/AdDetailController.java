@@ -33,28 +33,8 @@ public class AdDetailController extends AbstractController {
   public Button request;
   @FXML
   public Label display;
-
-
-
   Ad ad;
 
-
-  public void initialize() {
-    System.out.println("HEI på deg! AdDETAIL");
-    //ad = null;
-    // denne har ikke tilgang til Ad enda
-  }
-  public void initData(Ad ad){
-    this.ad = ad;
-  }
-  public void customInitialize(){
-    userLabel.setText(ad.getAuthor().toString());
-  }
-
-  @FXML
-  void handleButton() {
-    System.out.println("HEI på deg! AdDETAIL");
-  }
   @FXML
   void backToAllAds(ActionEvent event){
     // When clicking "All ads" button, this methods is called and switches back to previous view.
@@ -62,22 +42,20 @@ public class AdDetailController extends AbstractController {
   }
 
   /**
-   * request is triggered by clicking the "requst this ad"-button.
+   * request is triggered by clicking the "requst this ad"-button. It creates a transaction that the adOwner will
+   * be able to accept
    *
    */
   @FXML
   void request(){
     assert this.ad != null;
-    swappAccess.createTransaction(this.ad, swappAccess.getCurrentUser());
-    /*
-    åpner en transaction, med status ongoing. mangler et steg hvor mottaker får en beskjed og kan trykke accept?
-    funksjon i user som er accept/deny, og funksjon i transaction som er notifyReceiver()?
-     Should also check that a request with same Ad and same currentUser exists.
-     Temporarily this just sets Ad.status to completed, so should not show up on main page.
-    */
-
-    //swappAccess.changeAdStatus(ad, Ad.Status.COMPLETED);
-    display.setText("You have sucessfully requested this ad!");
+    if (swappAccess.getCurrentUser().equals(this.ad.getAuthor())){
+      display.setText("You own this Ad and therefore cant request it.");
+    }
+    else{
+      swappAccess.createTransaction(this.ad, swappAccess.getCurrentUser());
+      display.setText("You have sucessfully requested this ad!");
+    }
   }
 
   public void setAd(Ad ad) {
@@ -98,5 +76,9 @@ public class AdDetailController extends AbstractController {
     Date date = new Date(time);
     return date.toString();
 
+  }
+
+  public Ad getAd(){
+    return this.ad;
   }
 }

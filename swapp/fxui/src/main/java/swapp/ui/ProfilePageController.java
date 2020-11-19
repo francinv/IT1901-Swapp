@@ -53,42 +53,27 @@ public class ProfilePageController extends AbstractController {
   public void handleListClick(ActionEvent event) {
     setScene(CONTROLLERS.ADDETAIL, event, swappAccess);
   }
+
+  /**
+   * Triggered by someone clicking on an element on the TransactionListView. Could contain a Transaction
+   * object or null if empty element is clicked. When a user clicks on a transaction, that transaction is
+   * changed to COMPLETED and will not show up anymore. The Ad will also change to completed and not be shown
+   * on the main page.
+   * @param event
+   */
   @FXML
   public void handleTransactionListClick(MouseEvent event) {
-    System.out.println("Utenfor");
     Object transaction = transactionListView.getSelectionModel().getSelectedItem();
-
-    System.out.println("Utenfor");
     if (transaction instanceof Transaction){
-      System.out.println("TODOStuff");
       Ad ad = ((Transaction) transaction).getAd();
-      System.out.println("HEIHEI");
       swappAccess.changeAdStatus(ad, Ad.Status.COMPLETED);
       swappAccess.setTransactionStatus(((Transaction) transaction));
       refreshTransactionList();
-      // transaction.
-
     }
     else{
       System.out.println("clicked empty element");
     }
   }
-
-  /*
-  @FXML
-  void handleListClick(MouseEvent arg0) {
-    Object ad = listView.getSelectionModel().getSelectedItem(); // Return the ListView element user clicked on
-
-    if (ad instanceof Ad) {
-
-
-  setSceneAd(CONTROLLERS.ADDETAIL, arg0, swappAccess, (Ad) ad);
-
-} else {
-        System.out.println("Clicked empty list element");
-        }
-        }
-   */
 
   @FXML
   private void populateAdList() { // gets all ads from the logged in user from swapp and ads to Adlist
@@ -97,8 +82,7 @@ public class ProfilePageController extends AbstractController {
   }
 
   /**
-   * refreshList updates the GUI so it shows the ads
-   * //TODO duplicate method
+   * refreshList updates the GUI so it shows the ads and the ONGOING transactions
    */
   @FXML
   private void refreshList() {
@@ -108,7 +92,6 @@ public class ProfilePageController extends AbstractController {
   }
   private void refreshTransactionList(){
     transactionListView.getItems().clear();
-
     transactionListView.getItems().addAll(transactions.stream()
             .filter(transaction -> transaction.getStatus()
                     .equals(Transaction.Status.ONGOING)).collect(Collectors.toList()));
