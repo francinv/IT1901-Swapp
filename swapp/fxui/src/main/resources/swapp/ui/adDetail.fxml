@@ -17,9 +17,13 @@
          </font></Label>
         <Label fx:id="display" layoutX="268.0" layoutY="302.0" prefHeight="33.0" prefWidth="111.0" />
         <Label fx:id="textBodyLabel" layoutX="141.0" layoutY="168.0" prefHeight="25.0" text="Description: " />
-        <Label fx:id="categoryText" layoutX="141.0" layoutY="319.0" prefHeight="25.0" prefWidth="364.0" text="kategori:til utlån, etc" />
-        <Label fx:id="textBody" alignment="TOP_LEFT" layoutX="141.0" layoutY="193.0" mnemonicParsing="false" prefHeight="119.0" prefWidth="199.0" wrapText="true" />
-      <Label fx:id="userLabel" layoutX="141.0" layoutY="346.0" prefHeight="25.0" prefWidth="364.0" text="tilhørende bruker" />
+        <Label fx:id="categoryText" layoutX="141.0" layoutY="319.0" prefHeight="25.0" prefWidth="364.0"
+               text="kategori:til utlån, etc" />
+        <Label fx:id="textBody" alignment="TOP_LEFT" layoutX="141.0" layoutY="193.0" mnemonicParsing="false"
+               prefHeight="119.0" prefWidth="199.0" wrapText="true" />
+        <Label fx:id="userLabel" layoutX="141.0" layoutY="346.0" prefHeight="25.0"
+               prefWidth="364.0" text="tilhørende bruker" />
+
       <Button fx:id="backToAllAds" layoutX="22.0" layoutY="380.0" mnemonicParsing="false" onAction="#backToAllAds" text="Back" />
       <Button fx:id="request" layoutX="510.0" layoutY="390.0" mnemonicParsing="false" onAction="#request" text="Request item" />
     </children>
