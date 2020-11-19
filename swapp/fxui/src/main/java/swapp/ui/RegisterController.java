@@ -60,6 +60,13 @@ public class RegisterController extends AbstractController {
       return;
     }
     swappAccess.createUser(nameFieldText, emailFieldText, pwdFieldText);
+    User loggedIn = swappAccess.getUserLogin(emailFieldText, pwdFieldText);
+    if (loggedIn == null) {
+      createAlertBox(ERROR, parent, ERROR_DIALOG, INVALID_EMAIL_AND_OR_PWD);
+      return;
+    } else {
+      swappAccess.setCurrentUser(loggedIn);
+    }
     setScene(CONTROLLERS.LIST, event, swappAccess);
   }
 }

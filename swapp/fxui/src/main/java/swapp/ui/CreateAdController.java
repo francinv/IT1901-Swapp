@@ -12,10 +12,13 @@ import swapp.core.User;
 
 import java.util.List;
 
+/**
+ * Controller for creating an Ad. It has textFields the user must fill in. If the input meets the requirements,
+ * a new Ad is created through swapp.
+ */
 public class CreateAdController extends AbstractController {
   @FXML
   private ComboBox<String> categoryComboBox;
-
   @FXML
   TextField titleField;
   @FXML
@@ -33,17 +36,24 @@ public class CreateAdController extends AbstractController {
    */
   @FXML
   public void createAdAndBackToMain(ActionEvent event){
-    // When clicking "All ads" button, this methods is called and switches back to previous view.
+    // if empty fields
+    if (swappAccess.getCurrentUser()==null){
+      System.out.println("currentUSER== null");
+      System.out.println(swappAccess.getUser("ramborambo"));
+    }
+    else{
+      System.out.println(swappAccess.getCurrentUser());
+    }
     if (titleField.getText().isEmpty() || textBodyField.getText().isEmpty() || categoryComboBox.getValue().isEmpty()){
       System.out.println("Empty fields");
       display.setText("You must fill inn all fields");
     }
-    else if (titleField.getText().length()>35){
+    else if (titleField.getText().length()>35){ // if too long title
       display.setText("Max 35 characters in title");
     }
-    else{
+    else{ //else success
       swappAccess.createAd(titleField.getText(), textBodyField.getText(), Ad.Category.valueOf(categoryComboBox.getValue().toUpperCase()));
-      display.setText("Success!");
+      display.setText("Success!"); // for testing purposes
       setScene(CONTROLLERS.LIST, event, swappAccess);
     }
   }

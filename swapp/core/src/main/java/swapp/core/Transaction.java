@@ -63,6 +63,6 @@ public class Transaction {
     }
     @Override
     public int hashCode() {
-        return Objects.hash(receiver, requester, ad);
+        return Objects.hash(requester, receiver , ad);
     }
 }

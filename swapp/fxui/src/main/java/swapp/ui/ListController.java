@@ -23,25 +23,22 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
+/**
+ * ListController controls the main page of all active Ads. adList holds all active Ads that should be displayed.
+ * ListView displays the content of adList in a ListView. Clicking on an Ad opens a new windows where you
+ * should see details about the specific ad and be able to request them if you dont own it (AdDetailController).
+ * Clicking on create new Ad button opens a new window where you can create an Ad.
+ */
 public class ListController extends AbstractController {
-  /**
-   * This controls the main page of all active Ads. adList holds all active Ads that should be displayed. ListView
-   * displays the active ads in a list. Clicking on an Ad opens a new windows where you should eventually see the Ad
-   * and be able to create new ones.
-   * TODO: Create new Ad object
-   */
+
 
   @FXML
   private ListView listView;
-
   @FXML
   private ComboBox<String> sortByComboBox;
   @FXML
   private ComboBox<String> filterByCombobox;
-
   private AdList adList;
-
   @FXML
   public void initialize() {
     populateList();
@@ -74,22 +71,21 @@ public class ListController extends AbstractController {
   /**
    * This method is triggered when a user clicks on an element of the ListView. Should take either Ad or null.
    * If the element is an Ad, we should transition to AdDetailView and be able to request the Ad.
-   *
-   * @param arg0 (Ad or null)
-   *             If an Ad has been clicked, a DetailView of the Ad should open. Currently a new scene with a static fxml is used
-   *             as placeholder.
+   * If an Ad has been clicked, a DetailView of the Ad should open.
+   * @param arg0
    */
   @FXML
   void handleListClick(MouseEvent arg0) {
     Object ad = listView.getSelectionModel().getSelectedItem(); // Return the ListView element user clicked on
 
     if (ad instanceof Ad) {
-      setSceneAd(CONTROLLERS.ADDETAIL, arg0, swappAccess, (Ad) ad);
+      setSceneAd(CONTROLLERS.ADDETAIL, arg0, swappAccess, (Ad) ad);  // Try to cast the element clicked to an Ad
     } else {
       System.out.println("Clicked empty list element");
     }
   }
-
+  // scene shift to addetail needs it's own setScene, because it takes an extra paramerer, Ad, and calls
+  // adDetail.setAd.
   public void setSceneAd(CONTROLLERS type, Event event, SwappAccess access, Ad ad) {
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     try {
@@ -159,7 +155,7 @@ public class ListController extends AbstractController {
   public void filterByCategory(Enum s) { // s = "borrow" | "switch" | "gift"
     populateList();
     adList.filterByCategory(s);
-    refreshListView();
+
   }
 
   public void reverse() {

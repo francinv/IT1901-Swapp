@@ -23,6 +23,9 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Contains shared methods for all controllers.
+ */
 public abstract class AbstractController {
 
   protected static final Alert.AlertType ERROR = Alert.AlertType.ERROR;
