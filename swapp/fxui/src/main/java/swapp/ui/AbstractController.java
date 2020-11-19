@@ -1,6 +1,5 @@
 package swapp.ui;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -10,18 +9,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Control;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import swapp.core.Swapp;
-import swapp.json.SwappModule;
-import java.io.*;
-import java.net.URI;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+import java.io.IOException;
 
 /**
  * Contains shared methods for all controllers.
@@ -67,14 +60,26 @@ public abstract class AbstractController {
 
   protected SwappAccess swappAccess;
 
+  /**
+   *
+   * @param event
+   */
   @FXML public void onMouseHoverEnter(MouseEvent event) {
     ((Node) event.getTarget()).getScene().setCursor(Cursor.HAND);
   }
 
+  /**
+   *
+   * @param event
+   */
   @FXML public void onMouseHoverExit(MouseEvent event) {
     ((Node) event.getTarget()).getScene().setCursor(Cursor.DEFAULT);
   }
 
+  /**
+   *
+   * @param event
+   */
   @FXML public void setOnActionLink(ActionEvent event) {
     String hyperlinkID = ((Hyperlink) event.getSource()).getId();
     switch (hyperlinkID) {
@@ -89,6 +94,12 @@ public abstract class AbstractController {
     }
   }
 
+  /**
+   * This method sets a new scene.
+   * @param type
+   * @param event
+   * @param access
+   */
   public void setScene(CONTROLLERS type, Event event, SwappAccess access) {
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     try {
@@ -105,6 +116,13 @@ public abstract class AbstractController {
     }
   }
 
+  /**
+   *
+   * @param alertType
+   * @param parent
+   * @param title
+   * @param message
+   */
   public void createAlertBox(Alert.AlertType alertType, Window parent, String title, String message) {
     Alert alert = new Alert(alertType);
     alert.setTitle(title);
@@ -114,6 +132,10 @@ public abstract class AbstractController {
     alert.show();
   }
 
+  /**
+   *
+   * @param swappAccess
+   */
   public void setSwappAccess(SwappAccess swappAccess) {
     this.swappAccess = swappAccess;
     System.out.println("swappAccess " + swappAccess);

@@ -8,8 +8,10 @@ import javafx.stage.Stage;
 import swapp.core.Ad;
 import swapp.core.Swapp;
 import swapp.json.SwappStorage;
-
-import java.io.*;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 

@@ -2,10 +2,13 @@ package swapp.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Window;
-import swapp.core.*;
+import swapp.core.User;
+import swapp.core.UserValidation;
 
 public class RegisterController extends AbstractController {
 

@@ -2,15 +2,11 @@ package swapp.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import swapp.core.Ad;
-import swapp.core.User;
-
-import java.util.List;
 
 /**
  * Controller for creating an Ad. It has textFields the user must fill in. If the input meets the requirements,
@@ -35,23 +31,15 @@ public class CreateAdController extends AbstractController {
    * @param event
    */
   @FXML
-  public void createAdAndBackToMain(ActionEvent event){
-    // if empty fields
-    if (swappAccess.getCurrentUser()==null){
-      System.out.println("currentUSER== null");
-      System.out.println(swappAccess.getUser("ramborambo"));
-    }
-    else{
-      System.out.println(swappAccess.getCurrentUser());
-    }
-    if (titleField.getText().isEmpty() || textBodyField.getText().isEmpty() || categoryComboBox.getValue().isEmpty()){
-      System.out.println("Empty fields");
+  public void createAdAndBackToMain(ActionEvent event) {
+
+    if (titleField.getText().isEmpty() || textBodyField.getText().isEmpty() || categoryComboBox.getValue().isEmpty()) {
       display.setText("You must fill inn all fields");
     }
-    else if (titleField.getText().length()>35){ // if too long title
+    else if (titleField.getText().length()>35) { // if too long title
       display.setText("Max 35 characters in title");
     }
-    else{ //else success
+    else { //else success
       swappAccess.createAd(titleField.getText(), textBodyField.getText(), Ad.Category.valueOf(categoryComboBox.getValue().toUpperCase()));
       display.setText("Success!"); // for testing purposes
       setScene(CONTROLLERS.LIST, event, swappAccess);
@@ -63,7 +51,7 @@ public class CreateAdController extends AbstractController {
    * @param event
    */
   @FXML
-  public void backToMain(ActionEvent event){
+  public void backToMain(ActionEvent event) {
       setScene(CONTROLLERS.LIST, event, swappAccess);
   }
 

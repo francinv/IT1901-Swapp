@@ -1,27 +1,19 @@
 package swapp.ui;
 
-import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import swapp.core.*;
-
-import javafx.event.ActionEvent;
-
+import swapp.core.Ad;
+import swapp.core.AdList;
 import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 
 /**
  * ListController controls the main page of all active Ads. adList holds all active Ads that should be displayed.
@@ -84,8 +76,17 @@ public class ListController extends AbstractController {
       System.out.println("Clicked empty list element");
     }
   }
-  // scene shift to addetail needs it's own setScene, because it takes an extra paramerer, Ad, and calls
-  // adDetail.setAd.
+
+
+  /**
+   * scene shift to addetail needs it's own setScene, because it takes an extra paramerer,
+   * Ad, and calls adDetail.setAd.
+   *
+   * @param type
+   * @param event
+   * @param access
+   * @param ad
+   */
   public void setSceneAd(CONTROLLERS type, Event event, SwappAccess access, Ad ad) {
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     try {
@@ -99,7 +100,7 @@ public class ListController extends AbstractController {
       Parent parent = loader.load();
       Scene newScene = new Scene(parent);
       stage.setScene(newScene);
-      if (controller instanceof AdDetailController){
+      if (controller instanceof AdDetailController) {
         ((AdDetailController) controller).setAd(ad);
       }
     } catch (IOException e) {
@@ -108,7 +109,9 @@ public class ListController extends AbstractController {
   }
 
 
-  // triggered by combobox
+  /**
+   *
+   */
   public void sort() {
     String sortByToken;
     if (sortByComboBox.getValue() == null) {

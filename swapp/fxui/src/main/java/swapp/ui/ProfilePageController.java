@@ -1,18 +1,16 @@
 package swapp.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import swapp.core.AdList;
-import swapp.core.*;
+import swapp.core.Ad;
+import swapp.core.Transaction;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProfilePageController extends AbstractController {
   @FXML
@@ -64,7 +62,7 @@ public class ProfilePageController extends AbstractController {
   @FXML
   public void handleTransactionListClick(MouseEvent event) {
     Object transaction = transactionListView.getSelectionModel().getSelectedItem();
-    if (transaction instanceof Transaction){
+    if (transaction instanceof Transaction) {
       Ad ad = ((Transaction) transaction).getAd();
       swappAccess.changeAdStatus(ad, Ad.Status.COMPLETED);
       swappAccess.setTransactionStatus(((Transaction) transaction));
@@ -77,8 +75,8 @@ public class ProfilePageController extends AbstractController {
 
   @FXML
   private void populateAdList() { // gets all ads from the logged in user from swapp and ads to Adlist
-      ads.clear();
-      ads.addAll(swappAccess.getCurrentUser().getUserAds());
+    ads.clear();
+    ads.addAll(swappAccess.getCurrentUser().getUserAds());
   }
 
   /**
@@ -90,7 +88,7 @@ public class ProfilePageController extends AbstractController {
     adListView.getItems().addAll(ads);
 
   }
-  private void refreshTransactionList(){
+  private void refreshTransactionList() {
     transactionListView.getItems().clear();
     transactionListView.getItems().addAll(transactions.stream()
             .filter(transaction -> transaction.getStatus()
