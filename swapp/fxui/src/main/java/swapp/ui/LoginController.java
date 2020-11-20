@@ -63,8 +63,7 @@ public class LoginController extends AbstractController {
       swappAccess.setCurrentUser(loggedIn);
     }
     display.setText("LOGIN SUCCESSFUL!");
-    setScene(CONTROLLERS.LIST, event, swappAccess);
-    // skift til annonse side
-    //setScene(new FXMLLoader(getClass().getResource(AD FXML FILE HERE)), event);
+    setScene(CONTROLLERS.LIST, event, swappAccess);  // skift til annonse side
+
   }
 }

@@ -1,19 +1,12 @@
 package swapp.ui;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import swapp.core.Ad;
 import swapp.core.AdList;
-import java.io.IOException;
 
 /**
  * ListController controls the main page of all active Ads. adList holds all active Ads that should be displayed.

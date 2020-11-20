@@ -5,8 +5,8 @@ import java.util.Objects;
 
 /**
  * The Ad can be created by users and then requested by other users to create a transaction object.
- * The User that creates the Ad has a one-to-many relation with the Ad. Only Status.ACTIVE Ads will be shown
- * in the GUI.
+ * The User that creates the Ad has a one-to-many relation with the Ad. Only Status.ACTIVE Ads will
+ * be shown in the GUI.
  */
 public class Ad {
 
@@ -23,8 +23,8 @@ public class Ad {
   }
 
   /**
-   * Instances of Ad are stored in AdList and displayed on the main page. AdList handles creation and communication
-   * with the GUI.
+   * Instances of Ad are stored in AdList and displayed on the main page. AdList handles
+   * creation and communication with the GUI.
    *
    */
   private String title;
@@ -35,14 +35,15 @@ public class Ad {
   private Status status;
 
   /**
+   * Constructor used when creating the ad for the first time.
    *
-   * @param title
-   * @param author
-   * @param textBody
-   * @param category
+   * @param title ad title
+   * @param author User who made the ad
+   * @param textBody Description of the item being advertised
+   * @param category Category, enum
    *
    */
-  public Ad(String title, User author, String textBody, Category category){
+  public Ad(String title, User author, String textBody, Category category) {
     this.title = title;
     this.author = author;
     this.textBody = textBody;
@@ -53,14 +54,16 @@ public class Ad {
 
   /**
    * For use after deserializing from Json to get original time.
-   * @param title
-   * @param author
-   * @param textBody
-   * @param category
-   * @param status
-   * @param time
+   *
+   * @param title ad title
+   * @param author User who made the ad
+   * @param textBody Description of the item being advertised
+   * @param category Category, enum
+   * @param status enum
+   * @param time Long, time of creation in unix seconds.
    */
-  public Ad(String title, User author, String textBody, Category category, Status status, long time) {
+  public Ad(String title, User author, String textBody, Category category, Status status,
+            long time) {
     this.title = title;
     this.author = author;
     this.textBody = textBody;
@@ -104,6 +107,7 @@ public class Ad {
 
   /**
    * We use the toString method to display Ad-objects in the listView.
+   *
    * @return
    */
   @Override
@@ -113,15 +117,22 @@ public class Ad {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     Ad ad = (Ad) o;
-    return time == ad.time &&
-            title.equals(ad.title) &&
-            author.equals(ad.author) &&
-            textBody.equals(ad.textBody) &&
-            category == ad.category &&
-            status == ad.status;
+    return time == ad.time
+            && title.equals(ad.title)
+            && author.equals(ad.author)
+            && textBody.equals(ad.textBody)
+            && category == ad.category
+            && status == ad.status;
+
+
+
   }
 
   @Override

@@ -1,5 +1,8 @@
 package swapp.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,9 +11,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import swapp.core.Ad;
 import swapp.core.Transaction;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * The profile page displays all received transaction objects, and all ads owned by logged in user.

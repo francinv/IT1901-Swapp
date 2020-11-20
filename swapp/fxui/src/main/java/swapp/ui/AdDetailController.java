@@ -1,12 +1,11 @@
 package swapp.ui;
 
+import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import swapp.core.Ad;
-
-import java.util.Date;
 
 /**
  * AdDetailController shows details about one specific Ad and is triggered by clicking on an Ad in the listview.
@@ -49,7 +48,7 @@ public class AdDetailController extends AbstractController {
    * @param event
    */
   @FXML
-  void backToProfile(ActionEvent event){
+  void backToProfile(ActionEvent event) {
     setScene(CONTROLLERS.PROFILE, event, swappAccess);
   }
 
@@ -83,16 +82,18 @@ public class AdDetailController extends AbstractController {
   /**
    * customizes the text that shows up so it corresponds to the correct Ad
    */
-  private void setLabels(){
+  private void setLabels() {
     titleLabel.setText(ad.getTitle());
     textBody.setText(ad.getTextBody());
-    userLabel.setText("advertised by: " + ad.getAuthor().getName() + " with email " + ad.getAuthor().getEmail());
-    categoryText.setText("Category: " + ad.getCategory().toString().toLowerCase() + "     (" +
-            convertTime(ad.getTime()) + ")");
+    userLabel.setText("advertised by: " + ad.getAuthor().getName()
+            + " with email " + ad.getAuthor().getEmail());
+    categoryText.setText("Category: " + ad.getCategory().toString().toLowerCase()
+            + "     (" + convertTime(ad.getTime()) + ")");
   }
 
   /**
    * Helper to make unix time to a more readable format.
+   *
    * @param time
    * @return
    */

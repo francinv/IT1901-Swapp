@@ -9,8 +9,8 @@ import javafx.scene.control.TextField;
 import swapp.core.Ad;
 
 /**
- * Controller for creating an Ad. It has textFields the user must fill in. If the input meets the requirements,
- * a new Ad is created through swapp.
+ * Controller for creating an Ad. It has textFields the user must fill in.
+ * If the input meets the requirements, a new Ad is created through swapp.
  */
 public class CreateAdController extends AbstractController {
   @FXML
@@ -27,7 +27,9 @@ public class CreateAdController extends AbstractController {
   }
 
   /**
-   * Triggered if user clicks create Ad. If all fields are filled out, create an add an go back to main page.
+   * Triggered if user clicks create Ad. If all fields are filled out, create
+   * an add an go back to main page.
+   *
    * @param event
    */
   @FXML
@@ -48,6 +50,7 @@ public class CreateAdController extends AbstractController {
 
   /**
    * Triggered if user clicks cancel. Goes back to main page without creating an ad
+   *
    * @param event
    */
   @FXML

@@ -7,9 +7,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * Swapp handles a List of users, who is currently logged in, user creation and validation, which ads
- * to display (adList) etc.
- * Interaction with GUI-module happens through Swapp.
+ * Swapp handles a List of users, who is currently logged in, user creation and validation,
+ * which ads to display (adList) etc. Interaction with GUI-module happens through Swapp.
  */
 public class Swapp implements IObservable<Swapp> {
 
@@ -19,7 +18,9 @@ public class Swapp implements IObservable<Swapp> {
   private AdList adList;
   private List<IObserver<Swapp>> observers = new ArrayList<>();
 
-
+  /**
+   * Constructor
+   */
   public Swapp() {
     this.accounts = new ArrayList<>();
     this.userValidation = new UserValidation(this.accounts);
@@ -30,6 +31,7 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * Adds a User to the list of users.
+   *
    * @param user the User to add
    */
   public boolean add(User user) {
@@ -43,6 +45,7 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * Removes a User from the list of users.
+   *
    * @param user the User that is to be removed
    */
   public boolean remove(User user) {
@@ -53,6 +56,7 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * Sets the Swapp object's currentUser. A way of logging in a User object.
+   *
    * @param user the User which is to be the current user
    */
   public void setCurrentUser(User user) {
@@ -80,27 +84,27 @@ public class Swapp implements IObservable<Swapp> {
   /**
    * Returns the number of users registered.
    *
-   * @return the size of the list of users
+   * @return the size of the list of users.
    */
   public int getUserAmount() {
     return accounts.size();
   }
 
   /**
-   * Returns an instance of UserValidation
+   * Returns an instance of UserValidation.
    *
-   * @return UserValidation
+   * @return UserValidation.
    */
   public UserValidation getUserValidation() {
     return this.userValidation;
   }
 
   /**
-   * Verifies that a user with the specified name, email and password can be created
+   * Verifies that a user with the specified name, email and password can be created.
    *
-   * @param name
-   * @param email
-   * @param password
+   * @param name String.
+   * @param email String.
+   * @param password String.
    * @return true if the user is successfully validated and added to this swapp, false otherwise
    */
   public boolean createUser(String name, String email, String password) {
@@ -110,7 +114,7 @@ public class Swapp implements IObservable<Swapp> {
       notifyObservers(this);
       return true;
     }
-    else{
+    else {
       return false;
     }
 
@@ -119,9 +123,9 @@ public class Swapp implements IObservable<Swapp> {
   /**
    * Creates a new Ad with Author as the currently logged in user.
    *
-   * @param title
-   * @param textbody
-   * @param category
+   * @param title String.
+   * @param textbody String.
+   * @param category String.
    */
   public void createAd(String title, String textbody, Ad.Category category) {
     getCurrentUser().createAd(title, textbody, category);
@@ -129,6 +133,12 @@ public class Swapp implements IObservable<Swapp> {
     notifyObservers(this);
   }
 
+  /**
+   * Creates a new transaction.
+   *
+   * @param ad String.
+   * @param requester String.
+   */
   public void createTransaction(Ad ad, User requester) {
     User user = ad.getAuthor();
     this.getUser(user.getName()).createTransaction(ad, requester);
@@ -136,10 +146,10 @@ public class Swapp implements IObservable<Swapp> {
   }
 
   /**
-   * Get the current logged in user
+   * Get the currently logged in user
    *
-   * @param email
-   * @param password
+   * @param email String.
+   * @param password String.
    * @return the logged in user with the specified login details, if no such user is found null is returned
    */
   public User getUserLogin(String email, String password) {
@@ -169,13 +179,13 @@ public class Swapp implements IObservable<Swapp> {
   /**
    * This method is used to remove ads from displaying in the GUI by changig the status.
    *
-   * @param ad
-   * @param status
+   * @param ad String.
+   * @param status Enum.
    * @return true if the method finds the correct Ad
    */
   public Boolean setAdStatus(Ad ad, Ad.Status status) {
     User user = this.getUser(ad.getAuthor().getName());
-    for (Ad swappAd: user.getUserAds()) {
+    for (Ad swappAd : user.getUserAds()) {
       if (swappAd.equals(ad)) {
         swappAd.setStatus(status);
         notifyObservers(this);
@@ -198,7 +208,7 @@ public class Swapp implements IObservable<Swapp> {
 
   public Boolean setTransactionStatus(Transaction transaction) {
     User user = this.getUser(transaction.getReceiver().getName());
-    for (Transaction swappTransaction: user.getUserTransactions()) {
+    for (Transaction swappTransaction : user.getUserTransactions()) {
       if (swappTransaction.equals(transaction)) {
         swappTransaction.accepted();
         return true;
@@ -216,8 +226,8 @@ public class Swapp implements IObservable<Swapp> {
 
     this.adList = new AdList();
     List<User> accounts = this.getAccounts();
-    for (User user: accounts) {
-      for (Ad ad: user.getUserAds()) {
+    for (User user : accounts) {
+      for (Ad ad : user.getUserAds()) {
         if (ad.getStatus().equals(Ad.Status.ACTIVE)) {
           adList.add(ad);
         }

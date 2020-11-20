@@ -1,7 +1,7 @@
 package swapp.ui;
 
-import swapp.core.*;
 import java.util.List;
+import swapp.core.*;
 
 public interface SwappAccess {
 

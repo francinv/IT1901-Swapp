@@ -16,15 +16,15 @@ public class User {
   private List<Transaction> userTransactions;
 
   /**
-   * @param name
-   * @param email
-   * @param password
+   * @param name String
+   * @param email String
+   * @param password String
    */
   public User(String name, String email, String password) {
     this.name = name.toLowerCase();
     this.email = email;
     this.password = password;
-    this.userAds = new ArrayList<>();//
+    this.userAds = new ArrayList<>();
     this.userTransactions = new ArrayList<>();
   }
 
@@ -52,6 +52,7 @@ public class User {
 
   /**
    * sets the name of the User.
+   *
    * @param name the new name of the User
    */
   public void setName(String name) {
@@ -60,6 +61,7 @@ public class User {
 
   /**
    * getter for the User's email.
+   *
    * @return the User's email
    */
   public String getEmail() {
@@ -68,6 +70,7 @@ public class User {
 
   /**
    * sets the email of the User.
+   *
    * @param email the new email of the User
    */
   public void setEmail(String email) {
@@ -76,6 +79,7 @@ public class User {
 
   /**
    * getter for the User's password.
+   *
    * @return the User's password
    */
   public String getPassword() {
@@ -84,25 +88,37 @@ public class User {
 
   /**
    * sets the User's password.
+   *
    * @param password the User's new password
    */
   public void setPassword(String password) {
     this.password = password;
   }
 
+  /**
+   * Overloaded for easier debugging
+   *
+   * @return
+   */
   @Override
   public String toString() {
     return "[NAME: " + name + ", " + "EMAIL: " + email + "]";
   }
 
+  /**
+   * Override equals method to ensure matching is predictable.
+   *
+   * @param o
+   * @return
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     User user = (User) o;
-    return name.equals(user.name) &&
-            email.equals(user.email) &&
-            password.equals(user.password);
+    return name.equals(user.name)
+            && email.equals(user.email)
+            && password.equals(user.password);
   }
 
   @Override

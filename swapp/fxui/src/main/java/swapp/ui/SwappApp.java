@@ -18,9 +18,9 @@ import swapp.json.SwappStorage;
 public class SwappApp extends Application {
 
   private final static String pathToSwapp = "swapp.json";
-  private static final String swappString = "[{\"name\":\"Testname\",\"email\":\"test@test.com\"," +
-          "\"password\":\"Testpass123\",\"ads\":[{\"title\":\"Test ad\",\"textbody\":\"This is a test\"," +
-          "\"category\":\"BORROW\",\"status\":\"ACTIVE\",\"date\":917543700}]}]";
+  private static final String swappString = "[{\"name\":\"Testname\",\"email\":\"test@test.com\","
+          + "\"password\":\"Testpass123\",\"ads\":[{\"title\":\"Test ad\",\"textbody\":\"This is a test\","
+          + "\"category\":\"BORROW\",\"status\":\"ACTIVE\",\"date\":917543700}]}]";
 
   @Override
   public void start(final Stage primaryStage) throws Exception {
@@ -35,6 +35,11 @@ public class SwappApp extends Application {
     primaryStage.show();
   }
 
+  /**
+   * Loads the relevant stored objects.
+   *
+   * @return
+   */
   private Swapp loadSwapp() {
     SwappStorage storage = new SwappStorage();
     Swapp swapp = null;
@@ -43,7 +48,8 @@ public class SwappApp extends Application {
       try {
         swappReader = new FileReader(Paths.get(pathToSwapp).toFile(), StandardCharsets.UTF_8);
       } catch (IOException e) {
-        System.err.println("Unable to get SwApp instance from: " + System.getProperty("user.dir") + "\\" + pathToSwapp + ", creating sample instance");
+        System.err.println("Unable to get SwApp instance from: " + System.getProperty("user.dir")
+                + "\\" + pathToSwapp + ", creating sample instance");
       }
     }
     if (swappReader == null) { // Read a single user with a single ad

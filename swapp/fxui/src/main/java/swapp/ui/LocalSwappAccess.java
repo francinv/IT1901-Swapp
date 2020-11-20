@@ -1,12 +1,12 @@
 package swapp.ui;
 
-import swapp.core.*;
-import swapp.json.SwappStorage;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.List;
+import swapp.core.*;
+import swapp.json.SwappStorage;
 
 public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
 

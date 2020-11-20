@@ -1,5 +1,7 @@
 package swapp.json;
 
+import java.io.IOException;
+import java.util.Iterator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -8,8 +10,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import swapp.core.Ad;
 import swapp.core.User;
-import java.io.IOException;
-import java.util.Iterator;
 
 /**
  * User dezerializer takes the stored users in json-format to java objects.
@@ -19,7 +19,8 @@ public class UserDeserializer extends JsonDeserializer<User> {
   ObjectMapper mapper = new ObjectMapper();
 
   @Override
-  public User deserialize(JsonParser parser, DeserializationContext context) throws IOException, JsonProcessingException {
+  public User deserialize(JsonParser parser, DeserializationContext context)
+          throws IOException, JsonProcessingException {
     JsonNode node = parser.getCodec().readTree(parser);
     return deserialize(node);
   }

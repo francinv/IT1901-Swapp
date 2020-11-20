@@ -1,11 +1,10 @@
 package swapp.json;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import swapp.core.Swapp;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import swapp.core.Swapp;
 
 public class SwappStorage {
 
