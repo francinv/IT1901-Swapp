@@ -13,10 +13,10 @@ import swapp.json.SwappModule;
 @Produces(MediaType.APPLICATION_JSON)
 public class SwappModuleObjectMapperProvider implements ContextResolver<ObjectMapper> {
 
-    private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new SwappModule(false));
+  private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new SwappModule(false));
 
-    @Override
-    public ObjectMapper getContext(final Class<?> type) {
-        return objectMapper;
-    }
+  @Override
+  public ObjectMapper getContext(final Class<?> type) {
+    return objectMapper;
+  }
 }

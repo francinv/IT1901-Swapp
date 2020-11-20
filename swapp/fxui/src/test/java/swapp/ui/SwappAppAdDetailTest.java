@@ -29,6 +29,8 @@ public class SwappAppAdDetailTest extends AbstractTestFxController{
   Button backToAllAds;
   @FXML
   Button request;
+  @FXML
+  Button backToProfile;
 
   @Override
   public void start(final Stage stage) throws Exception {
@@ -38,13 +40,13 @@ public class SwappAppAdDetailTest extends AbstractTestFxController{
     stage.setScene(scene);
     stage.show();
     if (controller instanceof AdDetailController){
-      Ad ad = new Ad("title31",new User("henrik","test@test.no","Passord11"),
+      Ad ad = new Ad("title31",new User("testname","test@test.no","Testpass123"),
               "texbody", Ad.Category.BORROW);
       ((AdDetailController) controller).setAd(ad);
     }
   }
   @BeforeEach
-  public void initLoginFields() {
+  public void lookUpElements() {
 
     display = lookup("#display").query();
     textBody =  lookup("#textBody").query();
@@ -52,6 +54,7 @@ public class SwappAppAdDetailTest extends AbstractTestFxController{
     titleLabel= lookup("#titleLabel").query();
     backToAllAds = lookup("#backToAllAds").query();
     request= lookup("#request").query();
+    backToProfile = lookup("#backToProfile").query();
 
   }
 
@@ -65,10 +68,24 @@ public class SwappAppAdDetailTest extends AbstractTestFxController{
   }
 
   @Test
-  public void testClickMyProfileButton(){
+  public void testClickBackToMain(){
     clickOn(backToAllAds);
     FxAssert.verifyThat(window(getTopModalStage().getScene()), WindowMatchers.isShowing());
   }
+
+  @Test
+  public void testClickMyProfileButton(){
+    clickOn();
+    FxAssert.verifyThat(window(getTopModalStage().getScene()), WindowMatchers.isShowing());
+  }
+
+  @Test
+  public void testClickMyRequest(){
+    clickOn(request);
+    assert display.getText().equals("You have sucessfully requested this ad!");
+  }
+
+
 
 
 }

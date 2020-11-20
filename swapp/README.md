@@ -20,3 +20,6 @@ Appen Swap skal gjøre det mulig for brukere å bytte eller gi bort ting. Målgr
 
 - mvn spotbugs:check
 - mvn -pl MODULENAME -Dtest=CLASSNAME test  (Test en enkelt klasse)
+
+###Kjente problemer
+TestFX-testene bygger ikke alltid i gitpod. Dette har med at flere tråder laget av testFX gir udeterministisk rekkefølge.

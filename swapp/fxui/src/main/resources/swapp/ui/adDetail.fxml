@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<!-- Unfinished work to do -->
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
@@ -15,16 +14,13 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-        <Label fx:id="display" layoutX="268.0" layoutY="302.0" prefHeight="33.0" prefWidth="111.0" />
+        <Label fx:id="display" layoutX="268.0" layoutY="390.0" prefHeight="33.0" prefWidth="364.0" />
         <Label fx:id="textBodyLabel" layoutX="141.0" layoutY="168.0" prefHeight="25.0" text="Description: " />
-        <Label fx:id="categoryText" layoutX="141.0" layoutY="319.0" prefHeight="25.0" prefWidth="364.0"
-               text="kategori:til utlån, etc" />
-        <Label fx:id="textBody" alignment="TOP_LEFT" layoutX="141.0" layoutY="193.0" mnemonicParsing="false"
-               prefHeight="119.0" prefWidth="199.0" wrapText="true" />
-        <Label fx:id="userLabel" layoutX="141.0" layoutY="346.0" prefHeight="25.0"
-               prefWidth="364.0" text="tilhørende bruker" />
-
-      <Button fx:id="backToAllAds" layoutX="22.0" layoutY="380.0" mnemonicParsing="false" onAction="#backToAllAds" text="Back" />
+        <Label fx:id="categoryText" layoutX="141.0" layoutY="319.0" prefHeight="25.0" prefWidth="364.0" text="kategori:til utlån, etc" />
+        <Label fx:id="textBody" alignment="TOP_LEFT" layoutX="141.0" layoutY="193.0" mnemonicParsing="false" prefHeight="119.0" prefWidth="199.0" wrapText="true" />
+      <Label fx:id="userLabel" layoutX="141.0" layoutY="346.0" prefHeight="25.0" prefWidth="364.0" text="tilhørende bruker" />
+      <Button fx:id="backToAllAds" layoutX="22.0" layoutY="380.0" mnemonicParsing="false" onAction="#backToAllAds" text="To main page" />
+        <Button fx:id="backToProfile" layoutX="125.0" layoutY="380.0" mnemonicParsing="false" onAction="#backToProfile" text="To profile" />
       <Button fx:id="request" layoutX="510.0" layoutY="390.0" mnemonicParsing="false" onAction="#request" text="Request item" />
     </children>
 </AnchorPane>

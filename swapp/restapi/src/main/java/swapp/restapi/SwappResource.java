@@ -18,77 +18,77 @@ import swapp.core.Swapp;
  */
 public class SwappResource {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SwappResource.class);
-    private final Swapp swapp; 
-    private final String name;
+  private static final Logger LOG = LoggerFactory.getLogger(SwappResource.class);
+  private final Swapp swapp;
+  private final String name;
 
-    /**
-     * Initializes this SwappResource with appropriate context information.
-     * Each method will check and use what it needs.
-     *
-     * @param swappModel the SwappModel, needed for DELETE and rename
-     * @param name the ad name, needed for most requests
-     * @param swapp the Swapp, or null, needed for PUT
-     */
-    public SwappResource(Swapp swapp, String name) {
-        this.swapp = swapp;
-        this.name = name;
-    }
+  /**
+   * Initializes this SwappResource with appropriate context information.
+   * Each method will check and use what it needs.
+   *
+   * @param swappModel the SwappModel, needed for DELETE and rename
+   * @param name the ad name, needed for most requests
+   * @param swapp the Swapp, or null, needed for PUT
+   */
+  public SwappResource(Swapp swapp, String name) {
+    this.swapp = swapp;
+    this.name = name;
+  }
 
-    private void checkSwapp() {
-        if (this.swapp == null) {
-            throw new IllegalArgumentException("No Swapp named \"" + name + "\"");
-        }
+  private void checkSwapp() {
+    if (this.swapp == null) {
+      throw new IllegalArgumentException("No Swapp named \"" + name + "\"");
     }
+  }
 
-    /**
-     * Gets the corresponding Swapp.
-     *
-     * @return the corresponding Swapp
-     */
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Swapp getSwapp() {
-        checkSwapp();
-        LOG.debug("getSwapp({})", name);
-        return this.swapp;
-    }
+  /**
+   * Gets the corresponding Swapp.
+   *
+   * @return the corresponding Swapp
+   */
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public Swapp getSwapp() {
+    checkSwapp();
+    LOG.debug("getSwapp({})", name);
+    return this.swapp;
+  }
 
-    /**
-     * Replaces or adds an Ad.
-     *
-     * @param swappArg the swapp to add
-     * @return true if it was added, false if it replaced
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public boolean putSwapp(AbstractSwapp swappArg) {
-        LOG.debug("putSwapp({})", swappArg);
-        return this.swapp.putSwapp(swappArg) == null;
-    }
+  /**
+   * Replaces or adds an Ad.
+   *
+   * @param swappArg the swapp to add
+   * @return true if it was added, false if it replaced
+   */
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public boolean putSwapp(AbstractSwapp swappArg) {
+    LOG.debug("putSwapp({})", swappArg);
+    return this.swapp.putSwapp(swappArg) == null;
+  }
 
-    /**
-     * Adds a Ad with the given name, if it doesn't exist already.
-     *
-     * @return true if it was added, false if it replaced
-     
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON)
-    public boolean putSwapp() {
-        return putSwapp(new Swapp(name));
-    }
+  /**
+   * Adds a Ad with the given name, if it doesn't exist already.
+   *
+   * @return true if it was added, false if it replaced
 
-    /**
-     * Removes the Ad.
-     
-    @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
-    public boolean removeSwapp() {
-        checkSwapp();
-        this.swapp.removeswapp(this.swapp);
-        return true;
-    }
-    */
+   @PUT
+   @Produces(MediaType.APPLICATION_JSON)
+   public boolean putSwapp() {
+   return putSwapp(new Swapp(name));
+   }
+
+   /**
+    * Removes the Ad.
+
+   @DELETE
+   @Produces(MediaType.APPLICATION_JSON)
+   public boolean removeSwapp() {
+   checkSwapp();
+   this.swapp.removeswapp(this.swapp);
+   return true;
+   }
+   */
 }
 

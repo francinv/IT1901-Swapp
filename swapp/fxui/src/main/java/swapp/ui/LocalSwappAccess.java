@@ -2,7 +2,6 @@ package swapp.ui;
 
 import swapp.core.*;
 import swapp.json.SwappStorage;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -56,7 +55,7 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
     return swapp.setAdStatus(ad, status);
   }
   @Override
-  public Boolean setTransactionStatus(Transaction transaction){
+  public Boolean setTransactionStatus(Transaction transaction) {
     return swapp.setTransactionStatus(transaction);
   }
 
@@ -94,13 +93,6 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   public void populateAdList() {
     swapp.populateAdList();
   }
-  public List<Transaction> getTransactionList(){
-    return swapp.getTransactionList();
-  }
-  public void populateTransactionList(){
-    swapp.populatetransactionList();
-  }
-
   private void saveSwapp() {
     storage = new SwappStorage();
     try (FileWriter writer = new FileWriter(Paths.get(pathToSwapp).toFile(), StandardCharsets.UTF_8)) {

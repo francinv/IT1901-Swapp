@@ -1,35 +1,41 @@
 package swapp.core;
 
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class adListTest {
+
   AdList adList;
-  Swapp swapp;
   User user1;
   User user2;
-
+  //Test coverage report can be found in target/site/jacoco/index.html
   @BeforeEach
   public void setUp() throws Exception{
-    System.out.println("Test coverage report can be found in target/site/jacoco/index.html");
+
     user1 = new User("tester", "gabb@gmail.com", "Password123");
     user2 = new User("name", "birk@gmail.com", "Password123");
     this.adList = new AdList();
 
     int numberOfAds = adList.getNumberOfAds();
     adList.add(new Ad("nepe", user1, "Godt brukt", Ad.Category.BORROW));
+    TimeUnit.MILLISECONDS.sleep(1);
     adList.add(new Ad("kål", user2, "Pen", Ad.Category.BORROW));
+    TimeUnit.MILLISECONDS.sleep(2);
     adList.add(new Ad("ergonomisk stol", user2, "brukt", Ad.Category.GIFT));
+    TimeUnit.MILLISECONDS.sleep(1);
     adList.add(new Ad("ubåt til låns", user2, "brukt", Ad.Category.BORROW));
-    adList.add(new Ad("gir ski", user1, "brukt", Ad.Category.GIFT));
+    TimeUnit.MILLISECONDS.sleep(2);
+    adList.add(new Ad("gir ski", user1, "brukt", Ad.Category.TRADE));
+    TimeUnit.MILLISECONDS.sleep(4);
     adList.add(new Ad("aaaaaaa", user1, "brukt", Ad.Category.GIFT));
+
     assert adList.getNumberOfAds() == numberOfAds + 6;
   }
 
   @Test
   public void testCreateAd() {
-
     assert adList.getAd(0).getAuthor().equals(user1);
     assert adList.getAd(0).getTitle().equals("nepe");
     assert adList.getAd(0).getTextBody().equals("Godt brukt");
@@ -49,32 +55,40 @@ public class adListTest {
     assert adList.getAd(0).getAuthor().equals(user2);
     assert adList.getAd(adList.getNumberOfAds()-1).getAuthor().equals(user1);
 
+
     adList.sortBy("new");
-    //assert adList.getAd(0).getTime()>adList.getAd(adList.getNumberOfAds()-1).getTime();
+    assert adList.getAd(0).getTime()>adList.getAd(adList.getNumberOfAds()-1).getTime();
+    assert adList.getAd(0).getTime()>adList.getAd(1).getTime();
 
-  }
-
-      /*
-
-
-
-      assert adList.getAd(numberOfAds).getAuthor().equals("lars");
-      assert adList.getAd(numberOfAds).getTitle().equals("nepe");
-      assert adList.getAd(numberOfAds).getTextBody().equals("Godt brukt");
-      assert adList.getAd(numberOfAds+2).getAuthor().equals("Pante-per");
+    adList.sortBy("old");
+    assert adList.getAd(0).getTime()<adList.getAd(adList.getNumberOfAds()-1).getTime();
+    assert adList.getAd(0).getTime()<adList.getAd(1).getTime();
 
   }
 
   @Test
-  public void testRemoveAd() {
+  public void testFilteringByBorrow(){
+    assert adList.getNumberOfAds() == 6;
+    adList.filterByCategory(Ad.Category.BORROW);
+    assert adList.getNumberOfAds() == 3;
+    assert adList.getAd(0).getCategory()==Ad.Category.BORROW;
+  }
 
-      int NumberofAds = adList.getNumberOfAds();
-      assert adList.getNumberOfAds() == NumberofAds;
-      Ad ad = adList.getAd(0);
-      adList.archiveAd(ad);
-      assert adList.getNumberOfAds() == NumberofAds-1;
+  @Test
+  public void testFilteringByGift(){
+    assert adList.getNumberOfAds() == 6;
+    adList.filterByCategory(Ad.Category.GIFT);
+    assert adList.getNumberOfAds() == 2;
+    assert adList.getAd(0).getCategory()==Ad.Category.GIFT;
+  }
 
-  */
+  @Test
+  public void testFilteringByTrade(){
+    assert adList.getNumberOfAds() == 6;
+    adList.filterByCategory(Ad.Category.TRADE);
+    assert adList.getNumberOfAds() == 1;
+  }
+
 
 
 }

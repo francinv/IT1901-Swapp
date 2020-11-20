@@ -2,12 +2,20 @@ package swapp.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import swapp.core.User;
 import swapp.core.UserValidation;
 
+/**
+ * The login page allows existing use to log in, or navigate to Register user. If use
+ * successfully logs in, current user is set to the logged in user.
+ * Note that this app saves passwords in clear text and is therefore not safe.
+ *
+ */
 public class LoginController extends AbstractController {
 
   @FXML Button loginButton;

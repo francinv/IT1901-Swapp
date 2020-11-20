@@ -17,7 +17,6 @@ public class Swapp implements IObservable<Swapp> {
   private User currentUser;
   private UserValidation userValidation;
   private AdList adList;
-  private List<Transaction> transactionList;
   private List<IObserver<Swapp>> observers = new ArrayList<>();
 
 
@@ -25,7 +24,6 @@ public class Swapp implements IObservable<Swapp> {
     this.accounts = new ArrayList<>();
     this.userValidation = new UserValidation(this.accounts);
     this.adList = new AdList();
-    this.transactionList= new ArrayList<>();
   }
 
   //TODO Implementer notifyObserver() i de riktige metodene
@@ -63,6 +61,7 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * Getter for currentUser.
+   *
    * @return the Swapp object's current logged in user
    */
   public User getCurrentUser() {
@@ -71,6 +70,7 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * Getter for the list of users.
+   *
    * @return the list of users
    */
   public List<User> getAccounts() {
@@ -79,6 +79,7 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * Returns the number of users registered.
+   *
    * @return the size of the list of users
    */
   public int getUserAmount() {
@@ -87,6 +88,7 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * Returns an instance of UserValidation
+   *
    * @return UserValidation
    */
   public UserValidation getUserValidation() {
@@ -95,6 +97,7 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * Verifies that a user with the specified name, email and password can be created
+   *
    * @param name
    * @param email
    * @param password
@@ -107,24 +110,26 @@ public class Swapp implements IObservable<Swapp> {
       notifyObservers(this);
       return true;
     }
-    return false;
+    else{
+      return false;
+    }
+
   }
 
   /**
    * Creates a new Ad with Author as the currently logged in user.
+   *
    * @param title
    * @param textbody
    * @param category
    */
   public void createAd(String title, String textbody, Ad.Category category) {
-    System.out.print("hei  ");
-    System.out.println(getCurrentUser());
     getCurrentUser().createAd(title, textbody, category);
     populateAdList();
     notifyObservers(this);
   }
 
-  public void createTransaction(Ad ad, User requester){
+  public void createTransaction(Ad ad, User requester) {
     User user = ad.getAuthor();
     this.getUser(user.getName()).createTransaction(ad, requester);
     //notifyObservers(this);
@@ -132,6 +137,7 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * Get the current logged in user
+   *
    * @param email
    * @param password
    * @return the logged in user with the specified login details, if no such user is found null is returned
@@ -147,6 +153,7 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * Get a user by either username or email
+   *
    * @param string
    * @return user with the matching username or email, null if no such user is found
    */
@@ -161,15 +168,17 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * This method is used to remove ads from displaying in the GUI by changig the status.
+   *
    * @param ad
    * @param status
    * @return true if the method finds the correct Ad
    */
-  public Boolean setAdStatus(Ad ad, Ad.Status status){
+  public Boolean setAdStatus(Ad ad, Ad.Status status) {
     User user = this.getUser(ad.getAuthor().getName());
-    for (Ad swappAd: user.getUserAds()){
-      if (swappAd.equals(ad)){
+    for (Ad swappAd: user.getUserAds()) {
+      if (swappAd.equals(ad)) {
         swappAd.setStatus(status);
+        notifyObservers(this);
         return true;
       }
     }
@@ -179,20 +188,18 @@ public class Swapp implements IObservable<Swapp> {
 
   /**
    * Getter for adList
+   *
    * @return returns adList
    */
   public AdList getAdList() {
     return adList;
   }
 
-  public List<Transaction> getTransactionList(){
-    return transactionList;
-  }
 
-  public Boolean setTransactionStatus(Transaction transaction){
+  public Boolean setTransactionStatus(Transaction transaction) {
     User user = this.getUser(transaction.getReceiver().getName());
-    for (Transaction swappTransaction: user.getUserTransactions()){
-      if (swappTransaction.equals(transaction)){
+    for (Transaction swappTransaction: user.getUserTransactions()) {
+      if (swappTransaction.equals(transaction)) {
         swappTransaction.accepted();
         return true;
       }
@@ -205,13 +212,13 @@ public class Swapp implements IObservable<Swapp> {
    * Empties the adList and then gets all ads from each user to AdList. adList now contains all ads that
    * should be displayed. This must be called when changes happen that warrant an updated listView of ads.
    */
-  public void populateAdList(){ // gets all ads from all users from swapp and append to Adlist
+  public void populateAdList() { // gets all ads from all users from swapp and append to Adlist
 
     this.adList = new AdList();
     List<User> accounts = this.getAccounts();
-    for (User user: accounts){
-      for (Ad ad: user.getUserAds()){
-        if (ad.getStatus().equals(Ad.Status.ACTIVE)){
+    for (User user: accounts) {
+      for (Ad ad: user.getUserAds()) {
+        if (ad.getStatus().equals(Ad.Status.ACTIVE)) {
           adList.add(ad);
         }
         else{
@@ -221,26 +228,10 @@ public class Swapp implements IObservable<Swapp> {
     }
 
   }
-  // DELETEXX
-  public void populatetransactionList(){
-
-    this.transactionList = new ArrayList<>();
-    List<User> accounts = this.getAccounts();
-    for (User user: accounts){
-      for (Transaction transaction: user.getUserTransactions()){
-        if (transaction.getStatus().equals(Transaction.Status.ONGOING)){
-          transactionList.add(transaction);
-        }
-        else{
-          System.out.println(transaction.getStatus());
-        }
-      }
-    }
-
-  }
 
   /**
    * A predicate for deciding whether or not the given string is an email or username
+   *
    * @param string
    * @return Predicate<User> that contains a predicate based on either a users name or email
    */
