@@ -29,7 +29,7 @@ Brukergrensesnittlaget begynner på en innloggingsside, med mulighet for en regi
 ## Persistenslaget
 Prosjektet bruker json til å lagre data. **[Se her for refleksjon over lagringsmetode](swapp/OM_PROSJEKTET.md)**
 
-# Restserver
+## Restserver
 **[Se her for informasjon om hvordan man kjører restserver](swapp/restserver/README.md)**
 
 ## Nyttige Maven kommandoer
