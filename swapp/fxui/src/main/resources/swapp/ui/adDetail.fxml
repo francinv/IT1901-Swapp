@@ -20,7 +20,7 @@
         <Label fx:id="textBody" alignment="TOP_LEFT" layoutX="141.0" layoutY="193.0" mnemonicParsing="false" prefHeight="119.0" prefWidth="199.0" wrapText="true" />
       <Label fx:id="userLabel" layoutX="141.0" layoutY="346.0" prefHeight="25.0" prefWidth="364.0" text="tilhørende bruker" />
       <Button fx:id="backToAllAds" layoutX="22.0" layoutY="380.0" mnemonicParsing="false" onAction="#backToAllAds" text="To main page" />
-        <Button fx:id="backToAllAds" layoutX="125.0" layoutY="380.0" mnemonicParsing="false" onAction="#backToProfile" text="To profile" />
+        <Button fx:id="backToProfile" layoutX="125.0" layoutY="380.0" mnemonicParsing="false" onAction="#backToProfile" text="To profile" />
       <Button fx:id="request" layoutX="510.0" layoutY="390.0" mnemonicParsing="false" onAction="#request" text="Request item" />
     </children>
 </AnchorPane>

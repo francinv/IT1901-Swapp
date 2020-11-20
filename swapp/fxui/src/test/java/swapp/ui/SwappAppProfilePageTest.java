@@ -2,6 +2,7 @@ package swapp.ui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ import org.testfx.api.FxAssert;
 import org.testfx.matcher.base.WindowMatchers;
 import swapp.core.Ad;
 import swapp.core.Transaction;
+import swapp.core.User;
 
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -101,4 +103,5 @@ public class SwappAppProfilePageTest extends AbstractTestFxController{
 
     MouseEvent.fireEvent(listElement, mouseEvent);
   }
+
 }

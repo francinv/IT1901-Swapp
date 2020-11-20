@@ -17,7 +17,6 @@ public class Swapp implements IObservable<Swapp> {
   private User currentUser;
   private UserValidation userValidation;
   private AdList adList;
-  private List<Transaction> transactionList;
   private List<IObserver<Swapp>> observers = new ArrayList<>();
 
 
@@ -25,7 +24,6 @@ public class Swapp implements IObservable<Swapp> {
     this.accounts = new ArrayList<>();
     this.userValidation = new UserValidation(this.accounts);
     this.adList = new AdList();
-    this.transactionList= new ArrayList<>();
   }
 
   //TODO Implementer notifyObserver() i de riktige metodene
@@ -126,8 +124,6 @@ public class Swapp implements IObservable<Swapp> {
    * @param category
    */
   public void createAd(String title, String textbody, Ad.Category category) {
-    System.out.print("hei  ");
-    System.out.println(getCurrentUser());
     getCurrentUser().createAd(title, textbody, category);
     populateAdList();
     notifyObservers(this);
@@ -199,9 +195,6 @@ public class Swapp implements IObservable<Swapp> {
     return adList;
   }
 
-  public List<Transaction> getTransactionList() {
-    return transactionList;
-  }
 
   public Boolean setTransactionStatus(Transaction transaction) {
     User user = this.getUser(transaction.getReceiver().getName());
@@ -230,23 +223,6 @@ public class Swapp implements IObservable<Swapp> {
         }
         else{
           System.out.println(ad.getStatus());
-        }
-      }
-    }
-
-  }
-  // DELETEXX
-  public void populatetransactionList() {
-
-    this.transactionList = new ArrayList<>();
-    List<User> accounts = this.getAccounts();
-    for (User user: accounts) {
-      for (Transaction transaction: user.getUserTransactions()) {
-        if (transaction.getStatus().equals(Transaction.Status.ONGOING)) {
-          transactionList.add(transaction);
-        }
-        else{
-          System.out.println(transaction.getStatus());
         }
       }
     }

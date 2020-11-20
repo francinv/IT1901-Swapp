@@ -1,5 +1,11 @@
 package swapp.ui;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,12 +14,6 @@ import javafx.stage.Stage;
 import swapp.core.Ad;
 import swapp.core.Swapp;
 import swapp.json.SwappStorage;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Paths;
 
 public class SwappApp extends Application {
 

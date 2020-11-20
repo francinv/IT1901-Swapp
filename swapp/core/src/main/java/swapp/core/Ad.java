@@ -13,7 +13,7 @@ public class Ad {
   public enum Status {
     ACTIVE,
     COMPLETED,
-    DELETED
+    DELETED // for potential future features, not currently used
   }
 
   public enum Category {

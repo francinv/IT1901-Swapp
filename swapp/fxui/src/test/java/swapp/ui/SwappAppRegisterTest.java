@@ -56,6 +56,31 @@ public class SwappAppRegisterTest extends AbstractTestFxController {
     clickOn(registerButton);
     alertDialogPopsUp(AbstractController.ERROR_DIALOG, AbstractController.NAME_FIELD_EMPTY); // ser med en gang at name field er tom og lager en alert box og returnerer
   }
+  @Test
+  public void testEmptyEmail() {
+    writeInRegisterFields("foobar", EMPTY_STRING, "Pwdtest123");
+    clickOn(registerButton);
+    alertDialogPopsUp(AbstractController.ERROR_DIALOG, AbstractController.EMAIL_FIELD_EMPTY); // ser med en gang at name field er tom og lager en alert box og returnerer
+  }
+
+  @Test
+  public void testInvalidEmail() {
+    writeInRegisterFields("foobar", "kek", "Pwdtest123");
+    clickOn(registerButton);
+    alertDialogPopsUp(AbstractController.ERROR_DIALOG, AbstractController.INVALID_EMAIL); // ser med en gang at name field er tom og lager en alert box og returnerer
+  }
+  @Test
+  public void testEmptyPwd() {
+    writeInRegisterFields("foobar", "testmail@testmail.com", EMPTY_STRING);
+    clickOn(registerButton);
+    alertDialogPopsUp(AbstractController.ERROR_DIALOG, AbstractController.PWD_FIELD_EMPTY); // ser med en gang at name field er tom og lager en alert box og returnerer
+  }
+  @Test
+  public void testInvalidPwd() {
+    writeInRegisterFields("foobar", "testmail@testmail.com", "a");
+    clickOn(registerButton);
+    alertDialogPopsUp(AbstractController.ERROR_DIALOG, AbstractController.INVALID_PWD); // ser med en gang at name field er tom og lager en alert box og returnerer
+  }
 
   @Test
   public void testRegisterUserInvalidName() {

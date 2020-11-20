@@ -18,7 +18,9 @@ public class SwappTest {
 
     @BeforeEach
     public void setUpSwapp() {
+
         this.swapp = new Swapp();
+
     }
 
     @Test
@@ -70,12 +72,20 @@ public class SwappTest {
         swapp.getCurrentUser().createAd("kål", "Pen", Ad.Category.GIFT);
         swapp.populateAdList();
         System.out.println(this.swapp.getAdList().getNumberOfAds());
-        //assert this.swapp.getAdList().getNumberOfAds() == 2;  //Uncomment later when adlist works
+        assert this.swapp.getAdList().getNumberOfAds() == 2;  //Uncomment later when adlist works
         swapp.getCurrentUser().getUserAds().get(1).setStatus(Ad.Status.COMPLETED);
         swapp.populateAdList();
-        //assert this.swapp.getAdList().getNumberOfAds() == 1;  // uncomment when adList works
+        assert this.swapp.getAdList().getNumberOfAds() == 1;  // uncomment when adList works
 
-
-
+    }
+    @Test
+    public void testTransactionAndAd(){
+        this.swapp.createUser("name", "ggg@gmail.com", "Password123");
+        swapp.getAccounts().get(0).createAd("tittel","body,", Ad.Category.BORROW);
+        user.createTransaction(swapp.getAccounts().get(0).getUserAds().get(0),user);
+        swapp.setCurrentUser(swapp.getAccounts().get(0));
+        swapp.setTransactionStatus(new Transaction(swapp.getAccounts().get(0).getUserAds().get(0), user));
+        swapp.setAdStatus(new Ad("tittel", swapp.getAccounts().get(0),
+                "body,", Ad.Category.BORROW), Ad.Status.COMPLETED);
     }
 }

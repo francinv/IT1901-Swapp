@@ -93,13 +93,6 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   public void populateAdList() {
     swapp.populateAdList();
   }
-  public List<Transaction> getTransactionList() {
-    return swapp.getTransactionList();
-  }
-  public void populateTransactionList() {
-    swapp.populatetransactionList();
-  }
-
   private void saveSwapp() {
     storage = new SwappStorage();
     try (FileWriter writer = new FileWriter(Paths.get(pathToSwapp).toFile(), StandardCharsets.UTF_8)) {
