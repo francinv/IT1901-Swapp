@@ -142,7 +142,6 @@
         <module>core</module>
         <module>fxui</module>
         <module>restserver</module>
-        <module>integrationtests</module>
     </modules>
 
 </project>
