@@ -16,6 +16,4 @@ Modulen bruker javafx og FXML-filer.
 
 ## Sequence diagram
 
-![Sequence diagram](sequenceD.png)
-
-g
+![Sequence diagram](sequence.png)
