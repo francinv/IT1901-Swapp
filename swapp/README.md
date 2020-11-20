@@ -2,10 +2,15 @@
 Appen Swap skal gjøre det mulig for brukere å bytte eller gi bort ting. Målgruppen er studenter.
 **[Se her for flere detaljer om hva appen handler om.](OM_PROSJEKTET.md)**
 
-# Arkitekturdiagram
 
-![Arkitektur](diagram.png)
 
+## Pakkediagram
+
+![Pakkediagram](pakkediagram.PNG)
+
+## Pakkediagram
+
+![Klassediagram](klassediagram_fxui_core.png)
 
 # Maven-kommandoer
 - mvn clean install 
