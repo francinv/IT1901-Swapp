@@ -11,16 +11,16 @@ public class AdList {
    * The AdList contains all active Ad-instances and communicates with the GUI.
    */
   private ArrayList<Ad> ads;
-  public AdList(){
+  public AdList() {
     this.ads = new ArrayList<Ad>();
 
   }
   // Create an Ad
     /*
-    public void createAndAdd(String title, String author, String textBody){
+    public void createAndAdd(String title, String author, String textBody) {
         this.ads.add(new Ad(title, author, textBody));
     }*/
-  public void add(Ad ad){
+  public void add(Ad ad) {
     this.ads.add(ad);
   }
   // TODO: Get users
@@ -28,36 +28,36 @@ public class AdList {
    *
    * @return size of adList/number of active Ads.
    */
-  public int getNumberOfAds(){
+  public int getNumberOfAds() {
     return this.ads.size();
   }
-  public Ad getAd(int i){
+  public Ad getAd(int i) {
     return ads.get(i);
   }
 
-  public void archiveAd(Ad ad){
+  public void archiveAd(Ad ad) {
     ads.remove(ad);
     // TODO: Give the ad somwhere to display transaction history
   }
 
 
-  public ArrayList<Ad> reverse(){ // tested, works
+  public ArrayList<Ad> reverse() { // tested, works
     ArrayList<Ad> arrList = this.ads;
     Collections.reverse(arrList);
     return arrList;
   }
 
-  public List<Ad> filterByCategory(Enum s){ // s = "borrow" | "switch" | "gift"
+  public List<Ad> filterByCategory(Enum s) { // s = "borrow" | "switch" | "gift"
     this.ads = (ArrayList<Ad>) this.ads.stream().filter(c -> c.getCategory().equals(s) ).collect(Collectors.toList());
     return ads;
   }
 
-  public ArrayList<Ad> sortBy(String mode){ // mode = "title" | "author"
+  public ArrayList<Ad> sortBy(String mode) { // mode = "title" | "author"
     ArrayList<Ad> arrList = this.ads;
-    if (mode.equals("title")){
+    if (mode.equals("title")) {
       arrList.sort((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase()));
     }
-    else if (mode.equals("author")){
+    else if (mode.equals("author")) {
       arrList.sort((o1, o2) -> o1.getAuthor().getName().toLowerCase().
               compareTo(o2.getAuthor().getName().toLowerCase()));
     }

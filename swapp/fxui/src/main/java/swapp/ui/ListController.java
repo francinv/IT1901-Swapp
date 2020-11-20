@@ -1,27 +1,19 @@
 package swapp.ui;
 
-import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import swapp.core.*;
-
-import javafx.event.ActionEvent;
-
+import swapp.core.Ad;
+import swapp.core.AdList;
 import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 
 /**
  * ListController controls the main page of all active Ads. adList holds all active Ads that should be displayed.
@@ -44,8 +36,12 @@ public class ListController extends AbstractController {
     populateList();
   }
 
-  // helper functions:
-
+  /**
+   * populateList fills the adList in swapp with all relevant (ACTIVE) Ads which should be
+   * displayed in the listview. Sort will sort the ads in adList by new, while refrestListView makes
+   * the ListView coherent with adList.
+   *
+   */
   private void populateList() {
     swappAccess.populateAdList();
     adList = swappAccess.getAdList();
@@ -69,14 +65,15 @@ public class ListController extends AbstractController {
 
 
   /**
-   * This method is triggered when a user clicks on an element of the ListView. Should take either Ad or null.
+   * This method is triggered when a user clicks on an element of the ListView. It should take
+   * either an Ad or null.
    * If the element is an Ad, we should transition to AdDetailView and be able to request the Ad.
    * If an Ad has been clicked, a DetailView of the Ad should open.
    * @param arg0
    */
   @FXML
   void handleListClick(MouseEvent arg0) {
-    Object ad = listView.getSelectionModel().getSelectedItem(); // Return the ListView element user clicked on
+    Object ad = listView.getSelectionModel().getSelectedItem(); // Return clicked listView element (Ad or null if empty)
 
     if (ad instanceof Ad) {
       setSceneAd(CONTROLLERS.ADDETAIL, arg0, swappAccess, (Ad) ad);  // Try to cast the element clicked to an Ad
@@ -84,31 +81,14 @@ public class ListController extends AbstractController {
       System.out.println("Clicked empty list element");
     }
   }
-  // scene shift to addetail needs it's own setScene, because it takes an extra paramerer, Ad, and calls
-  // adDetail.setAd.
-  public void setSceneAd(CONTROLLERS type, Event event, SwappAccess access, Ad ad) {
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    try {
-      AbstractController controller = type.getControllerInstance();
-      controller.setSwappAccess(swappAccess);
-      FXMLLoader loader = new FXMLLoader();
-      loader.setController(controller);
-      loader.setLocation(AbstractController.class.getResource(type.getFXMLString()));
 
 
-      Parent parent = loader.load();
-      Scene newScene = new Scene(parent);
-      stage.setScene(newScene);
-      if (controller instanceof AdDetailController){
-        ((AdDetailController) controller).setAd(ad);
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
 
 
-  // triggered by combobox
+
+  /**
+   * Sort gets the value from comboBox, if nothing use "new" as default.
+   */
   public void sort() {
     String sortByToken;
     if (sortByComboBox.getValue() == null) {
@@ -120,11 +100,22 @@ public class ListController extends AbstractController {
 
   }
 
+  /**
+   * Uses adList method to sort by "author" | "title" | "new". Then refresh.
+   * Triggered when user picks a new value in combobox.
+   *
+   * @param s
+   */
   public void sortBy(String s) { // s= "author" | "title" | "new"
     adList.sortBy(s);
     refreshListView();
   }
 
+  /**
+   * Filter shows only Ads with selected category. This method gets a string from the combobox and
+   * calls filterByCategory with the correct Enum. It then calls sort which ensure elements are in the
+   * same order as before, and also refreshes listView.
+   */
   public void filter() {
     String filterByToken;
     Ad.Category category = null;
@@ -133,7 +124,6 @@ public class ListController extends AbstractController {
     } else {
       filterByToken = filterByCombobox.getValue();
     }
-    //TODO: Use switch-statement
     if (filterByToken.equals("All")) {
       populateList();
     } else {
@@ -148,11 +138,14 @@ public class ListController extends AbstractController {
 
       sort();
     }
-
-
   }
 
-  public void filterByCategory(Enum s) { // s = "borrow" | "switch" | "gift"
+  /**
+   * First fills up adList with all ads again, then removes all elements with a different category then
+   * specified by Enum s.
+   * @param s
+   */
+  public void filterByCategory(Enum s) {
     populateList();
     adList.filterByCategory(s);
 
@@ -163,7 +156,10 @@ public class ListController extends AbstractController {
     refreshListView();
   }
 
-
+  /**
+   * Triggered by clicking create new ad-button.
+   * @param event
+   */
   public void makeAd(ActionEvent event) {
     setScene(CONTROLLERS.NEWAD, event, swappAccess);
   }
@@ -175,13 +171,12 @@ public class ListController extends AbstractController {
    */
   @FXML
   public void logOut(ActionEvent event) {
-    // TODO: set current user to None
     swappAccess.setCurrentUser(null);
     setScene(CONTROLLERS.LOGIN, event, swappAccess);
   }
 
   /**
-   * Triggered by refresh button
+   * Triggered by refresh button.
    */
   @FXML
   void populateListView() {
@@ -189,7 +184,7 @@ public class ListController extends AbstractController {
   }
 
   /**
-   * DELETE method body here
+   * Triggered by to proifle page-button.
    */
   public void myProfile(ActionEvent event) { // triggered by button click
     setScene(CONTROLLERS.PROFILE, event, swappAccess);

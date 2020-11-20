@@ -1,39 +1,38 @@
 package swapp.ui;
 
 import swapp.core.*;
-
 import java.util.List;
 
 public interface SwappAccess {
 
-    User getUser(String name);
+  User getUser(String name);
 
-    Ad getAd(String name, String title);
+  Ad getAd(String name, String title);
 
-    boolean validUser(String name, String email, String password); //??? nødvendig?
+  boolean validUser(String name, String email, String password); //??? nødvendig?
 
-    void createUser(String name, String email, String password);
+  void createUser(String name, String email, String password);
 
-    void createAd(String title, String textBody, Ad.Category category);
+  void createAd(String title, String textBody, Ad.Category category);
 
 
-    UserValidation getUserValidation();
+  UserValidation getUserValidation();
 
-    User getUserLogin(String email, String password);
+  User getUserLogin(String email, String password);
 
-    void setCurrentUser(User user);
+  void setCurrentUser(User user);
 
-    User getCurrentUser();
+  User getCurrentUser();
 
-    List<User> getAccounts();
+  List<User> getAccounts();
 
-    AdList getAdList();
+  AdList getAdList();
 
-    void populateAdList();
+  void populateAdList();
 
-    void createTransaction(Ad ad, User requester);
-    
-    Boolean changeAdStatus(Ad ad, Ad.Status status);
+  void createTransaction(Ad ad, User requester);
 
-    Boolean setTransactionStatus(Transaction transaction);
+  Boolean changeAdStatus(Ad ad, Ad.Status status);
+
+  Boolean setTransactionStatus(Transaction transaction);
 }
