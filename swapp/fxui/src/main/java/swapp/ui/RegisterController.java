@@ -10,6 +10,10 @@ import javafx.stage.Window;
 import swapp.core.User;
 import swapp.core.UserValidation;
 
+/**
+ * Registercontroller allows clients to make a new user or navigate to log In. If
+ * registertration is successful, a new user is made in core and saved.
+ */
 public class RegisterController extends AbstractController {
 
   @FXML Button registerButton;

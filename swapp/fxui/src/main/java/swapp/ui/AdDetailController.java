@@ -14,10 +14,7 @@ import java.util.Date;
  *
  */
 public class AdDetailController extends AbstractController {
-  /**
-   * For now only loads a static FXML file and button to get back to all ads
-   * TODO: Get access to Ad-object here
-   */
+
   @FXML
   public Label userLabel;
   @FXML
@@ -36,11 +33,21 @@ public class AdDetailController extends AbstractController {
   public Label display;
   Ad ad;
 
+  /**
+   * When clicking "All ads" button, this methods is called and switches back to previous view.
+   *
+   * @param event
+   */
   @FXML
   void backToAllAds(ActionEvent event) {
-    // When clicking "All ads" button, this methods is called and switches back to previous view.
+
     setScene(CONTROLLERS.LIST, event, swappAccess);
   }
+
+  /**
+   * When Back to Profile-button is cliecked, this method is triggered.
+   * @param event
+   */
   @FXML
   void backToProfile(ActionEvent event){
     setScene(CONTROLLERS.PROFILE, event, swappAccess);
@@ -48,7 +55,7 @@ public class AdDetailController extends AbstractController {
 
   /**
    * request is triggered by clicking the "requst this ad"-button. It creates a transaction that the adOwner will
-   * be able to accept
+   * be able to accept.
    *
    */
   @FXML
@@ -63,12 +70,19 @@ public class AdDetailController extends AbstractController {
     }
   }
 
+  /**
+   * When setting the controller to transition to, setAd should be called and give the specific Ad that has been
+   * clicked in a listView. setAd updates the field and then updates labels.
+   * @param ad
+   */
   public void setAd(Ad ad) {
     this.ad = ad;
     setLabels();
   }
 
-
+  /**
+   * Updates label with Ad-infomration.
+   */
   private void setLabels() {
     titleLabel.setText(ad.getTitle());
     textBody.setText(ad.getTextBody());
@@ -77,6 +91,11 @@ public class AdDetailController extends AbstractController {
             convertTime(ad.getTime()) + ")");
   }
 
+  /**
+   * Helper to make unix time to a more readable format.
+   * @param time
+   * @return
+   */
   private String convertTime(long time) {
     Date date = new Date(time);
     return date.toString();

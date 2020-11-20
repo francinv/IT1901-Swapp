@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The profile page displays all received transaction objects, and all ads owned by logged in user.
+ * Clicking on a transaction will accept it the transaction will get Status accepted
+ * and not show up. The Ad is also set to completed and wont show up on main page.
+ */
 public class ProfilePageController extends AbstractController {
   @FXML
   Label profileNameText;
@@ -43,11 +48,22 @@ public class ProfilePageController extends AbstractController {
     emailText.setText(swappAccess.getCurrentUser().getEmail());
   }
 
+  /**
+   * Triggered by button click
+   *
+   * @param event
+   */
   @FXML
   public void handleBackButton(ActionEvent event) {
     setScene(CONTROLLERS.LIST, event, swappAccess);
   }
 
+  /**
+   * Triggered by clicking on the listView with ads. Opens the detailView of that ad, similar to
+   * main page.
+   *
+   * @param event
+   */
   @FXML
   public void handleListClick(MouseEvent event) {
     Object ad = adListView.getSelectionModel().getSelectedItem(); // Return the ListView element user clicked on
@@ -81,21 +97,27 @@ public class ProfilePageController extends AbstractController {
     }
   }
 
+  /**
+   * Gets all ads from the logged in user from swapp and ads to Adlist
+   */
   @FXML
-  private void populateAdList() { // gets all ads from the logged in user from swapp and ads to Adlist
+  private void populateAdList() {
     ads.clear();
     ads.addAll(swappAccess.getCurrentUser().getUserAds());
   }
 
   /**
-   * refreshList updates the GUI so it shows the ads and the ONGOING transactions
+   * refreshList updates the GUI so it shows the ads
    */
   @FXML
   private void refreshList() {
     adListView.getItems().clear();
     adListView.getItems().addAll(ads);
-
   }
+
+  /**
+   * refreshes GUI so it shows the ONGOING transactions
+   */
   private void refreshTransactionList() {
     transactionListView.getItems().clear();
     transactionListView.getItems().addAll(transactions.stream()
