@@ -43,12 +43,18 @@ public class ProfilePageController extends AbstractController {
     profileNameText.setText(swappAccess.getCurrentUser().getName());
     emailText.setText(swappAccess.getCurrentUser().getEmail());
   }
-
+/**
+ * method called when back button is clicked
+ * @param event the event with which the method is called
+ */
   @FXML
   public void handleBackButton(ActionEvent event) {
     setScene(CONTROLLERS.LIST, event, swappAccess);
   }
-
+/**
+ * method called when an element in the listview of ads is clicked
+ * @param event the event with which the method is called
+ */
   @FXML
   public void handleListClick(ActionEvent event) {
     setScene(CONTROLLERS.ADDETAIL, event, swappAccess);
@@ -57,7 +63,7 @@ public class ProfilePageController extends AbstractController {
   /**
    * Triggered by someone clicking on an element on the TransactionListView. Could contain a Transaction
    * object or null if empty element is clicked. When a user clicks on a transaction, that transaction is
-   * changed to COMPLETED and will not show up anymore. The Ad will also change to completed and not be shown
+   * changed to ACCEPTED and will not show up anymore. The Ad will also change to completed and not be shown
    * on the main page.
    * @param event
    */
@@ -90,6 +96,9 @@ public class ProfilePageController extends AbstractController {
     adListView.getItems().addAll(ads);
 
   }
+  /**
+   * refreshes the list of transactions so that it only shows ongoing ones
+   */
   private void refreshTransactionList(){
     transactionListView.getItems().clear();
     transactionListView.getItems().addAll(transactions.stream()

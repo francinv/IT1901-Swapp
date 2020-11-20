@@ -18,10 +18,6 @@ import java.util.Date;
  *
  */
 public class AdDetailController extends AbstractController {
-  /**
-   * For now only loads a static FXML file and button to get back to all ads
-   * TODO: Get access to Ad-object here
-   */
   @FXML
   public Label userLabel;
   @FXML
@@ -47,7 +43,7 @@ public class AdDetailController extends AbstractController {
   }
 
   /**
-   * request is triggered by clicking the "requst this ad"-button. It creates a transaction that the adOwner will
+   * request is triggered by clicking the "requst this ad"-button. It creates a transaction that the ad's owner will
    * be able to accept
    *
    */
@@ -68,7 +64,9 @@ public class AdDetailController extends AbstractController {
     setLabels();
   }
 
-
+  /**
+   * customizes the text that shows up so it corresponds to the correct Ad
+   */
   private void setLabels(){
     titleLabel.setText(ad.getTitle());
     textBody.setText(ad.getTextBody());

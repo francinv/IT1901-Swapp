@@ -124,7 +124,9 @@ public class ListController extends AbstractController {
     adList.sortBy(s);
     refreshListView();
   }
-
+/**
+ * filters the ListView to show ads certain categories
+ */
   public void filter() {
     String filterByToken;
     Ad.Category category = null;
@@ -133,7 +135,6 @@ public class ListController extends AbstractController {
     } else {
       filterByToken = filterByCombobox.getValue();
     }
-    //TODO: Use switch-statement
     if (filterByToken.equals("All")) {
       populateList();
     } else {
@@ -148,8 +149,6 @@ public class ListController extends AbstractController {
 
       sort();
     }
-
-
   }
 
   public void filterByCategory(Enum s) { // s = "borrow" | "switch" | "gift"
@@ -187,10 +186,6 @@ public class ListController extends AbstractController {
   void populateListView() {
     populateList();
   }
-
-  /**
-   * DELETE method body here
-   */
   public void myProfile(ActionEvent event) { // triggered by button click
     setScene(CONTROLLERS.PROFILE, event, swappAccess);
   }
