@@ -182,6 +182,7 @@ public class Swapp implements IObservable<Swapp> {
     for (Ad swappAd: user.getUserAds()) {
       if (swappAd.equals(ad)) {
         swappAd.setStatus(status);
+        notifyObservers(this);
         return true;
       }
     }

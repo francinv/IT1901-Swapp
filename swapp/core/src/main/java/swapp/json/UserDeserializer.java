@@ -11,6 +11,9 @@ import swapp.core.User;
 import java.io.IOException;
 import java.util.Iterator;
 
+/**
+ * User dezerializer takes the stored users in json-format to java objects.
+ */
 public class UserDeserializer extends JsonDeserializer<User> {
 
   ObjectMapper mapper = new ObjectMapper();

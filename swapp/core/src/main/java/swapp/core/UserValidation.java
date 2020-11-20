@@ -1,6 +1,5 @@
 package swapp.core;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;

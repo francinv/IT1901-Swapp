@@ -41,6 +41,10 @@ public class AdDetailController extends AbstractController {
     // When clicking "All ads" button, this methods is called and switches back to previous view.
     setScene(CONTROLLERS.LIST, event, swappAccess);
   }
+  @FXML
+  void backToProfile(ActionEvent event){
+    setScene(CONTROLLERS.PROFILE, event, swappAccess);
+  }
 
   /**
    * request is triggered by clicking the "requst this ad"-button. It creates a transaction that the adOwner will

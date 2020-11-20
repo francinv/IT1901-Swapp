@@ -28,6 +28,7 @@ public class ProfilePageController extends AbstractController {
   @FXML
   ListView<Transaction> transactionListView;
 
+
   private final List<Ad> ads = new ArrayList<>();
   private List<Transaction> transactions = new ArrayList<>();
 
@@ -48,8 +49,15 @@ public class ProfilePageController extends AbstractController {
   }
 
   @FXML
-  public void handleListClick(ActionEvent event) {
-    setScene(CONTROLLERS.ADDETAIL, event, swappAccess);
+  public void handleListClick(MouseEvent event) {
+    Object ad = adListView.getSelectionModel().getSelectedItem(); // Return the ListView element user clicked on
+
+    if (ad instanceof Ad) {
+      setSceneAd(CONTROLLERS.ADDETAIL, event, swappAccess, (Ad) ad);  // Try to cast the element clicked to an Ad
+    } else {
+      System.out.println("Clicked empty list element");
+    }
+
   }
 
   /**

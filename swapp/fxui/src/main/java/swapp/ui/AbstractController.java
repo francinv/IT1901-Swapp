@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import swapp.core.Ad;
 
 /**
  * Contains shared methods for all controllers.
@@ -111,6 +112,36 @@ public abstract class AbstractController {
       Parent parent = loader.load();
       Scene newScene = new Scene(parent);
       stage.setScene(newScene);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * scene shift to addetail needs it's own setScene, because it takes an extra paramerer,
+   * Ad, and calls adDetail.setAd.
+   *
+   * @param type
+   * @param event
+   * @param access
+   * @param ad
+   */
+  public void setSceneAd(CONTROLLERS type, Event event, SwappAccess access, Ad ad) {
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    try {
+      AbstractController controller = type.getControllerInstance();
+      controller.setSwappAccess(swappAccess);
+      FXMLLoader loader = new FXMLLoader();
+      loader.setController(controller);
+      loader.setLocation(AbstractController.class.getResource(type.getFXMLString()));
+
+
+      Parent parent = loader.load();
+      Scene newScene = new Scene(parent);
+      stage.setScene(newScene);
+      if (controller instanceof AdDetailController) {
+        ((AdDetailController) controller).setAd(ad);
+      }
     } catch (IOException e) {
       e.printStackTrace();
     }
