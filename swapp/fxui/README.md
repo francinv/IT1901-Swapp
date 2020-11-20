@@ -13,3 +13,9 @@ Modulen bruker javafx og FXML-filer.
    FXML befinner seg i 
 
     src/main/resources/swapp/ui/
+
+## Sequence diagram
+
+![Sequence diagram](sequenceD.png)
+
+g
