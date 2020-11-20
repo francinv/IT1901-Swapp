@@ -6,7 +6,7 @@ Appen Swap skal gjøre det mulig for brukere å bytte eller gi bort ting. Målgr
 
 ## Pakkediagram
 
-![Pakkediagram](pakkediagram.PNG)
+![Pakkediagram](diagram.PNG)
 
 ## Pakkediagram
 
