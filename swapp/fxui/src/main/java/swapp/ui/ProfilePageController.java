@@ -79,7 +79,7 @@ public class ProfilePageController extends AbstractController {
   /**
    * Triggered by someone clicking on an element on the TransactionListView. Could contain a Transaction
    * object or null if empty element is clicked. When a user clicks on a transaction, that transaction is
-   * changed to COMPLETED and will not show up anymore. The Ad will also change to completed and not be shown
+   * changed to ACCEPTED and will not show up anymore. The Ad will also change to completed and not be shown
    * on the main page.
    * @param event
    */

@@ -6,6 +6,7 @@ import java.util.Objects;
  * A transaction object is created when someone requests an Ad. It is stored in the receiver's UserTransactionList
  * and will then show up on the profile of the receiver, but only if it has Status.ONGOING
  * page of the receiver
+ * Transaction objects have an enum Status, a corresponding ad, and two users representing a requester and a receiver, so to speak
  */
 public class Transaction {
 

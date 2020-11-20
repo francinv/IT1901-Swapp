@@ -138,8 +138,6 @@ public class ListController extends AbstractController {
 
       sort();
     }
-
-
   }
 
   /**

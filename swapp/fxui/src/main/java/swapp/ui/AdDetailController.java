@@ -81,9 +81,9 @@ public class AdDetailController extends AbstractController {
   }
 
   /**
-   * Updates label with Ad-infomration.
+   * customizes the text that shows up so it corresponds to the correct Ad
    */
-  private void setLabels() {
+  private void setLabels(){
     titleLabel.setText(ad.getTitle());
     textBody.setText(ad.getTextBody());
     userLabel.setText("advertised by: " + ad.getAuthor().getName() + " with email " + ad.getAuthor().getEmail());
