@@ -1,7 +1,7 @@
 actor User
 ListController -> ListController: initialize
 ListController -> RemoteSwappAccess: populateAdList
-RemoteSwappAccess -> RemoteSwappAccess: getSwapp
+RemoteSwappAccess -> RemoteSwappAccess: getSwapp (her skjer rest kall)
 User -> "~#listView: ListView" as listView: click
 listView -> ListController: handleListClick
 ListController -> ListController: setSceneAd
