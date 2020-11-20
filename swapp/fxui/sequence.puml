@@ -1,0 +1,11 @@
+actor User
+User -> "~#listView: ListView" as listView: click
+listView -> ListController: handleListClick
+ListController -> ListController: setSceneAd
+ListController -> ListController: setSwappAccess
+ListController -> AdDetailController: setAd
+AdDetailController -> AdDetailController: setLabels
+AdDetailController -> AdDetailController: setters for fxml elements
+AdDetailController -> Ad: getters for ad fields
+AdDetailController -> AdDetailController convertTime
+AdDetailController -> Ad: getTime
