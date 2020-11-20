@@ -26,17 +26,6 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   }
 
   @Override
-  public Ad getAd(String name, String title) {
-    //return swapp.getUser(name).getAd(title);
-    return null;
-  }
-
-  @Override
-  public boolean validUser(String name, String email, String password) {
-    return swapp.getUserValidation().validateUser(name, email, password);
-  }
-
-  @Override
   public void createUser(String name, String email, String password) {
     swapp.createUser(name, email, password);
   }
@@ -45,16 +34,17 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   public void createAd(String title, String textBody, Ad.Category category) {
     swapp.createAd(title, textBody, category);
   }
+
   @Override
   public void createTransaction(Ad ad, User requester) {
     swapp.createTransaction(ad, requester);
   }
 
-
   @Override
   public Boolean changeAdStatus(Ad ad, Ad.Status status) {
     return swapp.setAdStatus(ad, status);
   }
+
   @Override
   public Boolean setTransactionStatus(Transaction transaction){
     return swapp.setTransactionStatus(transaction);
@@ -66,8 +56,13 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   }
 
   @Override
-  public User getUserLogin(String email, String password) {
-    return swapp.getUserLogin(email, password);
+  public boolean loginUser(String email, String password) {
+    User user = swapp.getUserLogin(email, password);
+    if (user != null) {
+      swapp.setCurrentUser(user);
+      return true;
+    }
+    return false;
   }
 
   @Override
@@ -81,11 +76,6 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   }
 
   @Override
-  public List<User> getAccounts() {
-    return swapp.getAccounts();
-  }
-
-  @Override
   public AdList getAdList() {
     return swapp.getAdList();
   }
@@ -94,9 +84,11 @@ public class LocalSwappAccess implements SwappAccess, IObserver<Swapp> {
   public void populateAdList() {
     swapp.populateAdList();
   }
+
   public List<Transaction> getTransactionList(){
     return swapp.getTransactionList();
   }
+
   public void populateTransactionList(){
     swapp.populatetransactionList();
   }

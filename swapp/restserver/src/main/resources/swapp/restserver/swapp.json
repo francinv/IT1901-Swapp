@@ -1,0 +1,23 @@
+[ {
+  "name" : "testname",
+  "email" : "test@test.com",
+  "password" : "Testpass123",
+  "ads" : [ {
+    "title" : "Test ad",
+    "textbody" : "This is a test",
+    "category" : "BORROW",
+    "status" : "ACTIVE",
+    "date" : 917543700
+  } ]
+}, {
+  "name" : "daniel",
+  "email" : "daniel@daniel.com",
+  "password" : "Daniel123",
+  "ads" : [ {
+    "title" : "Hoppeslott",
+    "textbody" : "Gratis hoppeslott my dudes",
+    "category" : "GIFT",
+    "status" : "ACTIVE",
+    "date" : 1605810790319
+  } ]
+} ]

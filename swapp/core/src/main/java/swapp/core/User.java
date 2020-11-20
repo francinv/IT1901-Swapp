@@ -31,10 +31,21 @@ public class User {
 	public void createAd(String title, String textBody, Ad.Category category){
 		this.userAds.add(new Ad(title, this, textBody, category));//
 	}
+
+	public Ad getAd(String title) {
+	  for (Ad ad : userAds) {
+	    if (ad.getTitle().equals(title)) {
+	      return ad;
+        }
+      }
+	  return null;
+    }
+
 	public void createTransaction(Ad ad, User requester){
 		this.userTransactions.add(new Transaction(ad, requester));
 		System.out.println(userTransactions);
 	}
+
 	public List<swapp.core.Ad> getUserAds(){
 		return this.userAds;
     }
@@ -42,6 +53,7 @@ public class User {
     public List<swapp.core.Transaction> getUserTransactions() {
         return this.userTransactions;
     }
+
 	/**
 	 * getter for the User's name.
 	 * @return the name of the User

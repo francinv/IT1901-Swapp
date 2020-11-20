@@ -39,7 +39,6 @@ public class CreateAdController extends AbstractController {
     // if empty fields
     if (swappAccess.getCurrentUser()==null){
       System.out.println("currentUSER== null");
-      System.out.println(swappAccess.getUser("ramborambo"));
     }
     else{
       System.out.println(swappAccess.getCurrentUser());

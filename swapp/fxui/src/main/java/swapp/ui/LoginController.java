@@ -47,12 +47,10 @@ public class LoginController extends AbstractController {
       createAlertBox(ERROR, parent, ERROR_DIALOG, INVALID_PWD);
       return;
     }
-    User loggedIn = swappAccess.getUserLogin(emailFieldText, passwordFieldText);
-    if (loggedIn == null) {
+    boolean bool = swappAccess.loginUser(emailFieldText, passwordFieldText);
+    if (!bool) {
       createAlertBox(ERROR, parent, ERROR_DIALOG, INVALID_EMAIL_AND_OR_PWD);
       return;
-    } else {
-      swappAccess.setCurrentUser(loggedIn);
     }
     display.setText("LOGIN SUCCESSFUL!");
     setScene(CONTROLLERS.LIST, event, swappAccess);
